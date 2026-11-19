@@ -58,7 +58,19 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 7.75rem;
+      scroll-padding-top: calc(var(--workbook-header-height, 0px) + 0.75rem);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    @media (max-height: 360px) {
+      #workbook-header {
+        position: static;
+      }
     }
 
     body {
@@ -76,10 +88,43 @@
     /* Accessible Focus Rings */
     button:focus-visible,
     a:focus-visible,
-    input:focus-visible,
-    textarea:focus-visible {
+    #brief-document :is(input, textarea):focus-visible {
       outline: 2px solid var(--color-burgundy);
       outline-offset: 2px;
+    }
+
+    #workbook-header :is(a, button):focus-visible {
+      outline: 2px solid var(--color-gold);
+      outline-offset: -3px;
+    }
+
+    #brief-document :is(input[type="text"], input[type="date"], textarea) {
+      min-width: 0;
+    }
+
+    @media screen and (max-width: 639px) {
+      #brief-document .section-step-nav a {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media screen and (min-width: 64rem) {
+      #section-08 .action-plan-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(10rem, 1fr);
+      }
+    }
+
+    @media screen and (pointer: coarse) {
+      #brief-document :is(button, input[type="date"], .section-step-nav a),
+      #workbook-header :is(a, button),
+      [role="dialog"] button {
+        min-height: 2.75rem;
+      }
+
+      #brief-document :is(input[type="text"], input[type="date"], textarea) {
+        font-size: 1rem;
+      }
     }
 
     /* Auto-growing Textareas */
@@ -144,16 +189,24 @@
 
     /* Horizontal Section Navigation Strip */
     .nav-strip {
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+      overscroll-behavior-x: contain;
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-gold) var(--color-navy);
     }
 
-    .nav-strip::-webkit-scrollbar {
-      display: none;
+    .field-error {
+      margin-top: 0.375rem;
+      color: var(--color-burgundy);
+      font-size: 0.8125rem;
+    }
+
+    [aria-invalid="true"] {
+      box-shadow: 0 0 0 1px var(--color-burgundy);
     }
 
     .section-nav-pill {
       display: inline-flex;
+      flex: none;
       align-items: center;
       gap: 0.4rem;
       padding: 0.42rem 0.72rem;
@@ -264,13 +317,13 @@
     }
   </style>
 </head>
-<body class="min-h-screen pb-20">
+<body class="min-h-screen pb-10 sm:pb-16">
 
   <!-- Sticky Editorial Workshop Utility Bar -->
-  <header class="no-print sticky top-0 z-40 bg-editorial-navy text-white border-b border-editorial-gold/40">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-2.5 pb-2">
+  <header id="workbook-header" class="no-print sticky top-0 z-40 bg-editorial-navy text-white border-b border-editorial-gold/40">
+    <div class="max-w-6xl mx-auto px-3 sm:px-6 pt-2.5 pb-2">
       <!-- Top Row: Brand Title, Device Save Status, Progress & Quick Actions -->
-      <div class="flex flex-wrap items-center justify-between gap-3">
+      <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <!-- Title & BIP Reference -->
         <div class="flex items-center gap-3 min-w-0">
           <div class="w-8 h-8 rounded border border-editorial-gold/60 bg-editorial-burgundy flex items-center justify-center font-editorial-serif font-bold text-base text-editorial-ivory tracking-wider shrink-0" aria-hidden="true">
@@ -287,9 +340,9 @@
             </div>
 
             <!-- Progress & Auto-Save Status Line -->
-            <div class="flex flex-wrap items-center gap-2.5 mt-1 text-xs text-editorial-ivory/90">
+            <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1 mt-1 text-xs text-editorial-ivory/90">
               <span id="progress-text" class="font-medium">0 of 8 sections completed</span>
-              <div class="w-20 sm:w-28 h-1.5 bg-white/15 rounded-full overflow-hidden" role="progressbar" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0" id="progress-bar-wrap">
+              <div class="w-12 sm:w-28 h-1.5 bg-white/15 rounded-full overflow-hidden" role="progressbar" aria-label="Workbook progress" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0" id="progress-bar-wrap">
                 <div id="progress-bar" class="h-full bg-editorial-gold transition-all duration-300" style="width: 0%;"></div>
               </div>
               <span class="text-editorial-gold/50" aria-hidden="true">·</span>
@@ -303,7 +356,7 @@
         </div>
 
         <!-- Quick Save/Export Jump & Clear Controls -->
-        <div class="flex items-center gap-2 shrink-0">
+        <div class="flex flex-wrap items-center gap-2">
           <a href="#save-export-panel"
             class="inline-flex items-center gap-1.5 px-3 py-2 rounded-md bg-editorial-burgundy hover:bg-editorial-burgundyLight border border-editorial-gold/50 text-white text-xs font-semibold tracking-wide transition">
             <span>Save &amp; Export</span>
@@ -355,21 +408,21 @@
   </header>
 
   <!-- Main Editorial Workbook Container -->
-  <main id="brief-document" class="print-container max-w-5xl mx-auto px-4 sm:px-6 pt-7 sm:pt-10 space-y-8">
+  <main id="brief-document" class="print-container max-w-6xl mx-auto px-3 sm:px-6 pt-5 sm:pt-10 space-y-5 sm:space-y-8">
 
     <!-- OPENING EDITORIAL MASTHEAD -->
     <section aria-labelledby="workbook-main-title" class="bg-white rounded-xl border border-editorial-gold/70 overflow-hidden shadow-xs">
       <!-- Top Publication Strip -->
-      <div class="bg-editorial-navy text-editorial-ivory px-6 sm:px-8 py-3 flex flex-wrap items-center justify-between gap-2 text-xs tracking-[0.14em] uppercase font-semibold">
+      <div class="bg-editorial-navy text-editorial-ivory px-4 sm:px-8 py-3 flex flex-wrap items-center justify-between gap-2 text-xs tracking-[0.14em] uppercase font-semibold">
         <span class="text-editorial-gold">The Leader as a Brand</span>
         <span>BIP · Bucharest 2026</span>
       </div>
 
-      <div class="p-6 sm:p-10">
+      <div class="p-4 sm:p-10">
         <p class="text-xs uppercase tracking-[0.18em] text-editorial-burgundy font-bold mb-2">
           Personal Branding &amp; Leadership Workbook
         </p>
-        <h1 id="workbook-main-title" class="font-editorial-serif text-4xl sm:text-5xl font-bold tracking-tight text-editorial-navy leading-tight">
+        <h1 id="workbook-main-title" class="font-editorial-serif text-3xl sm:text-5xl font-bold tracking-tight text-editorial-navy leading-tight">
           MY PERSONAL BRAND BRIEF
         </h1>
         <p class="font-editorial-serif italic text-xl sm:text-2xl text-editorial-charcoal mt-1.5">
@@ -377,7 +430,7 @@
         </p>
 
         <!-- Working Draft Framing Note -->
-        <div class="mt-6 bg-editorial-ivorySoft border-l-4 border-editorial-burgundy rounded-r-lg p-4 sm:p-5">
+        <div class="mt-6 max-w-3xl bg-editorial-ivorySoft border-l-4 border-editorial-burgundy rounded-r-lg p-4 sm:p-5">
           <p class="text-sm text-editorial-ink leading-relaxed">
             <strong class="text-editorial-burgundy font-semibold">Workshop Guidance — Working Draft, Not an Assessment:</strong>
             This workbook is a reflective journal designed to help you articulate your professional direction and leadership presence. There are no graded or “correct” answers—treat this as an evolving working draft that you can start during the workshop, save to your device, and refine over time.
@@ -417,7 +470,7 @@
     <!-- ===================================================================== -->
     <!-- SECTION 01: MY PROFESSIONAL GOALS                                     -->
     <!-- ===================================================================== -->
-    <section id="section-01" data-section="1" aria-labelledby="heading-01" class="section-card bg-white rounded-xl border border-editorial-ivory p-6 sm:p-9 shadow-xs">
+    <section id="section-01" tabindex="-1" data-section="1" aria-labelledby="heading-01" class="section-card bg-white rounded-xl border border-editorial-ivory p-4 sm:p-7 lg:p-9 shadow-xs">
       <div class="pb-5 mb-6 border-b border-editorial-ivory">
         <div class="flex items-center gap-3 mb-1.5">
           <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
@@ -474,9 +527,9 @@
       </div>
 
       <!-- Section Step Navigation -->
-      <div class="no-print flex items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-ivory">
+      <div class="section-step-nav no-print flex flex-wrap items-center justify-between gap-2.5 mt-6 pt-4 sm:mt-7 sm:pt-5 border-t border-editorial-ivory">
         <span class="text-xs text-editorial-charcoal">Section 01 of 08</span>
-        <a href="#section-02" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
+        <a href="#section-02" data-next-section class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
           <span>Next: 02 My Target Audiences</span>
           <span aria-hidden="true">→</span>
         </a>
@@ -486,7 +539,7 @@
     <!-- ===================================================================== -->
     <!-- SECTION 02: MY TARGET AUDIENCES                                       -->
     <!-- ===================================================================== -->
-    <section id="section-02" data-section="2" aria-labelledby="heading-02" class="section-card bg-white rounded-xl border border-editorial-ivory p-6 sm:p-9 shadow-xs">
+    <section id="section-02" tabindex="-1" data-section="2" aria-labelledby="heading-02" class="section-card bg-white rounded-xl border border-editorial-ivory p-4 sm:p-7 lg:p-9 shadow-xs">
       <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-5 mb-6 border-b border-editorial-ivory">
         <div>
           <div class="flex items-center gap-3 mb-1.5">
@@ -524,12 +577,12 @@
       </div>
 
       <!-- Section Step Navigation -->
-      <div class="no-print flex flex-wrap items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-ivory">
+      <div class="section-step-nav no-print flex flex-wrap items-center justify-between gap-2.5 mt-6 pt-4 sm:mt-7 sm:pt-5 border-t border-editorial-ivory">
         <a href="#section-01" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
           <span aria-hidden="true">←</span>
           <span>Previous: 01 Goals</span>
         </a>
-        <a href="#section-03" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
+        <a href="#section-03" data-next-section class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
           <span>Next: 03 Recognising My Strengths</span>
           <span aria-hidden="true">→</span>
         </a>
@@ -539,7 +592,7 @@
     <!-- ===================================================================== -->
     <!-- SECTION 03: RECOGNISING MY STRENGTHS                                  -->
     <!-- ===================================================================== -->
-    <section id="section-03" data-section="3" aria-labelledby="heading-03" class="section-card bg-white rounded-xl border border-editorial-ivory p-6 sm:p-9 shadow-xs">
+    <section id="section-03" tabindex="-1" data-section="3" aria-labelledby="heading-03" class="section-card bg-white rounded-xl border border-editorial-ivory p-4 sm:p-7 lg:p-9 shadow-xs">
       <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-5 mb-6 border-b border-editorial-ivory">
         <div>
           <div class="flex items-center gap-3 mb-1.5">
@@ -585,12 +638,12 @@
       </div>
 
       <!-- Section Step Navigation -->
-      <div class="no-print flex flex-wrap items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-ivory">
+      <div class="section-step-nav no-print flex flex-wrap items-center justify-between gap-2.5 mt-6 pt-4 sm:mt-7 sm:pt-5 border-t border-editorial-ivory">
         <a href="#section-02" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
           <span aria-hidden="true">←</span>
           <span>Previous: 02 Audiences</span>
         </a>
-        <a href="#section-04" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
+        <a href="#section-04" data-next-section class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
           <span>Next: 04 My USP &amp; Positioning</span>
           <span aria-hidden="true">→</span>
         </a>
@@ -600,7 +653,7 @@
     <!-- ===================================================================== -->
     <!-- SECTION 04: MY USP & POSITIONING                                      -->
     <!-- ===================================================================== -->
-    <section id="section-04" data-section="4" aria-labelledby="heading-04" class="section-card bg-white rounded-xl border border-editorial-ivory p-6 sm:p-9 shadow-xs">
+    <section id="section-04" tabindex="-1" data-section="4" aria-labelledby="heading-04" class="section-card bg-white rounded-xl border border-editorial-ivory p-4 sm:p-7 lg:p-9 shadow-xs">
       <div class="pb-5 mb-6 border-b border-editorial-ivory">
         <div class="flex items-center gap-3 mb-1.5">
           <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
@@ -665,12 +718,12 @@
       </div>
 
       <!-- Section Step Navigation -->
-      <div class="no-print flex flex-wrap items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-ivory">
+      <div class="section-step-nav no-print flex flex-wrap items-center justify-between gap-2.5 mt-6 pt-4 sm:mt-7 sm:pt-5 border-t border-editorial-ivory">
         <a href="#section-03" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
           <span aria-hidden="true">←</span>
           <span>Previous: 03 Strengths</span>
         </a>
-        <a href="#section-05" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
+        <a href="#section-05" data-next-section class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
           <span>Next: 05 Brand Personality</span>
           <span aria-hidden="true">→</span>
         </a>
@@ -698,7 +751,7 @@
     <!-- ===================================================================== -->
     <!-- SECTION 05: MY BRAND PERSONALITY & KEY MESSAGES                       -->
     <!-- ===================================================================== -->
-    <section id="section-05" data-section="5" aria-labelledby="heading-05" class="section-card bg-white rounded-xl border border-editorial-ivory p-6 sm:p-9 shadow-xs">
+    <section id="section-05" tabindex="-1" data-section="5" aria-labelledby="heading-05" class="section-card bg-white rounded-xl border border-editorial-ivory p-4 sm:p-7 lg:p-9 shadow-xs">
       <div class="pb-5 mb-6 border-b border-editorial-ivory">
         <div class="flex items-center gap-3 mb-1.5">
           <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
@@ -794,12 +847,12 @@
       </div>
 
       <!-- Section Step Navigation -->
-      <div class="no-print flex flex-wrap items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-ivory">
+      <div class="section-step-nav no-print flex flex-wrap items-center justify-between gap-2.5 mt-6 pt-4 sm:mt-7 sm:pt-5 border-t border-editorial-ivory">
         <a href="#section-04" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
           <span aria-hidden="true">←</span>
           <span>Previous: 04 USP &amp; Positioning</span>
         </a>
-        <a href="#section-06" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
+        <a href="#section-06" data-next-section class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
           <span>Next: 06 Voice, Vibe &amp; Visuals</span>
           <span aria-hidden="true">→</span>
         </a>
@@ -809,7 +862,7 @@
     <!-- ===================================================================== -->
     <!-- SECTION 06: MY VOICE, VIBE & VISUAL IDENTITY                          -->
     <!-- ===================================================================== -->
-    <section id="section-06" data-section="6" aria-labelledby="heading-06" class="section-card bg-white rounded-xl border border-editorial-ivory p-6 sm:p-9 shadow-xs">
+    <section id="section-06" tabindex="-1" data-section="6" aria-labelledby="heading-06" class="section-card bg-white rounded-xl border border-editorial-ivory p-4 sm:p-7 lg:p-9 shadow-xs">
       <div class="pb-5 mb-6 border-b border-editorial-ivory">
         <div class="flex items-center gap-3 mb-1.5">
           <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
@@ -982,12 +1035,12 @@
       </div>
 
       <!-- Section Step Navigation -->
-      <div class="no-print flex flex-wrap items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-ivory">
+      <div class="section-step-nav no-print flex flex-wrap items-center justify-between gap-2.5 mt-6 pt-4 sm:mt-7 sm:pt-5 border-t border-editorial-ivory">
         <a href="#section-05" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
           <span aria-hidden="true">←</span>
           <span>Previous: 05 Personality</span>
         </a>
-        <a href="#section-07" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
+        <a href="#section-07" data-next-section class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
           <span>Next: 07 Brand Touchpoints</span>
           <span aria-hidden="true">→</span>
         </a>
@@ -997,7 +1050,7 @@
     <!-- ===================================================================== -->
     <!-- SECTION 07: MY BRAND TOUCHPOINTS                                      -->
     <!-- ===================================================================== -->
-    <section id="section-07" data-section="7" aria-labelledby="heading-07" class="section-card bg-white rounded-xl border border-editorial-ivory p-6 sm:p-9 shadow-xs">
+    <section id="section-07" tabindex="-1" data-section="7" aria-labelledby="heading-07" class="section-card bg-white rounded-xl border border-editorial-ivory p-4 sm:p-7 lg:p-9 shadow-xs">
       <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-5 mb-6 border-b border-editorial-ivory">
         <div>
           <div class="flex items-center gap-3 mb-1.5">
@@ -1034,12 +1087,12 @@
       </div>
 
       <!-- Section Step Navigation -->
-      <div class="no-print flex flex-wrap items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-ivory">
+      <div class="section-step-nav no-print flex flex-wrap items-center justify-between gap-2.5 mt-6 pt-4 sm:mt-7 sm:pt-5 border-t border-editorial-ivory">
         <a href="#section-06" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
           <span aria-hidden="true">←</span>
           <span>Previous: 06 Voice &amp; Visuals</span>
         </a>
-        <a href="#section-08" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-burgundy hover:bg-editorial-burgundyLight text-white text-xs sm:text-sm font-semibold transition">
+        <a href="#section-08" data-next-section class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-burgundy hover:bg-editorial-burgundyLight text-white text-xs sm:text-sm font-semibold transition">
           <span>Final Stage: 08 30-Day Action Plan</span>
           <span aria-hidden="true">→</span>
         </a>
@@ -1057,7 +1110,7 @@
       <div class="h-px flex-1 bg-editorial-burgundy/40"></div>
     </div>
 
-    <section id="section-08" data-section="8" aria-labelledby="heading-08" class="section-card bg-editorial-ivorySoft rounded-xl border-2 border-editorial-gold p-6 sm:p-9 shadow-xs">
+    <section id="section-08" tabindex="-1" data-section="8" aria-labelledby="heading-08" class="section-card bg-editorial-ivorySoft rounded-xl border-2 border-editorial-gold p-4 sm:p-7 lg:p-9 shadow-xs">
       <!-- Editorial Final Stage Banner -->
       <div class="pb-5 mb-6 border-b border-editorial-gold/70">
         <div class="flex flex-wrap items-center gap-2.5 mb-2">
@@ -1083,85 +1136,94 @@
       </div>
 
       <!-- Desktop Table Column Headers -->
-      <div class="hidden md:grid md:grid-cols-12 gap-4 px-4 py-3 bg-editorial-navy text-editorial-ivory rounded-t-lg text-xs font-bold uppercase tracking-[0.12em]">
-        <div class="col-span-3">Focus</div>
-        <div class="col-span-6">Specific Action + Measurable Proof</div>
-        <div class="col-span-3">By When?</div>
+      <div class="action-plan-grid hidden lg:grid gap-4 px-5 py-3 bg-editorial-navy text-editorial-ivory rounded-t-lg text-xs font-bold uppercase tracking-[0.12em]">
+        <div>Focus</div>
+        <div>Specific Action + Measurable Proof</div>
+        <div>By When?</div>
       </div>
 
-      <div class="divide-y divide-editorial-ivory border border-editorial-gold/70 md:border-t-0 rounded-lg md:rounded-t-none overflow-hidden bg-white">
+      <div class="divide-y divide-editorial-ivory border border-editorial-gold/70 lg:border-t-0 rounded-lg lg:rounded-t-none bg-white">
         <!-- DEVELOP Row -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 sm:p-5">
-          <div class="md:col-span-3 flex flex-col justify-center">
+        <div class="action-plan-grid grid grid-cols-1 items-start gap-3 lg:gap-4 p-3 sm:p-5">
+          <div class="flex flex-col lg:pt-2">
             <span class="text-xs font-extrabold uppercase tracking-[0.14em] text-editorial-navy">DEVELOP</span>
             <span class="text-xs text-editorial-charcoal mt-0.5">Improve a skill or capability</span>
           </div>
-          <div class="md:col-span-6 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-            <label for="action-develop-spec" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+          <div class="min-w-0 bg-editorial-canvas rounded-lg p-3 border border-editorial-ivory focus-within:border-editorial-navy">
+            <label for="action-develop-spec" class="block lg:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
               Specific Action + Measurable Proof
             </label>
             <textarea id="action-develop-spec" rows="2" data-action="develop-spec" placeholder="e.g., Practice concise executive framing in weekly seminar presentations..."
-              class="auto-grow w-full bg-transparent text-sm text-editorial-ink focus:outline-none"></textarea>
+              class="auto-grow block w-full bg-transparent text-sm text-editorial-ink focus:outline-none"></textarea>
             <div class="print-mirror"></div>
           </div>
-          <div class="md:col-span-3 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0 flex flex-col justify-center">
-            <label for="action-develop-when" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+          <div class="min-w-0">
+            <label for="action-develop-when" class="block lg:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
               By When?
             </label>
-            <input id="action-develop-when" type="text" data-action="develop-when" placeholder="e.g., Week 2 / Date"
-              class="w-full bg-transparent text-sm font-medium text-editorial-ink focus:outline-none" />
+            <input id="action-develop-when" type="date" data-action="develop-when" aria-describedby="action-develop-when-previous"
+              class="block w-full min-h-11 rounded-lg border border-editorial-ivory bg-editorial-canvas px-2.5 text-sm font-medium text-editorial-ink" />
+            <p id="action-develop-when-previous" hidden class="action-deadline-previous mt-1 text-xs text-editorial-charcoal break-words">
+              Previous deadline: <span></span>
+            </p>
           </div>
         </div>
 
         <!-- DEMONSTRATE Row -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 sm:p-5">
-          <div class="md:col-span-3 flex flex-col justify-center">
+        <div class="action-plan-grid grid grid-cols-1 items-start gap-3 lg:gap-4 p-3 sm:p-5">
+          <div class="flex flex-col lg:pt-2">
             <span class="text-xs font-extrabold uppercase tracking-[0.14em] text-editorial-burgundy">DEMONSTRATE</span>
             <span class="text-xs text-editorial-charcoal mt-0.5">Create evidence of my value</span>
           </div>
-          <div class="md:col-span-6 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-            <label for="action-demonstrate-spec" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+          <div class="min-w-0 bg-editorial-canvas rounded-lg p-3 border border-editorial-ivory focus-within:border-editorial-navy">
+            <label for="action-demonstrate-spec" class="block lg:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
               Specific Action + Measurable Proof
             </label>
             <textarea id="action-demonstrate-spec" rows="2" data-action="demonstrate-spec" placeholder="e.g., Document a short case reflection from our BIP cross-cultural project..."
-              class="auto-grow w-full bg-transparent text-sm text-editorial-ink focus:outline-none"></textarea>
+              class="auto-grow block w-full bg-transparent text-sm text-editorial-ink focus:outline-none"></textarea>
             <div class="print-mirror"></div>
           </div>
-          <div class="md:col-span-3 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0 flex flex-col justify-center">
-            <label for="action-demonstrate-when" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+          <div class="min-w-0">
+            <label for="action-demonstrate-when" class="block lg:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
               By When?
             </label>
-            <input id="action-demonstrate-when" type="text" data-action="demonstrate-when" placeholder="e.g., Week 3 / Date"
-              class="w-full bg-transparent text-sm font-medium text-editorial-ink focus:outline-none" />
+            <input id="action-demonstrate-when" type="date" data-action="demonstrate-when" aria-describedby="action-demonstrate-when-previous"
+              class="block w-full min-h-11 rounded-lg border border-editorial-ivory bg-editorial-canvas px-2.5 text-sm font-medium text-editorial-ink" />
+            <p id="action-demonstrate-when-previous" hidden class="action-deadline-previous mt-1 text-xs text-editorial-charcoal break-words">
+              Previous deadline: <span></span>
+            </p>
           </div>
         </div>
 
         <!-- COMMUNICATE Row -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 sm:p-5">
-          <div class="md:col-span-3 flex flex-col justify-center">
+        <div class="action-plan-grid grid grid-cols-1 items-start gap-3 lg:gap-4 p-3 sm:p-5">
+          <div class="flex flex-col lg:pt-2">
             <span class="text-xs font-extrabold uppercase tracking-[0.14em] text-editorial-navy">COMMUNICATE</span>
             <span class="text-xs text-editorial-charcoal mt-0.5">Make my value visible to my audience</span>
           </div>
-          <div class="md:col-span-6 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-            <label for="action-communicate-spec" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+          <div class="min-w-0 bg-editorial-canvas rounded-lg p-3 border border-editorial-ivory focus-within:border-editorial-navy">
+            <label for="action-communicate-spec" class="block lg:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
               Specific Action + Measurable Proof
             </label>
             <textarea id="action-communicate-spec" rows="2" data-action="communicate-spec" placeholder="e.g., Update LinkedIn headline & share 1 thoughtful reflection with peers..."
-              class="auto-grow w-full bg-transparent text-sm text-editorial-ink focus:outline-none"></textarea>
+              class="auto-grow block w-full bg-transparent text-sm text-editorial-ink focus:outline-none"></textarea>
             <div class="print-mirror"></div>
           </div>
-          <div class="md:col-span-3 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0 flex flex-col justify-center">
-            <label for="action-communicate-when" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+          <div class="min-w-0">
+            <label for="action-communicate-when" class="block lg:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
               By When?
             </label>
-            <input id="action-communicate-when" type="text" data-action="communicate-when" placeholder="e.g., Week 4 / Date"
-              class="w-full bg-transparent text-sm font-medium text-editorial-ink focus:outline-none" />
+            <input id="action-communicate-when" type="date" data-action="communicate-when" aria-describedby="action-communicate-when-previous"
+              class="block w-full min-h-11 rounded-lg border border-editorial-ivory bg-editorial-canvas px-2.5 text-sm font-medium text-editorial-ink" />
+            <p id="action-communicate-when-previous" hidden class="action-deadline-previous mt-1 text-xs text-editorial-charcoal break-words">
+              Previous deadline: <span></span>
+            </p>
           </div>
         </div>
       </div>
 
       <!-- Section Step Navigation -->
-      <div class="no-print flex flex-wrap items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-gold/60">
+      <div class="section-step-nav no-print flex flex-wrap items-center justify-between gap-2.5 mt-6 pt-4 sm:mt-7 sm:pt-5 border-t border-editorial-gold/60">
         <a href="#section-07" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
           <span aria-hidden="true">←</span>
           <span>Previous: 07 Touchpoints</span>
@@ -1176,7 +1238,7 @@
     <!-- ===================================================================== -->
     <!-- SAVE, BACKUP & EXPORT PANEL                                           -->
     <!-- ===================================================================== -->
-    <section id="save-export-panel" aria-labelledby="save-export-heading" class="no-print bg-white rounded-xl border border-editorial-navy/25 overflow-hidden shadow-xs">
+    <section id="save-export-panel" tabindex="-1" aria-labelledby="save-export-heading" class="no-print bg-white rounded-xl border border-editorial-navy/25 overflow-hidden shadow-xs">
       <div class="bg-editorial-navy text-white px-6 sm:px-8 py-4 flex flex-wrap items-center justify-between gap-2">
         <div>
           <span class="text-[11px] uppercase tracking-[0.16em] text-editorial-gold font-bold block">
@@ -1192,7 +1254,7 @@
         </span>
       </div>
 
-      <div class="p-6 sm:p-8 space-y-6">
+      <div class="p-4 sm:p-8 space-y-5 sm:space-y-6">
         <!-- Required Clear User Instruction -->
         <p class="text-sm sm:text-base text-editorial-ink leading-relaxed">
           Your progress is saved automatically on this device. Download an editable copy to continue on another device, or export your brief as a PDF to keep.
@@ -1214,7 +1276,7 @@
               </p>
             </div>
 
-            <div class="flex flex-wrap items-center gap-2.5 pt-2">
+            <div class="flex flex-col gap-2.5 pt-2 sm:flex-row sm:flex-wrap sm:items-center">
               <input id="load-json-input" type="file" accept=".json,application/json" class="hidden" onchange="handleLoadJSONFile(event)" />
 
               <button type="button" onclick="downloadEditableJSON()"
@@ -1249,7 +1311,7 @@
               </p>
             </div>
 
-            <div class="flex flex-wrap items-center gap-2.5 pt-2">
+            <div class="flex flex-col gap-2.5 pt-2 sm:flex-row sm:flex-wrap sm:items-center">
               <button type="button" onclick="generateAndDownloadPDF()"
                 class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-burgundy hover:bg-editorial-burgundyLight text-white text-xs sm:text-sm font-semibold transition cursor-pointer">
                 <svg class="w-4 h-4 text-editorial-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
@@ -1285,25 +1347,25 @@
 
   <!-- Toast Feedback Banner -->
   <div id="toast-banner" role="status" aria-live="polite"
-    class="no-print fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 bg-editorial-navy text-white px-4 py-3 rounded-lg shadow-lg border border-editorial-gold/60 flex items-center gap-2.5 text-xs sm:text-sm font-medium max-w-sm">
+    class="no-print fixed bottom-3 inset-x-3 sm:bottom-5 sm:left-auto sm:right-5 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 motion-reduce:transition-none bg-editorial-navy text-white px-4 py-3 rounded-lg shadow-lg border border-editorial-gold/60 flex items-center gap-2.5 text-xs sm:text-sm font-medium sm:max-w-sm break-words">
     <span id="toast-icon" class="w-2.5 h-2.5 rounded-full bg-editorial-gold shrink-0"></span>
-    <span id="toast-message">Saved on this device</span>
+    <span id="toast-message" class="min-w-0">Saved on this device</span>
   </div>
 
   <!-- Confirmation Modal: Replace Current Responses When Loading JSON -->
   <div id="load-confirm-modal" role="dialog" aria-modal="true" aria-labelledby="load-modal-title"
     class="no-print fixed inset-0 z-50 hidden items-center justify-center bg-editorial-ink/60 p-4">
-    <div class="bg-white rounded-xl max-w-md w-full p-6 sm:p-7 shadow-xl border border-editorial-gold">
+    <div class="bg-white rounded-xl max-w-md max-h-full overflow-y-auto w-full p-4 sm:p-7 shadow-xl border border-editorial-gold">
       <span class="text-[11px] uppercase tracking-[0.15em] text-editorial-burgundy font-bold block mb-1">
         Restore Editable Copy
       </span>
       <h3 id="load-modal-title" class="font-editorial-serif text-2xl font-bold text-editorial-navy">
         Replace your current responses?
       </h3>
-      <p id="load-modal-summary" class="text-sm text-editorial-charcoal mt-2 leading-relaxed">
+      <p id="load-modal-summary" class="text-sm text-editorial-charcoal mt-2 leading-relaxed break-words">
         Loading this saved copy will overwrite the answers currently entered in your browser.
       </p>
-      <div class="flex items-center justify-end gap-2.5 mt-6">
+      <div class="flex flex-wrap items-center justify-end gap-2.5 mt-6">
         <button type="button" onclick="cancelLoadJSON()"
           class="px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition cursor-pointer">
           Keep Current Work
@@ -1319,7 +1381,7 @@
   <!-- Confirmation Modal: Reset / Clear All Responses -->
   <div id="reset-modal" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title"
     class="no-print fixed inset-0 z-50 hidden items-center justify-center bg-editorial-ink/60 p-4">
-    <div class="bg-white rounded-xl max-w-md w-full p-6 sm:p-7 shadow-xl border border-editorial-gold">
+    <div class="bg-white rounded-xl max-w-md max-h-full overflow-y-auto w-full p-4 sm:p-7 shadow-xl border border-editorial-gold">
       <span class="text-[11px] uppercase tracking-[0.15em] text-editorial-burgundy font-bold block mb-1">
         Clear Workbook
       </span>
@@ -1329,7 +1391,7 @@
       <p class="text-sm text-editorial-charcoal mt-2 leading-relaxed">
         This will erase all text entries and selected chips across all eight sections, as well as your locally saved browser draft. Export an editable copy or PDF first if you wish to keep your work.
       </p>
-      <div class="flex items-center justify-end gap-2.5 mt-6">
+      <div class="flex flex-wrap items-center justify-end gap-2.5 mt-6">
         <button type="button" onclick="closeResetModal()"
           class="px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition cursor-pointer">
           Cancel
@@ -1434,6 +1496,21 @@
       }
     }
 
+    function getActionDeadline(action) {
+      const id = `action-${action}-when`;
+      const field = document.getElementById(id);
+      return field.value || document.querySelector(`#${id}-previous span`).textContent;
+    }
+
+    function setActionDeadline(field, value) {
+      const previous = document.getElementById(`${field.id}-previous`);
+      const deadline = typeof value === 'string' ? value : '';
+      if (field.value !== deadline) field.value = deadline;
+      const previousText = field.value ? '' : deadline;
+      previous.querySelector('span').textContent = previousText;
+      previous.hidden = !previousText;
+    }
+
     /**
      * Captures the complete state of all fields, dynamic rows, and selections
      */
@@ -1495,11 +1572,11 @@
         })),
         actionPlan: {
           developSpec: document.querySelector('[data-action="develop-spec"]')?.value || '',
-          developWhen: document.querySelector('[data-action="develop-when"]')?.value || '',
+          developWhen: getActionDeadline('develop'),
           demonstrateSpec: document.querySelector('[data-action="demonstrate-spec"]')?.value || '',
-          demonstrateWhen: document.querySelector('[data-action="demonstrate-when"]')?.value || '',
+          demonstrateWhen: getActionDeadline('demonstrate'),
           communicateSpec: document.querySelector('[data-action="communicate-spec"]')?.value || '',
-          communicateWhen: document.querySelector('[data-action="communicate-when"]')?.value || ''
+          communicateWhen: getActionDeadline('communicate')
         }
       };
     }
@@ -1659,7 +1736,8 @@
       if (state.actionPlan) {
         const setAction = (key, val) => {
           const el = document.querySelector(`[data-action="${key}"]`);
-          if (el) el.value = val || '';
+          if (el.type === 'date') setActionDeadline(el, val);
+          else el.value = val || '';
         };
         setAction('develop-spec', state.actionPlan.developSpec);
         setAction('develop-when', state.actionPlan.developWhen);
@@ -1672,6 +1750,7 @@
       bindAutoGrowAll();
       updateCounters();
       updateProgress();
+      clearRequiredFieldErrors();
       return true;
     }
 
@@ -1858,6 +1937,8 @@
      * Direct Client-Side A4 PDF Export (Editorial Palette: Navy, Burgundy, Ivory, Gold, Charcoal)
      */
     function generateAndDownloadPDF() {
+      if (!validateRequiredFields(document.getElementById('brief-document'))) return;
+
       try {
         if (!window.jspdf || !window.jspdf.jsPDF) {
           showToast('PDF engine still loading — opening print view instead…', 'info');
@@ -2197,17 +2278,17 @@
           [
             'DEVELOP (Improve a skill or capability)',
             document.querySelector('[data-action="develop-spec"]').value,
-            document.querySelector('[data-action="develop-when"]').value
+            getActionDeadline('develop')
           ],
           [
             'DEMONSTRATE (Create evidence of my value)',
             document.querySelector('[data-action="demonstrate-spec"]').value,
-            document.querySelector('[data-action="demonstrate-when"]').value
+            getActionDeadline('demonstrate')
           ],
           [
             'COMMUNICATE (Make my value visible to my audience)',
             document.querySelector('[data-action="communicate-spec"]').value,
-            document.querySelector('[data-action="communicate-when"]').value
+            getActionDeadline('communicate')
           ]
         ];
         drawTable(['Focus', 'Specific Action + Measurable Proof', 'By When?'], [0.28, 0.52, 0.20], actionRows, NAVY, [255, 255, 255]);
@@ -2432,7 +2513,7 @@
 
       row.innerHTML = `
         <div class="md:col-span-4 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-          <label for="aud-who-${idx}" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+          <label for="aud-who-${idx}" class="block md:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
             Target Audience (Who?)
           </label>
           <textarea id="aud-who-${idx}" rows="1" placeholder="e.g., International recruiters, team peers..."
@@ -2440,7 +2521,7 @@
           <div class="print-mirror font-medium"></div>
         </div>
         <div class="md:col-span-5 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-          <label for="aud-why-${idx}" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+          <label for="aud-why-${idx}" class="block md:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
             Communication Objective (Why?)
           </label>
           <textarea id="aud-why-${idx}" rows="1" placeholder="e.g., Build trust as a reliable cross-cultural collaborator..."
@@ -2520,7 +2601,7 @@
 
       row.innerHTML = `
         <div class="md:col-span-5 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-          <label for="str-name-${idx}" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+          <label for="str-name-${idx}" class="block md:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
             Strength / Experience
           </label>
           <textarea id="str-name-${idx}" rows="1" placeholder="e.g., Structured synthesis in multicultural teams..."
@@ -2528,7 +2609,7 @@
           <div class="print-mirror"></div>
         </div>
         <div class="md:col-span-7 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-          <label for="str-src-${idx}" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+          <label for="str-src-${idx}" class="block md:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
             Where I Have Demonstrated It / Experience Source
           </label>
           <textarea id="str-src-${idx}" rows="1" placeholder="e.g., Coordinated international case deliverables across 4 universities..."
@@ -2550,7 +2631,7 @@
 
       row.innerHTML = `
         <div class="md:col-span-3 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-          <label for="tp-ch-${idx}" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+          <label for="tp-ch-${idx}" class="block md:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
             Touchpoint (Channel)
           </label>
           <textarea id="tp-ch-${idx}" rows="1" placeholder="e.g., LinkedIn, Seminar Presentations..."
@@ -2558,7 +2639,7 @@
           <div class="print-mirror font-medium"></div>
         </div>
         <div class="md:col-span-4 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-          <label for="tp-imp-${idx}" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+          <label for="tp-imp-${idx}" class="block md:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
             Impression I Want to Create
           </label>
           <textarea id="tp-imp-${idx}" rows="1" placeholder="e.g., Thoughtful, dependable collaborator..."
@@ -2566,7 +2647,7 @@
           <div class="print-mirror"></div>
         </div>
         <div class="md:col-span-5 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-          <label for="tp-demo-${idx}" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+          <label for="tp-demo-${idx}" class="block md:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
             How I Will Demonstrate It
           </label>
           <textarea id="tp-demo-${idx}" rows="1" placeholder="e.g., Clear summary takeaways & attentive listening..."
@@ -2610,11 +2691,11 @@
         if (!sec) continue;
 
         let hasContent = false;
-        sec.querySelectorAll('textarea, input[type="text"]').forEach(field => {
+        sec.querySelectorAll('textarea, input[type="text"], input[type="date"]').forEach(field => {
           if (field.value.trim().length > 0) hasContent = true;
         });
 
-        if (!hasContent && sec.querySelectorAll('.trait-pill[data-checked="true"]').length > 0) {
+        if (!hasContent && sec.querySelector('.trait-pill[data-checked="true"], .action-deadline-previous:not([hidden])')) {
           hasContent = true;
         }
 
@@ -2635,43 +2716,123 @@
       if (txt) txt.textContent = `${completedSections} of 8 sections completed`;
     }
 
-    /**
-     * Tracks Active Section in the Top Navigator While Scrolling
-     */
-    function initializeSectionObserver() {
-      const sections = document.querySelectorAll('section[data-section]');
-      const navLinks = document.querySelectorAll('[data-nav-sec]');
+    function initializeSectionNavigation() {
+      const header = document.getElementById('workbook-header');
+      const nav = header.querySelector('.nav-strip');
+      const sections = Array.from(document.querySelectorAll('section[data-section]'));
+      let activeLink = nav.querySelector('[aria-current="true"]');
+      let headerHeight = 0;
+      let framePending = false;
 
-      const setActiveNav = (secNum) => {
-        navLinks.forEach(link => {
-          const isMatch = link.dataset.navSec === String(secNum);
-          link.setAttribute('aria-current', isMatch ? 'true' : 'false');
-          if (isMatch && typeof link.scrollIntoView === 'function') {
-            link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
-          }
-        });
+      const updateActiveSection = () => {
+        framePending = false;
+        const readingLine = headerHeight + 24;
+        let activeSection = sections[0];
+        for (const section of sections) {
+          if (section.getBoundingClientRect().top > readingLine) break;
+          activeSection = section;
+        }
+
+        const link = nav.querySelector(`[data-nav-sec="${activeSection.dataset.section}"]`);
+        if (link === activeLink) return;
+        activeLink.removeAttribute('aria-current');
+        link.setAttribute('aria-current', 'true');
+        activeLink = link;
+
+        const { left, right } = link.getBoundingClientRect();
+        const navLeft = nav.getBoundingClientRect().left;
+        const navRight = navLeft + nav.clientWidth;
+        if (left < navLeft) nav.scrollLeft += left - navLeft;
+        if (right > navRight) nav.scrollLeft += right - navRight;
       };
 
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          setActiveNav(link.dataset.navSec);
+      const scheduleUpdate = () => {
+        if (framePending) return;
+        framePending = true;
+        requestAnimationFrame(updateActiveSection);
+      };
+
+      const updateHeaderHeight = () => {
+        headerHeight = getComputedStyle(header).position === 'sticky' ? header.offsetHeight : 0;
+        document.documentElement.style.setProperty('--workbook-header-height', `${headerHeight}px`);
+        scheduleUpdate();
+      };
+
+      updateHeaderHeight();
+      window.addEventListener('scroll', scheduleUpdate, { passive: true });
+      window.addEventListener('resize', updateHeaderHeight);
+      if ('ResizeObserver' in window) new ResizeObserver(updateHeaderHeight).observe(header);
+    }
+
+    function setFieldError(field, message) {
+      const errorId = `${field.id}-error`;
+      const descriptions = (field.getAttribute('aria-describedby') || '').split(/\s+/)
+        .filter(id => id && id !== errorId);
+      let error = document.getElementById(errorId);
+
+      if (message) {
+        if (!error) {
+          error = document.createElement('p');
+          error.id = errorId;
+          error.className = 'field-error no-print';
+          field.after(error);
+        }
+        error.textContent = message;
+        field.setAttribute('aria-invalid', 'true');
+        descriptions.push(errorId);
+      } else {
+        error?.remove();
+        field.removeAttribute('aria-invalid');
+      }
+
+      if (descriptions.length) field.setAttribute('aria-describedby', descriptions.join(' '));
+      else field.removeAttribute('aria-describedby');
+    }
+
+    function getRequiredFieldError(field) {
+      if (!field.required || !field.willValidate) return '';
+      if (field.validationMessage) return field.validationMessage;
+      if (field.matches('textarea, input[type="text"]') && !field.value.trim()) {
+        return 'Fill in this field.';
+      }
+      return '';
+    }
+
+    function validateRequiredFields(scope) {
+      let firstInvalidField;
+      scope.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
+        const message = getRequiredFieldError(field);
+        setFieldError(field, message);
+        if (message && !firstInvalidField) firstInvalidField = field;
+      });
+
+      if (!firstInvalidField) return true;
+      firstInvalidField.focus({ preventScroll: true });
+      firstInvalidField.scrollIntoView({ block: 'center' });
+      return false;
+    }
+
+    function clearRequiredFieldErrors() {
+      document.querySelectorAll('#brief-document [required][aria-invalid="true"]').forEach(field => {
+        setFieldError(field, '');
+      });
+    }
+
+    function initializeRequiredFieldValidation() {
+      const workbook = document.getElementById('brief-document');
+      workbook.querySelectorAll('[data-next-section]').forEach(link => {
+        link.addEventListener('click', event => {
+          if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+          if (!validateRequiredFields(link.closest('section'))) event.preventDefault();
         });
       });
 
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              setActiveNav(entry.target.dataset.section);
-            }
-          });
-        }, {
-          rootMargin: '-25% 0px -55% 0px',
-          threshold: 0.05
-        });
-
-        sections.forEach(sec => observer.observe(sec));
-      }
+      workbook.addEventListener('input', event => {
+        const field = event.target;
+        if (field.matches('[required][aria-invalid="true"]')) {
+          setFieldError(field, getRequiredFieldError(field));
+        }
+      });
     }
 
     /**
@@ -2769,9 +2930,9 @@
       lines.push(
         '',
         '08 MY 30-DAY BRAND ACTION PLAN',
-        `  DEVELOP: ${document.querySelector('[data-action="develop-spec"]').value.trim() || '-'} (By when: ${document.querySelector('[data-action="develop-when"]').value.trim() || '-'})`,
-        `  DEMONSTRATE: ${document.querySelector('[data-action="demonstrate-spec"]').value.trim() || '-'} (By when: ${document.querySelector('[data-action="demonstrate-when"]').value.trim() || '-'})`,
-        `  COMMUNICATE: ${document.querySelector('[data-action="communicate-spec"]').value.trim() || '-'} (By when: ${document.querySelector('[data-action="communicate-when"]').value.trim() || '-'})`,
+        `  DEVELOP: ${document.querySelector('[data-action="develop-spec"]').value.trim() || '-'} (By when: ${getActionDeadline('develop').trim() || '-'})`,
+        `  DEMONSTRATE: ${document.querySelector('[data-action="demonstrate-spec"]').value.trim() || '-'} (By when: ${getActionDeadline('demonstrate').trim() || '-'})`,
+        `  COMMUNICATE: ${document.querySelector('[data-action="communicate-spec"]').value.trim() || '-'} (By when: ${getActionDeadline('communicate').trim() || '-'})`,
         '===================================================================='
       );
 
@@ -2829,6 +2990,9 @@
       document.querySelectorAll('input[type="text"]').forEach(inp => {
         inp.value = '';
       });
+      document.querySelectorAll('#section-08 input[type="date"]').forEach(field => {
+        setActionDeadline(field, '');
+      });
 
       const dateInput = document.getElementById('meta-date');
       if (dateInput) {
@@ -2879,6 +3043,7 @@
 
       updateCounters();
       updateProgress();
+      clearRequiredFieldErrors();
       closeResetModal();
       showToast('All responses and local draft have been cleared.', 'info');
     }
@@ -2897,6 +3062,10 @@
      * Initialize Application on DOM Load
      */
     window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('#section-08 input[type="date"]').forEach(field => {
+        field.addEventListener('change', () => setActionDeadline(field, field.value));
+      });
+
       const dateInput = document.getElementById('meta-date');
       if (dateInput && !dateInput.value) {
         try {
@@ -2923,11 +3092,23 @@
 
       initializePillGroups();
       bindAutoGrowAll();
-      initializeSectionObserver();
+      initializeSectionNavigation();
+      initializeRequiredFieldValidation();
 
       // Restore any locally saved responses from this browser
       restoreFromLocalStorage();
       updateProgress();
+
+      if ('ResizeObserver' in window) {
+        const workbook = document.getElementById('brief-document');
+        let width = workbook.clientWidth;
+        new ResizeObserver(() => {
+          const nextWidth = workbook.clientWidth;
+          if (nextWidth === width) return;
+          width = nextWidth;
+          workbook.querySelectorAll('textarea.auto-grow').forEach(syncTextarea);
+        }).observe(workbook);
+      }
     });
   </script>
 </body>
