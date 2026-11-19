@@ -1,0 +1,2934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Personal Brand Brief — The Leader as a Brand</title>
+
+  <!-- Load Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Load jsPDF for direct client-side A4 PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Editorial Typography: Cormorant Garamond (Serif Headings) + Plus Jakarta Sans (Clean UI & Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            editorial: {
+              navy: '#25344F',
+              navyDark: '#1B273C',
+              burgundy: '#5C2D37',
+              burgundyLight: '#733945',
+              ivory: '#E6DFD7',
+              ivorySoft: '#F3EFEA',
+              canvas: '#F8F6F2',
+              gold: '#D5B893',
+              charcoal: '#514F59',
+              ink: '#22262E',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Editorial Color Tokens & Base Styling */
+    :root {
+      --color-navy: #25344F;
+      --color-burgundy: #5C2D37;
+      --color-ivory: #E6DFD7;
+      --color-ivory-soft: #F3EFEA;
+      --color-canvas: #F8F6F2;
+      --color-gold: #D5B893;
+      --color-charcoal: #514F59;
+      --color-ink: #22262E;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 7.75rem;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--color-canvas);
+      color: var(--color-charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Editorial Serif Headings */
+    .font-editorial-serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    /* Accessible Focus Rings */
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--color-burgundy);
+      outline-offset: 2px;
+    }
+
+    /* Auto-growing Textareas */
+    textarea.auto-grow {
+      resize: none;
+      overflow: hidden;
+      min-height: 3.1rem;
+      line-height: 1.6;
+    }
+
+    /* Editorial Selectable Chips / Tiles */
+    .trait-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.5rem;
+      border: 1px solid #CFC6BA;
+      background-color: #FFFFFF;
+      color: var(--color-ink);
+      font-size: 0.85rem;
+      font-weight: 500;
+      min-height: 2.5rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.1s ease;
+    }
+
+    .trait-pill:hover {
+      border-color: var(--color-navy);
+      background-color: var(--color-ivory-soft);
+    }
+
+    .trait-pill:active {
+      transform: translateY(0.5px);
+    }
+
+    .trait-pill[data-checked="true"] {
+      background-color: var(--color-navy);
+      border-color: var(--color-navy);
+      color: #FFFFFF;
+    }
+
+    .trait-pill .pill-box {
+      width: 1rem;
+      height: 1rem;
+      border-radius: 0.25rem;
+      border: 1.5px solid #9E9589;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background-color: #FFFFFF;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .trait-pill[data-checked="true"] .pill-box {
+      background-color: var(--color-burgundy);
+      border-color: var(--color-gold);
+      color: #FFFFFF;
+    }
+
+    /* Horizontal Section Navigation Strip */
+    .nav-strip {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .nav-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .section-nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.42rem 0.72rem;
+      border-radius: 0.45rem;
+      border: 1px solid rgba(213, 184, 147, 0.28);
+      background-color: rgba(255, 255, 255, 0.06);
+      color: #E6DFD7;
+      font-size: 0.76rem;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .section-nav-pill:hover {
+      background-color: rgba(255, 255, 255, 0.14);
+      border-color: var(--color-gold);
+      color: #FFFFFF;
+    }
+
+    .section-nav-pill[aria-current="true"] {
+      background-color: var(--color-ivory);
+      border-color: var(--color-gold);
+      color: var(--color-navy);
+      font-weight: 700;
+    }
+
+    .section-nav-pill .nav-status-dot {
+      width: 0.42rem;
+      height: 0.42rem;
+      border-radius: 9999px;
+      background-color: rgba(230, 223, 215, 0.35);
+      flex-shrink: 0;
+    }
+
+    .section-nav-pill[data-completed="true"] .nav-status-dot {
+      background-color: var(--color-gold);
+    }
+
+    .section-nav-pill[aria-current="true"][data-completed="true"] .nav-status-dot {
+      background-color: var(--color-burgundy);
+    }
+
+    /* Print Mirror (Hidden on Screen, Visible on Print so Textareas Never Clip) */
+    .print-mirror {
+      display: none;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--color-ink);
+      min-height: 1.5rem;
+    }
+
+    /* Clean A4 Print Layout Fallback */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 13mm 15mm;
+      }
+
+      body {
+        background-color: #FFFFFF !important;
+        color: #22262E !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      .print-container {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .section-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #CFC6BA !important;
+        margin-bottom: 1rem !important;
+      }
+
+      .page-break-before {
+        page-break-before: always;
+        break-before: page;
+      }
+
+      textarea.auto-grow {
+        display: none !important;
+      }
+
+      .print-mirror {
+        display: block !important;
+      }
+
+      input[type="text"],
+      input[type="date"] {
+        border: none !important;
+        border-bottom: 1px solid #9E9589 !important;
+        background: transparent !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-20">
+
+  <!-- Sticky Editorial Workshop Utility Bar -->
+  <header class="no-print sticky top-0 z-40 bg-editorial-navy text-white border-b border-editorial-gold/40">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-2.5 pb-2">
+      <!-- Top Row: Brand Title, Device Save Status, Progress & Quick Actions -->
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <!-- Title & BIP Reference -->
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-8 h-8 rounded border border-editorial-gold/60 bg-editorial-burgundy flex items-center justify-center font-editorial-serif font-bold text-base text-editorial-ivory tracking-wider shrink-0" aria-hidden="true">
+            LB
+          </div>
+          <div class="min-w-0">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="font-editorial-serif text-lg font-bold tracking-wide text-white leading-none truncate">
+                My Personal Brand Brief
+              </span>
+              <span class="hidden sm:inline-block text-[11px] uppercase tracking-[0.14em] text-editorial-gold font-semibold">
+                BIP · Bucharest 2026
+              </span>
+            </div>
+
+            <!-- Progress & Auto-Save Status Line -->
+            <div class="flex flex-wrap items-center gap-2.5 mt-1 text-xs text-editorial-ivory/90">
+              <span id="progress-text" class="font-medium">0 of 8 sections completed</span>
+              <div class="w-20 sm:w-28 h-1.5 bg-white/15 rounded-full overflow-hidden" role="progressbar" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0" id="progress-bar-wrap">
+                <div id="progress-bar" class="h-full bg-editorial-gold transition-all duration-300" style="width: 0%;"></div>
+              </div>
+              <span class="text-editorial-gold/50" aria-hidden="true">·</span>
+              <!-- Discreet Local Auto-Save Status Indicator -->
+              <span id="autosave-badge" class="inline-flex items-center gap-1.5 text-[11px] text-editorial-ivory/90" title="Automatically saved in this browser using localStorage">
+                <span id="autosave-dot" class="w-1.5 h-1.5 rounded-full bg-editorial-gold"></span>
+                <span id="autosave-text">Saved on this device</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Save/Export Jump & Clear Controls -->
+        <div class="flex items-center gap-2 shrink-0">
+          <a href="#save-export-panel"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-md bg-editorial-burgundy hover:bg-editorial-burgundyLight border border-editorial-gold/50 text-white text-xs font-semibold tracking-wide transition">
+            <span>Save &amp; Export</span>
+          </a>
+          <button type="button" onclick="openResetModal()"
+            class="inline-flex items-center px-2.5 py-2 rounded-md border border-white/20 hover:border-editorial-gold/60 hover:bg-white/10 text-editorial-ivory text-xs font-medium transition cursor-pointer"
+            title="Clear all answers and start fresh">
+            Clear Draft
+          </button>
+        </div>
+      </div>
+
+      <!-- Second Row: 8-Section Editorial Jump Navigator -->
+      <nav aria-label="Workbook Sections" class="nav-strip flex items-center gap-1.5 overflow-x-auto pt-2.5 mt-2 border-t border-white/10">
+        <a href="#section-01" data-nav-sec="1" class="section-nav-pill" aria-current="true">
+          <span class="nav-status-dot" aria-hidden="true"></span>
+          <span>01 Goals</span>
+        </a>
+        <a href="#section-02" data-nav-sec="2" class="section-nav-pill">
+          <span class="nav-status-dot" aria-hidden="true"></span>
+          <span>02 Audiences</span>
+        </a>
+        <a href="#section-03" data-nav-sec="3" class="section-nav-pill">
+          <span class="nav-status-dot" aria-hidden="true"></span>
+          <span>03 Strengths</span>
+        </a>
+        <a href="#section-04" data-nav-sec="4" class="section-nav-pill">
+          <span class="nav-status-dot" aria-hidden="true"></span>
+          <span>04 USP</span>
+        </a>
+        <a href="#section-05" data-nav-sec="5" class="section-nav-pill">
+          <span class="nav-status-dot" aria-hidden="true"></span>
+          <span>05 Personality</span>
+        </a>
+        <a href="#section-06" data-nav-sec="6" class="section-nav-pill">
+          <span class="nav-status-dot" aria-hidden="true"></span>
+          <span>06 Voice &amp; Visuals</span>
+        </a>
+        <a href="#section-07" data-nav-sec="7" class="section-nav-pill">
+          <span class="nav-status-dot" aria-hidden="true"></span>
+          <span>07 Touchpoints</span>
+        </a>
+        <a href="#section-08" data-nav-sec="8" class="section-nav-pill !border-editorial-gold/60">
+          <span class="nav-status-dot" aria-hidden="true"></span>
+          <span>08 30-Day Plan</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Editorial Workbook Container -->
+  <main id="brief-document" class="print-container max-w-5xl mx-auto px-4 sm:px-6 pt-7 sm:pt-10 space-y-8">
+
+    <!-- OPENING EDITORIAL MASTHEAD -->
+    <section aria-labelledby="workbook-main-title" class="bg-white rounded-xl border border-editorial-gold/70 overflow-hidden shadow-xs">
+      <!-- Top Publication Strip -->
+      <div class="bg-editorial-navy text-editorial-ivory px-6 sm:px-8 py-3 flex flex-wrap items-center justify-between gap-2 text-xs tracking-[0.14em] uppercase font-semibold">
+        <span class="text-editorial-gold">The Leader as a Brand</span>
+        <span>BIP · Bucharest 2026</span>
+      </div>
+
+      <div class="p-6 sm:p-10">
+        <p class="text-xs uppercase tracking-[0.18em] text-editorial-burgundy font-bold mb-2">
+          Personal Branding &amp; Leadership Workbook
+        </p>
+        <h1 id="workbook-main-title" class="font-editorial-serif text-4xl sm:text-5xl font-bold tracking-tight text-editorial-navy leading-tight">
+          MY PERSONAL BRAND BRIEF
+        </h1>
+        <p class="font-editorial-serif italic text-xl sm:text-2xl text-editorial-charcoal mt-1.5">
+          The Leader as a Brand — BIP Empowering Leadership Skills in International Business
+        </p>
+
+        <!-- Working Draft Framing Note -->
+        <div class="mt-6 bg-editorial-ivorySoft border-l-4 border-editorial-burgundy rounded-r-lg p-4 sm:p-5">
+          <p class="text-sm text-editorial-ink leading-relaxed">
+            <strong class="text-editorial-burgundy font-semibold">Workshop Guidance — Working Draft, Not an Assessment:</strong>
+            This workbook is a reflective journal designed to help you articulate your professional direction and leadership presence. There are no graded or “correct” answers—treat this as an evolving working draft that you can start during the workshop, save to your device, and refine over time.
+          </p>
+        </div>
+
+        <!-- Participant Colophon Fields (Name & Date) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-7 pt-6 border-t border-editorial-ivory">
+          <div class="bg-editorial-canvas rounded-lg p-4 border border-editorial-ivory focus-within:border-editorial-navy transition">
+            <label for="meta-name" class="block text-xs font-bold uppercase tracking-[0.14em] text-editorial-navy mb-1.5">
+              Name
+            </label>
+            <input id="meta-name" type="text" placeholder="Enter your full name"
+              class="w-full bg-transparent text-editorial-ink font-semibold text-base focus:outline-none" />
+          </div>
+
+          <div class="bg-editorial-canvas rounded-lg p-4 border border-editorial-ivory focus-within:border-editorial-navy transition">
+            <label for="meta-date" class="block text-xs font-bold uppercase tracking-[0.14em] text-editorial-navy mb-1.5">
+              Date
+            </label>
+            <input id="meta-date" type="date"
+              class="w-full bg-transparent text-editorial-ink font-semibold text-base focus:outline-none" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PART I DIVIDER: BRAND FOUNDATION -->
+    <div class="flex items-center gap-4 pt-1">
+      <div class="h-px flex-1 bg-editorial-gold/70"></div>
+      <span class="text-xs font-bold uppercase tracking-[0.18em] text-editorial-navy">
+        Part I · Brand Foundation (Sections 01–04)
+      </span>
+      <div class="h-px flex-1 bg-editorial-gold/70"></div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 01: MY PROFESSIONAL GOALS                                     -->
+    <!-- ===================================================================== -->
+    <section id="section-01" data-section="1" aria-labelledby="heading-01" class="section-card bg-white rounded-xl border border-editorial-ivory p-6 sm:p-9 shadow-xs">
+      <div class="pb-5 mb-6 border-b border-editorial-ivory">
+        <div class="flex items-center gap-3 mb-1.5">
+          <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
+            01
+          </span>
+          <span class="text-xs uppercase tracking-[0.15em] text-editorial-burgundy font-semibold">
+            Direction &amp; Ambition
+          </span>
+        </div>
+        <h2 id="heading-01" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
+          MY PROFESSIONAL GOALS
+        </h2>
+        <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
+          What do I want to achieve professionally in the next 6–12 months?
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- Goal 01 -->
+        <div class="flex items-start gap-3.5 bg-editorial-canvas rounded-lg p-4 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
+          <label for="goal-1-input" class="font-editorial-serif font-bold text-lg text-editorial-burgundy pt-0.5 select-none shrink-0">
+            01)
+          </label>
+          <div class="flex-1">
+            <textarea id="goal-1-input" rows="2" data-field="goal-1" placeholder="Define your first key professional goal..."
+              class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
+            <div class="print-mirror"></div>
+          </div>
+        </div>
+
+        <!-- Goal 02 -->
+        <div class="flex items-start gap-3.5 bg-editorial-canvas rounded-lg p-4 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
+          <label for="goal-2-input" class="font-editorial-serif font-bold text-lg text-editorial-burgundy pt-0.5 select-none shrink-0">
+            02)
+          </label>
+          <div class="flex-1">
+            <textarea id="goal-2-input" rows="2" data-field="goal-2" placeholder="Define your second key professional goal..."
+              class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
+            <div class="print-mirror"></div>
+          </div>
+        </div>
+
+        <!-- Goal 03 -->
+        <div class="flex items-start gap-3.5 bg-editorial-canvas rounded-lg p-4 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
+          <label for="goal-3-input" class="font-editorial-serif font-bold text-lg text-editorial-burgundy pt-0.5 select-none shrink-0">
+            03)
+          </label>
+          <div class="flex-1">
+            <textarea id="goal-3-input" rows="2" data-field="goal-3" placeholder="Define your third key professional goal..."
+              class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
+            <div class="print-mirror"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Step Navigation -->
+      <div class="no-print flex items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-ivory">
+        <span class="text-xs text-editorial-charcoal">Section 01 of 08</span>
+        <a href="#section-02" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
+          <span>Next: 02 My Target Audiences</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 02: MY TARGET AUDIENCES                                       -->
+    <!-- ===================================================================== -->
+    <section id="section-02" data-section="2" aria-labelledby="heading-02" class="section-card bg-white rounded-xl border border-editorial-ivory p-6 sm:p-9 shadow-xs">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-5 mb-6 border-b border-editorial-ivory">
+        <div>
+          <div class="flex items-center gap-3 mb-1.5">
+            <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
+              02
+            </span>
+            <span class="text-xs uppercase tracking-[0.15em] text-editorial-burgundy font-semibold">
+              Stakeholders &amp; Relationships
+            </span>
+          </div>
+          <h2 id="heading-02" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
+            MY TARGET AUDIENCES
+          </h2>
+          <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
+            Who do I want to reach, and what do I want to achieve through these relationships?
+          </p>
+        </div>
+
+        <button type="button" onclick="addAudienceRow()"
+          class="no-print self-start sm:self-auto inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-editorial-navy/30 bg-editorial-ivorySoft hover:bg-editorial-ivory text-editorial-navy text-xs font-semibold transition cursor-pointer">
+          <span>+ Add Audience Row</span>
+        </button>
+      </div>
+
+      <!-- Desktop Table Column Headers -->
+      <div class="hidden md:grid md:grid-cols-12 gap-4 px-4 py-3 bg-editorial-ivorySoft rounded-t-lg border border-editorial-ivory text-xs font-bold uppercase tracking-[0.12em] text-editorial-navy">
+        <div class="col-span-4">Target Audience (Who?)</div>
+        <div class="col-span-5">Communication Objective (Why?)</div>
+        <div class="col-span-3">Priority</div>
+      </div>
+
+      <!-- Audience Rows Container -->
+      <div id="audience-rows" class="divide-y divide-editorial-ivory border border-editorial-ivory md:border-t-0 rounded-lg md:rounded-t-none overflow-hidden">
+        <!-- Populated by JavaScript -->
+      </div>
+
+      <!-- Section Step Navigation -->
+      <div class="no-print flex flex-wrap items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-ivory">
+        <a href="#section-01" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
+          <span aria-hidden="true">←</span>
+          <span>Previous: 01 Goals</span>
+        </a>
+        <a href="#section-03" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
+          <span>Next: 03 Recognising My Strengths</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 03: RECOGNISING MY STRENGTHS                                  -->
+    <!-- ===================================================================== -->
+    <section id="section-03" data-section="3" aria-labelledby="heading-03" class="section-card bg-white rounded-xl border border-editorial-ivory p-6 sm:p-9 shadow-xs">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-5 mb-6 border-b border-editorial-ivory">
+        <div>
+          <div class="flex items-center gap-3 mb-1.5">
+            <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
+              03
+            </span>
+            <span class="text-xs uppercase tracking-[0.15em] text-editorial-burgundy font-semibold">
+              Evidence &amp; Self-Awareness
+            </span>
+          </div>
+          <h2 id="heading-03" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
+            RECOGNISING MY STRENGTHS
+          </h2>
+          <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
+            What am I genuinely good at, and what could I improve?
+          </p>
+        </div>
+
+        <button type="button" onclick="addStrengthRow()"
+          class="no-print self-start sm:self-auto inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-editorial-navy/30 bg-editorial-ivorySoft hover:bg-editorial-ivory text-editorial-navy text-xs font-semibold transition cursor-pointer">
+          <span>+ Add Strength Row</span>
+        </button>
+      </div>
+
+      <!-- Desktop Table Column Headers -->
+      <div class="hidden md:grid md:grid-cols-12 gap-4 px-4 py-3 bg-editorial-ivorySoft rounded-t-lg border border-editorial-ivory text-xs font-bold uppercase tracking-[0.12em] text-editorial-navy">
+        <div class="col-span-5">Strength / Experience</div>
+        <div class="col-span-7">Where I Have Demonstrated It / Experience Source</div>
+      </div>
+
+      <div id="strength-rows" class="divide-y divide-editorial-ivory border border-editorial-ivory md:border-t-0 rounded-lg md:rounded-t-none overflow-hidden mb-6">
+        <!-- Populated by JavaScript -->
+      </div>
+
+      <!-- One Limitation to Develop or Manage -->
+      <div class="bg-editorial-ivorySoft rounded-lg p-5 border border-editorial-gold/80 focus-within:border-editorial-burgundy focus-within:bg-white transition">
+        <label for="limitation-input" class="block text-xs font-bold uppercase tracking-[0.13em] text-editorial-burgundy mb-2">
+          One Limitation to Develop or Manage (And How):
+        </label>
+        <textarea id="limitation-input" rows="3" placeholder="Identify one growth area or blind spot, and describe how you plan to develop or manage it..."
+          class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
+        <div class="print-mirror"></div>
+      </div>
+
+      <!-- Section Step Navigation -->
+      <div class="no-print flex flex-wrap items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-ivory">
+        <a href="#section-02" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
+          <span aria-hidden="true">←</span>
+          <span>Previous: 02 Audiences</span>
+        </a>
+        <a href="#section-04" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
+          <span>Next: 04 My USP &amp; Positioning</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 04: MY USP & POSITIONING                                      -->
+    <!-- ===================================================================== -->
+    <section id="section-04" data-section="4" aria-labelledby="heading-04" class="section-card bg-white rounded-xl border border-editorial-ivory p-6 sm:p-9 shadow-xs">
+      <div class="pb-5 mb-6 border-b border-editorial-ivory">
+        <div class="flex items-center gap-3 mb-1.5">
+          <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
+            04
+          </span>
+          <span class="text-xs uppercase tracking-[0.15em] text-editorial-burgundy font-semibold">
+            Distinctive Value Proposition
+          </span>
+        </div>
+        <h2 id="heading-04" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
+          MY USP &amp; POSITIONING
+        </h2>
+        <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
+          What makes my value relevant and distinctive?
+        </p>
+      </div>
+
+      <!-- 2-Column Distinctive Combination & Audience Value -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+        <div class="bg-editorial-canvas rounded-lg p-5 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
+          <label for="usp-combination" class="block text-xs font-bold uppercase tracking-[0.13em] text-editorial-navy">
+            My Distinctive Combination
+          </label>
+          <p class="text-xs text-editorial-charcoal mt-1 mb-3">
+            Which strengths, experiences or approach belong together?
+          </p>
+          <textarea id="usp-combination" rows="4" placeholder="e.g., Cross-cultural project leadership combined with analytical problem-solving..."
+            class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
+          <div class="print-mirror"></div>
+        </div>
+
+        <div class="bg-editorial-canvas rounded-lg p-5 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
+          <label for="usp-value" class="block text-xs font-bold uppercase tracking-[0.13em] text-editorial-navy">
+            The Value to My Audience
+          </label>
+          <p class="text-xs text-editorial-charcoal mt-1 mb-3">
+            What need, problem or outcome can I address?
+          </p>
+          <textarea id="usp-value" rows="4" placeholder="e.g., Aligning international teams quickly to turn ambiguous challenges into structured action..."
+            class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
+          <div class="print-mirror"></div>
+        </div>
+      </div>
+
+      <!-- Positioning Statement Synthesis Card -->
+      <div class="bg-editorial-ivorySoft rounded-lg p-5 sm:p-6 border border-editorial-navy/25 focus-within:border-editorial-navy focus-within:bg-white transition">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <label for="positioning-statement" class="text-xs font-bold uppercase tracking-[0.14em] text-editorial-navy">
+            My Positioning Statement
+          </label>
+          <button type="button" onclick="insertPositioningStarter()"
+            class="no-print text-xs font-semibold text-editorial-burgundy hover:text-white bg-white hover:bg-editorial-burgundy border border-editorial-burgundy/40 px-3 py-1.5 rounded-md transition cursor-pointer">
+            Insert Formula Starter
+          </button>
+        </div>
+        <p class="font-editorial-serif italic text-base sm:text-lg text-editorial-charcoal mb-3.5">
+          “I combine <span class="font-semibold text-editorial-navy">[strength]</span> with <span class="font-semibold text-editorial-navy">[distinctive experience / approach]</span> to help <span class="font-semibold text-editorial-navy">[audience]</span> achieve <span class="font-semibold text-editorial-navy">[specific outcome]</span>.”
+        </p>
+        <textarea id="positioning-statement" rows="3" placeholder="Write your complete personal brand positioning statement here..."
+          class="auto-grow w-full bg-transparent text-sm sm:text-base font-medium text-editorial-ink focus:outline-none"></textarea>
+        <div class="print-mirror font-medium"></div>
+      </div>
+
+      <!-- Section Step Navigation -->
+      <div class="no-print flex flex-wrap items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-ivory">
+        <a href="#section-03" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
+          <span aria-hidden="true">←</span>
+          <span>Previous: 03 Strengths</span>
+        </a>
+        <a href="#section-05" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
+          <span>Next: 05 Brand Personality</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- PART II EDITORIAL BANNER: MY BRAND EXPRESSION                         -->
+    <!-- ===================================================================== -->
+    <div class="page-break-before bg-editorial-navy text-white rounded-xl border border-editorial-gold/60 overflow-hidden">
+      <div class="px-6 sm:px-8 py-2.5 border-b border-white/15 flex flex-wrap items-center justify-between gap-2 text-xs tracking-[0.14em] uppercase font-semibold">
+        <span class="text-editorial-gold">The Leader as a Brand</span>
+        <span class="text-editorial-ivory">BIP Empowering Leadership Skills in International Business</span>
+      </div>
+      <div class="px-6 sm:px-8 py-6">
+        <p class="text-xs uppercase tracking-[0.18em] text-editorial-gold font-semibold mb-1">
+          Part II · Identity, Voice &amp; Presence (Sections 05–07)
+        </p>
+        <h2 class="font-editorial-serif text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          MY BRAND EXPRESSION
+        </h2>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 05: MY BRAND PERSONALITY & KEY MESSAGES                       -->
+    <!-- ===================================================================== -->
+    <section id="section-05" data-section="5" aria-labelledby="heading-05" class="section-card bg-white rounded-xl border border-editorial-ivory p-6 sm:p-9 shadow-xs">
+      <div class="pb-5 mb-6 border-b border-editorial-ivory">
+        <div class="flex items-center gap-3 mb-1.5">
+          <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
+            05
+          </span>
+          <span class="text-xs uppercase tracking-[0.15em] text-editorial-burgundy font-semibold">
+            Character &amp; Core Narrative
+          </span>
+        </div>
+        <h2 id="heading-05" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
+          MY BRAND PERSONALITY &amp; KEY MESSAGES
+        </h2>
+        <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
+          What qualities define me, and what do I want others to remember about me?
+        </p>
+      </div>
+
+      <!-- Core Traits Selection (Select up to 3 qualities) -->
+      <div class="mb-8">
+        <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-[0.13em] text-editorial-navy">
+              My Core Traits
+            </h3>
+            <p class="text-xs text-editorial-charcoal mt-0.5">
+              Select up to 3 qualities.
+            </p>
+          </div>
+          <span id="traits-counter" class="text-xs font-bold px-3 py-1 rounded-full bg-editorial-ivorySoft text-editorial-navy border border-editorial-gold/70">
+            0 of 3 selected
+          </span>
+        </div>
+
+        <p id="traits-limit-msg" role="status" aria-live="polite"
+          class="hidden text-xs italic text-editorial-burgundy bg-editorial-ivorySoft border-l-2 border-editorial-burgundy px-3 py-1.5 rounded-r mb-3">
+          You've reached the recommended number of selections. Consider which qualities best represent you.
+        </p>
+
+        <div id="core-traits-grid" role="group" aria-label="My Core Traits (Select up to 3 qualities)" class="flex flex-wrap gap-2.5 mb-4">
+          <!-- Populated dynamically by JS -->
+        </div>
+
+        <!-- Custom Other Trait -->
+        <div class="flex items-center gap-2.5 max-w-md bg-editorial-canvas rounded-lg px-3.5 py-2.5 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
+          <label for="trait-other" class="text-xs font-bold uppercase tracking-wider text-editorial-burgundy shrink-0">
+            Other:
+          </label>
+          <input id="trait-other" type="text" placeholder="Add a custom core trait..."
+            class="flex-1 bg-transparent text-sm text-editorial-ink focus:outline-none" />
+        </div>
+      </div>
+
+      <!-- Three Key Ideas I Want People to Remember -->
+      <div class="pt-6 border-t border-editorial-ivory">
+        <h3 class="text-xs font-bold uppercase tracking-[0.13em] text-editorial-navy mb-4">
+          Three Key Ideas I Want People to Remember
+        </h3>
+
+        <div class="space-y-3.5">
+          <div class="flex items-start gap-3.5 bg-editorial-canvas rounded-lg p-4 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
+            <label for="idea-1-input" class="font-editorial-serif font-bold text-lg text-editorial-burgundy pt-0.5 select-none shrink-0">
+              01)
+            </label>
+            <div class="flex-1">
+              <textarea id="idea-1-input" rows="2" data-field="idea-1" placeholder="Key idea or takeaway #1..."
+                class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
+              <div class="print-mirror"></div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3.5 bg-editorial-canvas rounded-lg p-4 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
+            <label for="idea-2-input" class="font-editorial-serif font-bold text-lg text-editorial-burgundy pt-0.5 select-none shrink-0">
+              02)
+            </label>
+            <div class="flex-1">
+              <textarea id="idea-2-input" rows="2" data-field="idea-2" placeholder="Key idea or takeaway #2..."
+                class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
+              <div class="print-mirror"></div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3.5 bg-editorial-canvas rounded-lg p-4 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
+            <label for="idea-3-input" class="font-editorial-serif font-bold text-lg text-editorial-burgundy pt-0.5 select-none shrink-0">
+              03)
+            </label>
+            <div class="flex-1">
+              <textarea id="idea-3-input" rows="2" data-field="idea-3" placeholder="Key idea or takeaway #3..."
+                class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
+              <div class="print-mirror"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Step Navigation -->
+      <div class="no-print flex flex-wrap items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-ivory">
+        <a href="#section-04" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
+          <span aria-hidden="true">←</span>
+          <span>Previous: 04 USP &amp; Positioning</span>
+        </a>
+        <a href="#section-06" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
+          <span>Next: 06 Voice, Vibe &amp; Visuals</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 06: MY VOICE, VIBE & VISUAL IDENTITY                          -->
+    <!-- ===================================================================== -->
+    <section id="section-06" data-section="6" aria-labelledby="heading-06" class="section-card bg-white rounded-xl border border-editorial-ivory p-6 sm:p-9 shadow-xs">
+      <div class="pb-5 mb-6 border-b border-editorial-ivory">
+        <div class="flex items-center gap-3 mb-1.5">
+          <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
+            06
+          </span>
+          <span class="text-xs uppercase tracking-[0.15em] text-editorial-burgundy font-semibold">
+            Communication Style &amp; Aesthetic
+          </span>
+        </div>
+        <h2 id="heading-06" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
+          MY VOICE, VIBE &amp; VISUAL IDENTITY
+        </h2>
+        <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
+          How do I want to communicate, and what impression should my personal brand create?
+        </p>
+      </div>
+
+      <!-- My Voice (Select 3–5 qualities) -->
+      <div class="mb-7">
+        <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-[0.13em] text-editorial-navy">
+              My Voice
+            </h3>
+            <p class="text-xs text-editorial-charcoal mt-0.5">
+              Select 3–5 qualities.
+            </p>
+          </div>
+          <span id="voice-counter" class="text-xs font-bold px-3 py-1 rounded-full bg-editorial-ivorySoft text-editorial-navy border border-editorial-gold/70">
+            0 of 5 selected
+          </span>
+        </div>
+
+        <p id="voice-limit-msg" role="status" aria-live="polite"
+          class="hidden text-xs italic text-editorial-burgundy bg-editorial-ivorySoft border-l-2 border-editorial-burgundy px-3 py-1.5 rounded-r mb-3">
+          You've reached the recommended number of selections. Consider which qualities best represent you.
+        </p>
+
+        <div id="voice-grid" role="group" aria-label="My Voice (Select 3–5 qualities)" class="flex flex-wrap gap-2.5 mb-4">
+          <!-- Populated dynamically by JS -->
+        </div>
+
+        <div class="flex items-center gap-2.5 max-w-md bg-editorial-canvas rounded-lg px-3.5 py-2.5 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
+          <label for="voice-other" class="text-xs font-bold uppercase tracking-wider text-editorial-burgundy shrink-0">
+            Other:
+          </label>
+          <input id="voice-other" type="text" placeholder="Add another voice quality..."
+            class="flex-1 bg-transparent text-sm text-editorial-ink focus:outline-none" />
+        </div>
+      </div>
+
+      <!-- My Vibe (Select up to 2 impressions) -->
+      <div class="mb-7 pt-6 border-t border-editorial-ivory">
+        <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-[0.13em] text-editorial-navy">
+              My Vibe
+            </h3>
+            <p class="text-xs text-editorial-charcoal mt-0.5">
+              Select up to 2 impressions.
+            </p>
+          </div>
+          <span id="vibe-counter" class="text-xs font-bold px-3 py-1 rounded-full bg-editorial-ivorySoft text-editorial-navy border border-editorial-gold/70">
+            0 of 2 selected
+          </span>
+        </div>
+
+        <p id="vibe-limit-msg" role="status" aria-live="polite"
+          class="hidden text-xs italic text-editorial-burgundy bg-editorial-ivorySoft border-l-2 border-editorial-burgundy px-3 py-1.5 rounded-r mb-3">
+          You've reached the recommended number of selections. Consider which qualities best represent you.
+        </p>
+
+        <div id="vibe-grid" role="group" aria-label="My Vibe (Select up to 2 impressions)" class="flex flex-wrap gap-2.5 mb-4">
+          <!-- Populated dynamically by JS -->
+        </div>
+
+        <div class="flex items-center gap-2.5 max-w-md bg-editorial-canvas rounded-lg px-3.5 py-2.5 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
+          <label for="vibe-other" class="text-xs font-bold uppercase tracking-wider text-editorial-burgundy shrink-0">
+            Other:
+          </label>
+          <input id="vibe-other" type="text" placeholder="Add another vibe..."
+            class="flex-1 bg-transparent text-sm text-editorial-ink focus:outline-none" />
+        </div>
+      </div>
+
+      <!-- My Visual Identity -->
+      <div class="pt-6 border-t border-editorial-ivory">
+        <div class="mb-3.5">
+          <h3 class="text-xs font-bold uppercase tracking-[0.13em] text-editorial-navy">
+            My Visual Identity
+          </h3>
+          <p class="text-xs text-editorial-charcoal mt-0.5">
+            Select up to 2 options within each category (Colour Palette, Composition, Clothing and Setting).
+          </p>
+        </div>
+
+        <div class="border border-editorial-ivory rounded-lg overflow-hidden divide-y divide-editorial-ivory">
+          <!-- Palette -->
+          <div class="grid grid-cols-1 md:grid-cols-12 bg-white">
+            <div class="md:col-span-3 bg-editorial-ivorySoft px-4 py-4 flex flex-col justify-center border-b md:border-b-0 md:border-r border-editorial-ivory">
+              <span class="font-bold text-xs uppercase tracking-[0.13em] text-editorial-navy">Palette</span>
+              <span class="text-[11px] text-editorial-charcoal mt-0.5">Select up to 2 options.</span>
+              <span id="visual-palette-counter" class="inline-block self-start mt-2 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-editorial-navy border border-editorial-gold/70">
+                0 of 2 selected
+              </span>
+            </div>
+            <div class="md:col-span-9 p-4 flex flex-col justify-center">
+              <p id="visual-palette-limit-msg" role="status" aria-live="polite"
+                class="hidden text-xs italic text-editorial-burgundy bg-editorial-ivorySoft border-l-2 border-editorial-burgundy px-3 py-1.5 rounded-r mb-2.5">
+                You've reached the recommended number of selections. Consider which qualities best represent you.
+              </p>
+              <div id="visual-palette" role="group" aria-label="Visual Identity Colour Palette (Select up to 2 options)" class="flex flex-wrap gap-2"></div>
+            </div>
+          </div>
+
+          <!-- Composition -->
+          <div class="grid grid-cols-1 md:grid-cols-12 bg-white">
+            <div class="md:col-span-3 bg-editorial-ivorySoft px-4 py-4 flex flex-col justify-center border-b md:border-b-0 md:border-r border-editorial-ivory">
+              <span class="font-bold text-xs uppercase tracking-[0.13em] text-editorial-navy">Composition</span>
+              <span class="text-[11px] text-editorial-charcoal mt-0.5">Select up to 2 options.</span>
+              <span id="visual-composition-counter" class="inline-block self-start mt-2 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-editorial-navy border border-editorial-gold/70">
+                0 of 2 selected
+              </span>
+            </div>
+            <div class="md:col-span-9 p-4 flex flex-col justify-center">
+              <p id="visual-composition-limit-msg" role="status" aria-live="polite"
+                class="hidden text-xs italic text-editorial-burgundy bg-editorial-ivorySoft border-l-2 border-editorial-burgundy px-3 py-1.5 rounded-r mb-2.5">
+                You've reached the recommended number of selections. Consider which qualities best represent you.
+              </p>
+              <div id="visual-composition" role="group" aria-label="Visual Identity Composition (Select up to 2 options)" class="flex flex-wrap gap-2"></div>
+            </div>
+          </div>
+
+          <!-- Clothing -->
+          <div class="grid grid-cols-1 md:grid-cols-12 bg-white">
+            <div class="md:col-span-3 bg-editorial-ivorySoft px-4 py-4 flex flex-col justify-center border-b md:border-b-0 md:border-r border-editorial-ivory">
+              <span class="font-bold text-xs uppercase tracking-[0.13em] text-editorial-navy">Clothing</span>
+              <span class="text-[11px] text-editorial-charcoal mt-0.5">Select up to 2 options.</span>
+              <span id="visual-clothing-counter" class="inline-block self-start mt-2 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-editorial-navy border border-editorial-gold/70">
+                0 of 2 selected
+              </span>
+            </div>
+            <div class="md:col-span-9 p-4 flex flex-col justify-center">
+              <p id="visual-clothing-limit-msg" role="status" aria-live="polite"
+                class="hidden text-xs italic text-editorial-burgundy bg-editorial-ivorySoft border-l-2 border-editorial-burgundy px-3 py-1.5 rounded-r mb-2.5">
+                You've reached the recommended number of selections. Consider which qualities best represent you.
+              </p>
+              <div id="visual-clothing" role="group" aria-label="Visual Identity Clothing (Select up to 2 options)" class="flex flex-wrap gap-2"></div>
+            </div>
+          </div>
+
+          <!-- Setting -->
+          <div class="grid grid-cols-1 md:grid-cols-12 bg-white">
+            <div class="md:col-span-3 bg-editorial-ivorySoft px-4 py-4 flex flex-col justify-center border-b md:border-b-0 md:border-r border-editorial-ivory">
+              <span class="font-bold text-xs uppercase tracking-[0.13em] text-editorial-navy">Setting</span>
+              <span class="text-[11px] text-editorial-charcoal mt-0.5">Select up to 2 options.</span>
+              <span id="visual-setting-counter" class="inline-block self-start mt-2 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-editorial-navy border border-editorial-gold/70">
+                0 of 2 selected
+              </span>
+            </div>
+            <div class="md:col-span-9 p-4 flex flex-col justify-center">
+              <p id="visual-setting-limit-msg" role="status" aria-live="polite"
+                class="hidden text-xs italic text-editorial-burgundy bg-editorial-ivorySoft border-l-2 border-editorial-burgundy px-3 py-1.5 rounded-r mb-2.5">
+                You've reached the recommended number of selections. Consider which qualities best represent you.
+              </p>
+              <div id="visual-setting" role="group" aria-label="Visual Identity Setting (Select up to 2 options)" class="flex flex-wrap gap-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Step Navigation -->
+      <div class="no-print flex flex-wrap items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-ivory">
+        <a href="#section-05" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
+          <span aria-hidden="true">←</span>
+          <span>Previous: 05 Personality</span>
+        </a>
+        <a href="#section-07" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
+          <span>Next: 07 Brand Touchpoints</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 07: MY BRAND TOUCHPOINTS                                      -->
+    <!-- ===================================================================== -->
+    <section id="section-07" data-section="7" aria-labelledby="heading-07" class="section-card bg-white rounded-xl border border-editorial-ivory p-6 sm:p-9 shadow-xs">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-5 mb-6 border-b border-editorial-ivory">
+        <div>
+          <div class="flex items-center gap-3 mb-1.5">
+            <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
+              07
+            </span>
+            <span class="text-xs uppercase tracking-[0.15em] text-editorial-burgundy font-semibold">
+              Channels &amp; Visibility
+            </span>
+          </div>
+          <h2 id="heading-07" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
+            MY BRAND TOUCHPOINTS
+          </h2>
+          <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
+            Where does my audience encounter me, and what impression do I create?
+          </p>
+        </div>
+
+        <button type="button" onclick="addTouchpointRow()"
+          class="no-print self-start sm:self-auto inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-editorial-navy/30 bg-editorial-ivorySoft hover:bg-editorial-ivory text-editorial-navy text-xs font-semibold transition cursor-pointer">
+          <span>+ Add Touchpoint Row</span>
+        </button>
+      </div>
+
+      <!-- Desktop Table Column Headers -->
+      <div class="hidden md:grid md:grid-cols-12 gap-4 px-4 py-3 bg-editorial-ivorySoft rounded-t-lg border border-editorial-ivory text-xs font-bold uppercase tracking-[0.12em] text-editorial-navy">
+        <div class="col-span-3">Touchpoint (Channel)</div>
+        <div class="col-span-4">Impression I Want to Create</div>
+        <div class="col-span-5">How I Will Demonstrate It</div>
+      </div>
+
+      <div id="touchpoint-rows" class="divide-y divide-editorial-ivory border border-editorial-ivory md:border-t-0 rounded-lg md:rounded-t-none overflow-hidden">
+        <!-- Populated by JavaScript -->
+      </div>
+
+      <!-- Section Step Navigation -->
+      <div class="no-print flex flex-wrap items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-ivory">
+        <a href="#section-06" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
+          <span aria-hidden="true">←</span>
+          <span>Previous: 06 Voice &amp; Visuals</span>
+        </a>
+        <a href="#section-08" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-burgundy hover:bg-editorial-burgundyLight text-white text-xs sm:text-sm font-semibold transition">
+          <span>Final Stage: 08 30-Day Action Plan</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- FINAL STAGE DIVIDER & SECTION 08: MY 30-DAY BRAND ACTION PLAN         -->
+    <!-- ===================================================================== -->
+    <div class="flex items-center gap-4 pt-2">
+      <div class="h-px flex-1 bg-editorial-burgundy/40"></div>
+      <span class="text-xs font-bold uppercase tracking-[0.18em] text-editorial-burgundy">
+        Final Stage · Commitment &amp; Next Steps
+      </span>
+      <div class="h-px flex-1 bg-editorial-burgundy/40"></div>
+    </div>
+
+    <section id="section-08" data-section="8" aria-labelledby="heading-08" class="section-card bg-editorial-ivorySoft rounded-xl border-2 border-editorial-gold p-6 sm:p-9 shadow-xs">
+      <!-- Editorial Final Stage Banner -->
+      <div class="pb-5 mb-6 border-b border-editorial-gold/70">
+        <div class="flex flex-wrap items-center gap-2.5 mb-2">
+          <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-burgundy text-white text-xs font-bold tracking-widest">
+            08
+          </span>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded border border-editorial-burgundy/30 bg-white text-editorial-burgundy text-[11px] font-bold uppercase tracking-[0.14em]">
+            Final Stage
+          </span>
+        </div>
+
+        <h2 id="heading-08" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
+          MY 30-DAY BRAND ACTION PLAN
+        </h2>
+        <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
+          What concrete actions can I take over the next month to strengthen my professional brand?
+        </p>
+
+        <!-- Required Introductory Prompt -->
+        <p class="font-editorial-serif italic text-lg sm:text-xl text-editorial-burgundy font-semibold mt-3">
+          “Turn your personal brand strategy into three realistic actions.”
+        </p>
+      </div>
+
+      <!-- Desktop Table Column Headers -->
+      <div class="hidden md:grid md:grid-cols-12 gap-4 px-4 py-3 bg-editorial-navy text-editorial-ivory rounded-t-lg text-xs font-bold uppercase tracking-[0.12em]">
+        <div class="col-span-3">Focus</div>
+        <div class="col-span-6">Specific Action + Measurable Proof</div>
+        <div class="col-span-3">By When?</div>
+      </div>
+
+      <div class="divide-y divide-editorial-ivory border border-editorial-gold/70 md:border-t-0 rounded-lg md:rounded-t-none overflow-hidden bg-white">
+        <!-- DEVELOP Row -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 sm:p-5">
+          <div class="md:col-span-3 flex flex-col justify-center">
+            <span class="text-xs font-extrabold uppercase tracking-[0.14em] text-editorial-navy">DEVELOP</span>
+            <span class="text-xs text-editorial-charcoal mt-0.5">Improve a skill or capability</span>
+          </div>
+          <div class="md:col-span-6 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
+            <label for="action-develop-spec" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+              Specific Action + Measurable Proof
+            </label>
+            <textarea id="action-develop-spec" rows="2" data-action="develop-spec" placeholder="e.g., Practice concise executive framing in weekly seminar presentations..."
+              class="auto-grow w-full bg-transparent text-sm text-editorial-ink focus:outline-none"></textarea>
+            <div class="print-mirror"></div>
+          </div>
+          <div class="md:col-span-3 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0 flex flex-col justify-center">
+            <label for="action-develop-when" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+              By When?
+            </label>
+            <input id="action-develop-when" type="text" data-action="develop-when" placeholder="e.g., Week 2 / Date"
+              class="w-full bg-transparent text-sm font-medium text-editorial-ink focus:outline-none" />
+          </div>
+        </div>
+
+        <!-- DEMONSTRATE Row -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 sm:p-5">
+          <div class="md:col-span-3 flex flex-col justify-center">
+            <span class="text-xs font-extrabold uppercase tracking-[0.14em] text-editorial-burgundy">DEMONSTRATE</span>
+            <span class="text-xs text-editorial-charcoal mt-0.5">Create evidence of my value</span>
+          </div>
+          <div class="md:col-span-6 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
+            <label for="action-demonstrate-spec" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+              Specific Action + Measurable Proof
+            </label>
+            <textarea id="action-demonstrate-spec" rows="2" data-action="demonstrate-spec" placeholder="e.g., Document a short case reflection from our BIP cross-cultural project..."
+              class="auto-grow w-full bg-transparent text-sm text-editorial-ink focus:outline-none"></textarea>
+            <div class="print-mirror"></div>
+          </div>
+          <div class="md:col-span-3 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0 flex flex-col justify-center">
+            <label for="action-demonstrate-when" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+              By When?
+            </label>
+            <input id="action-demonstrate-when" type="text" data-action="demonstrate-when" placeholder="e.g., Week 3 / Date"
+              class="w-full bg-transparent text-sm font-medium text-editorial-ink focus:outline-none" />
+          </div>
+        </div>
+
+        <!-- COMMUNICATE Row -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 sm:p-5">
+          <div class="md:col-span-3 flex flex-col justify-center">
+            <span class="text-xs font-extrabold uppercase tracking-[0.14em] text-editorial-navy">COMMUNICATE</span>
+            <span class="text-xs text-editorial-charcoal mt-0.5">Make my value visible to my audience</span>
+          </div>
+          <div class="md:col-span-6 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
+            <label for="action-communicate-spec" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+              Specific Action + Measurable Proof
+            </label>
+            <textarea id="action-communicate-spec" rows="2" data-action="communicate-spec" placeholder="e.g., Update LinkedIn headline & share 1 thoughtful reflection with peers..."
+              class="auto-grow w-full bg-transparent text-sm text-editorial-ink focus:outline-none"></textarea>
+            <div class="print-mirror"></div>
+          </div>
+          <div class="md:col-span-3 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0 flex flex-col justify-center">
+            <label for="action-communicate-when" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+              By When?
+            </label>
+            <input id="action-communicate-when" type="text" data-action="communicate-when" placeholder="e.g., Week 4 / Date"
+              class="w-full bg-transparent text-sm font-medium text-editorial-ink focus:outline-none" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Step Navigation -->
+      <div class="no-print flex flex-wrap items-center justify-between gap-3 mt-7 pt-5 border-t border-editorial-gold/60">
+        <a href="#section-07" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
+          <span aria-hidden="true">←</span>
+          <span>Previous: 07 Touchpoints</span>
+        </a>
+        <a href="#section-01" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
+          <span aria-hidden="true">↑</span>
+          <span>Back to Section 01</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SAVE, BACKUP & EXPORT PANEL                                           -->
+    <!-- ===================================================================== -->
+    <section id="save-export-panel" aria-labelledby="save-export-heading" class="no-print bg-white rounded-xl border border-editorial-navy/25 overflow-hidden shadow-xs">
+      <div class="bg-editorial-navy text-white px-6 sm:px-8 py-4 flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <span class="text-[11px] uppercase tracking-[0.16em] text-editorial-gold font-bold block">
+            Preserve &amp; Continue Your Work
+          </span>
+          <h2 id="save-export-heading" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-white">
+            Save, Backup &amp; Export Your Brief
+          </h2>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-editorial-gold/40 text-xs text-editorial-ivory">
+          <span class="w-1.5 h-1.5 rounded-full bg-editorial-gold"></span>
+          <span>Local-first · No account required</span>
+        </span>
+      </div>
+
+      <div class="p-6 sm:p-8 space-y-6">
+        <!-- Required Clear User Instruction -->
+        <p class="text-sm sm:text-base text-editorial-ink leading-relaxed">
+          Your progress is saved automatically on this device. Download an editable copy to continue on another device, or export your brief as a PDF to keep.
+        </p>
+
+        <!-- Two-Column Distinction: Editable Backup (JSON) vs Final Readable Copy (PDF) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Editable Copy Card (JSON) -->
+          <div class="bg-editorial-canvas rounded-lg p-5 border border-editorial-ivory flex flex-col justify-between gap-4">
+            <div>
+              <span class="inline-block text-[11px] font-bold uppercase tracking-[0.14em] text-editorial-navy bg-editorial-ivory px-2.5 py-0.5 rounded mb-2">
+                Editable Backup (.JSON)
+              </span>
+              <h3 class="font-editorial-serif text-xl font-bold text-editorial-navy">
+                Continue Editing Later or Elsewhere
+              </h3>
+              <p class="text-xs sm:text-sm text-editorial-charcoal mt-1.5 leading-relaxed">
+                Downloads a lightweight data file containing all your answers and selections. Re-upload it anytime—on this computer or another device—to pick up right where you left off.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5 pt-2">
+              <input id="load-json-input" type="file" accept=".json,application/json" class="hidden" onchange="handleLoadJSONFile(event)" />
+
+              <button type="button" onclick="downloadEditableJSON()"
+                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition cursor-pointer">
+                <svg class="w-4 h-4 text-editorial-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <span>Save Editable Copy</span>
+              </button>
+
+              <button type="button" onclick="triggerLoadJSON()"
+                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-white hover:bg-editorial-ivorySoft border border-editorial-navy/35 text-editorial-navy text-xs sm:text-sm font-semibold transition cursor-pointer">
+                <svg class="w-4 h-4 text-editorial-burgundy" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                </svg>
+                <span>Load Saved Copy</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Final Readable Copy Card (PDF) -->
+          <div class="bg-editorial-ivorySoft rounded-lg p-5 border border-editorial-gold/80 flex flex-col justify-between gap-4">
+            <div>
+              <span class="inline-block text-[11px] font-bold uppercase tracking-[0.14em] text-white bg-editorial-burgundy px-2.5 py-0.5 rounded mb-2">
+                Final Readable Copy (.PDF)
+              </span>
+              <h3 class="font-editorial-serif text-xl font-bold text-editorial-navy">
+                Finished A4 Personal Brand Document
+              </h3>
+              <p class="text-xs sm:text-sm text-editorial-charcoal mt-1.5 leading-relaxed">
+                Generates a clean, formatted A4 PDF of your completed Personal Brand Brief for personal reference, mentoring discussions, or portfolio archiving.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5 pt-2">
+              <button type="button" onclick="generateAndDownloadPDF()"
+                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-burgundy hover:bg-editorial-burgundyLight text-white text-xs sm:text-sm font-semibold transition cursor-pointer">
+                <svg class="w-4 h-4 text-editorial-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span>Export as PDF</span>
+              </button>
+
+              <button type="button" onclick="copyBriefToClipboard()"
+                class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-lg bg-white hover:bg-editorial-canvas border border-editorial-ivory text-editorial-charcoal hover:text-editorial-navy text-xs sm:text-sm font-medium transition cursor-pointer"
+                title="Copy plain-text summary to clipboard">
+                <span>Copy Text</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Privacy & Browser Storage Notice -->
+        <div class="pt-4 border-t border-editorial-ivory flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-editorial-charcoal">
+          <p>
+            <strong class="text-editorial-navy font-semibold">Privacy &amp; Browser Storage Note:</strong>
+            Nothing you write is sent to an external server. Locally saved progress stays only in this browser and may be lost if browser site data is cleared or if you use private/incognito browsing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Footer -->
+    <footer class="no-print text-center text-xs text-editorial-charcoal/80 pt-2 pb-4">
+      The Leader as a Brand · BIP Empowering Leadership Skills in International Business · Bucharest 2026
+    </footer>
+  </main>
+
+  <!-- Toast Feedback Banner -->
+  <div id="toast-banner" role="status" aria-live="polite"
+    class="no-print fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 bg-editorial-navy text-white px-4 py-3 rounded-lg shadow-lg border border-editorial-gold/60 flex items-center gap-2.5 text-xs sm:text-sm font-medium max-w-sm">
+    <span id="toast-icon" class="w-2.5 h-2.5 rounded-full bg-editorial-gold shrink-0"></span>
+    <span id="toast-message">Saved on this device</span>
+  </div>
+
+  <!-- Confirmation Modal: Replace Current Responses When Loading JSON -->
+  <div id="load-confirm-modal" role="dialog" aria-modal="true" aria-labelledby="load-modal-title"
+    class="no-print fixed inset-0 z-50 hidden items-center justify-center bg-editorial-ink/60 p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-6 sm:p-7 shadow-xl border border-editorial-gold">
+      <span class="text-[11px] uppercase tracking-[0.15em] text-editorial-burgundy font-bold block mb-1">
+        Restore Editable Copy
+      </span>
+      <h3 id="load-modal-title" class="font-editorial-serif text-2xl font-bold text-editorial-navy">
+        Replace your current responses?
+      </h3>
+      <p id="load-modal-summary" class="text-sm text-editorial-charcoal mt-2 leading-relaxed">
+        Loading this saved copy will overwrite the answers currently entered in your browser.
+      </p>
+      <div class="flex items-center justify-end gap-2.5 mt-6">
+        <button type="button" onclick="cancelLoadJSON()"
+          class="px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition cursor-pointer">
+          Keep Current Work
+        </button>
+        <button type="button" onclick="confirmLoadJSON()"
+          class="px-4 py-2.5 rounded-lg bg-editorial-burgundy hover:bg-editorial-burgundyLight text-white text-xs sm:text-sm font-semibold transition cursor-pointer">
+          Yes, Load Saved Copy
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal: Reset / Clear All Responses -->
+  <div id="reset-modal" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title"
+    class="no-print fixed inset-0 z-50 hidden items-center justify-center bg-editorial-ink/60 p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-6 sm:p-7 shadow-xl border border-editorial-gold">
+      <span class="text-[11px] uppercase tracking-[0.15em] text-editorial-burgundy font-bold block mb-1">
+        Clear Workbook
+      </span>
+      <h3 id="reset-modal-title" class="font-editorial-serif text-2xl font-bold text-editorial-navy">
+        Clear all responses on this device?
+      </h3>
+      <p class="text-sm text-editorial-charcoal mt-2 leading-relaxed">
+        This will erase all text entries and selected chips across all eight sections, as well as your locally saved browser draft. Export an editable copy or PDF first if you wish to keep your work.
+      </p>
+      <div class="flex items-center justify-end gap-2.5 mt-6">
+        <button type="button" onclick="closeResetModal()"
+          class="px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition cursor-pointer">
+          Cancel
+        </button>
+        <button type="button" onclick="confirmReset()"
+          class="px-4 py-2.5 rounded-lg bg-editorial-burgundy hover:bg-editorial-burgundyLight text-white text-xs sm:text-sm font-semibold transition cursor-pointer">
+          Yes, Clear Draft
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * Storage & Schema Constants
+     */
+    const STORAGE_KEY_V2 = 'leader_as_a_brand_brief_v2';
+    const STORAGE_KEY_V1 = 'leader_as_a_brand_brief_v1';
+    const SCHEMA_ID = 'leader-as-a-brand-brief';
+    const SCHEMA_VERSION = '2.0';
+
+    let autosaveDebounceTimer = null;
+    let toastDismissTimer = null;
+    let pendingImportedState = null;
+    let pendingImportedFileName = '';
+
+    /**
+     * Master Option Lists (Preserved Verbatim from Original Worksheet)
+     */
+    const TEMPLATE_OPTIONS = {
+      coreTraits: [
+        'Analytical', 'Creative', 'Dependable', 'Collaborative', 'Adaptable',
+        'Strategic', 'Curious', 'Resourceful', 'Resilient', 'Ambitious',
+        'Empathetic', 'Organised', 'Proactive', 'Independent', 'Disciplined',
+        'Innovative', 'Detail-oriented', 'Open-minded', 'Decisive', 'Patient',
+        'Ethical', 'Persistent', 'Supportive', 'Solution-oriented', 'Visionary'
+      ],
+      voice: [
+        'Clear', 'Warm', 'Direct', 'Thoughtful', 'Measured', 'Bold', 'Playful',
+        'Inspirational', 'Humorous', 'Persuasive', 'Friendly', 'Honest',
+        'Diplomatic', 'Empathetic', 'Energetic', 'Provocative'
+      ],
+      vibe: [
+        'Calm', 'Dynamic', 'Polished', 'Approachable', 'Creative', 'Inspiring'
+      ],
+      visualPalette: [
+        'Soft', 'Natural', 'Pastel', 'Vibrant', 'Bold',
+        'High-contrast', 'Neutral', 'Monochrome', 'Corporate', 'Earthy'
+      ],
+      visualComposition: [
+        'Minimalist', 'Documentary', 'Detailed', 'Dynamic', 'Structured',
+        'Candid', 'Artistic', 'Lifestyle', 'Portrait-focused'
+      ],
+      visualClothing: [
+        'Classic', 'Modern', 'Formal', 'Business casual', 'Smart casual',
+        'Minimalist', 'Elegant', 'Trendy', 'Relaxed'
+      ],
+      visualSetting: [
+        'Office', 'Urban', 'Nature/outdoor', 'Studio', 'Neutral background',
+        'Academic', 'Everyday environment', 'Personal'
+      ]
+    };
+
+    /**
+     * Displays a non-blocking editorial toast message
+     */
+    function showToast(message, type = 'success') {
+      const banner = document.getElementById('toast-banner');
+      const icon = document.getElementById('toast-icon');
+      const msgEl = document.getElementById('toast-message');
+      if (!banner || !msgEl) return;
+
+      msgEl.textContent = message;
+      if (icon) {
+        icon.className = 'w-2.5 h-2.5 rounded-full shrink-0 ' + (
+          type === 'warning' ? 'bg-amber-400' :
+          type === 'info' ? 'bg-editorial-ivory' :
+          'bg-editorial-gold'
+        );
+      }
+
+      banner.classList.remove('translate-y-20', 'opacity-0');
+      banner.classList.add('translate-y-0', 'opacity-100');
+
+      if (toastDismissTimer) clearTimeout(toastDismissTimer);
+      toastDismissTimer = setTimeout(() => {
+        banner.classList.remove('translate-y-0', 'opacity-100');
+        banner.classList.add('translate-y-20', 'opacity-0');
+      }, 3800);
+    }
+
+    /**
+     * Auto-expands textareas to fit content and updates hidden print mirrors
+     */
+    function syncTextarea(ta) {
+      if (!ta) return;
+      ta.style.height = 'auto';
+      ta.style.height = `${Math.max(ta.scrollHeight, 50)}px`;
+      const mirror = ta.parentElement ? ta.parentElement.querySelector('.print-mirror') : null;
+      if (mirror) {
+        mirror.textContent = ta.value;
+      }
+    }
+
+    /**
+     * Captures the complete state of all fields, dynamic rows, and selections
+     */
+    function collectBriefState() {
+      const getChecked = (group) =>
+        Array.from(document.querySelectorAll(`.trait-pill[data-group="${group}"][data-checked="true"]`))
+          .map(el => el.dataset.label);
+
+      return {
+        schema: SCHEMA_ID,
+        schemaVersion: SCHEMA_VERSION,
+        workshop: 'The Leader as a Brand — BIP Bucharest 2026',
+        savedAt: new Date().toISOString(),
+        meta: {
+          name: document.getElementById('meta-name')?.value || '',
+          date: document.getElementById('meta-date')?.value || ''
+        },
+        goals: {
+          goal1: document.querySelector('[data-field="goal-1"]')?.value || '',
+          goal2: document.querySelector('[data-field="goal-2"]')?.value || '',
+          goal3: document.querySelector('[data-field="goal-3"]')?.value || ''
+        },
+        audiences: Array.from(document.querySelectorAll('.audience-row')).map(row => ({
+          who: row.querySelector('.audience-who')?.value || '',
+          why: row.querySelector('.audience-why')?.value || '',
+          priority: row.querySelector('[data-priority]')?.dataset.priority || ''
+        })),
+        strengths: Array.from(document.querySelectorAll('.strength-row')).map(row => ({
+          strength: row.querySelector('.strength-name')?.value || '',
+          source: row.querySelector('.strength-source')?.value || ''
+        })),
+        limitation: document.getElementById('limitation-input')?.value || '',
+        usp: {
+          combination: document.getElementById('usp-combination')?.value || '',
+          value: document.getElementById('usp-value')?.value || '',
+          positioningStatement: document.getElementById('positioning-statement')?.value || ''
+        },
+        personality: {
+          coreTraits: getChecked('core-traits'),
+          traitOther: document.getElementById('trait-other')?.value || '',
+          idea1: document.querySelector('[data-field="idea-1"]')?.value || '',
+          idea2: document.querySelector('[data-field="idea-2"]')?.value || '',
+          idea3: document.querySelector('[data-field="idea-3"]')?.value || ''
+        },
+        expression: {
+          voice: getChecked('voice'),
+          voiceOther: document.getElementById('voice-other')?.value || '',
+          vibe: getChecked('vibe'),
+          vibeOther: document.getElementById('vibe-other')?.value || '',
+          visualPalette: getChecked('visual-palette'),
+          visualComposition: getChecked('visual-composition'),
+          visualClothing: getChecked('visual-clothing'),
+          visualSetting: getChecked('visual-setting')
+        },
+        touchpoints: Array.from(document.querySelectorAll('.touchpoint-row')).map(row => ({
+          channel: row.querySelector('.tp-channel')?.value || '',
+          impression: row.querySelector('.tp-impression')?.value || '',
+          demo: row.querySelector('.tp-demo')?.value || ''
+        })),
+        actionPlan: {
+          developSpec: document.querySelector('[data-action="develop-spec"]')?.value || '',
+          developWhen: document.querySelector('[data-action="develop-when"]')?.value || '',
+          demonstrateSpec: document.querySelector('[data-action="demonstrate-spec"]')?.value || '',
+          demonstrateWhen: document.querySelector('[data-action="demonstrate-when"]')?.value || '',
+          communicateSpec: document.querySelector('[data-action="communicate-spec"]')?.value || '',
+          communicateWhen: document.querySelector('[data-action="communicate-when"]')?.value || ''
+        }
+      };
+    }
+
+    /**
+     * Checks whether the student currently has any entered text or selected chips
+     */
+    function hasAnyUserResponses() {
+      const nameVal = document.getElementById('meta-name')?.value.trim() || '';
+      if (nameVal.length > 0) return true;
+
+      const anyText = Array.from(document.querySelectorAll('textarea, input[type="text"]'))
+        .some(el => el.value.trim().length > 0);
+      if (anyText) return true;
+
+      const anyChecked = document.querySelectorAll('.trait-pill[data-checked="true"]').length > 0;
+      return anyChecked;
+    }
+
+    /**
+     * Validates an uploaded JSON object before restoring it
+     */
+    function validateBriefJSON(data) {
+      if (!data || typeof data !== 'object' || Array.isArray(data)) {
+        return { valid: false, reason: 'File does not contain a valid JSON object.' };
+      }
+
+      if (data.schema && data.schema !== SCHEMA_ID) {
+        return { valid: false, reason: 'This file belongs to a different application schema.' };
+      }
+
+      const expectedSections = ['meta', 'goals', 'audiences', 'strengths', 'usp', 'personality', 'expression', 'touchpoints', 'actionPlan'];
+      const presentCount = expectedSections.filter(key => key in data).length;
+
+      if (presentCount < 3) {
+        return { valid: false, reason: 'This JSON file is missing required Personal Brand Brief fields.' };
+      }
+
+      return { valid: true };
+    }
+
+    /**
+     * Populates the entire workbook from a validated state object
+     */
+    function applyBriefState(state) {
+      if (!state || typeof state !== 'object') return false;
+
+      // Meta
+      if (state.meta) {
+        const nameEl = document.getElementById('meta-name');
+        const dateEl = document.getElementById('meta-date');
+        if (nameEl) nameEl.value = typeof state.meta.name === 'string' ? state.meta.name : '';
+        if (dateEl && typeof state.meta.date === 'string' && state.meta.date) {
+          dateEl.value = state.meta.date;
+        }
+      }
+
+      // 01 Goals
+      if (state.goals) {
+        const g1 = document.querySelector('[data-field="goal-1"]');
+        const g2 = document.querySelector('[data-field="goal-2"]');
+        const g3 = document.querySelector('[data-field="goal-3"]');
+        if (g1) g1.value = state.goals.goal1 || '';
+        if (g2) g2.value = state.goals.goal2 || '';
+        if (g3) g3.value = state.goals.goal3 || '';
+      }
+
+      // 02 Audiences
+      const audienceContainer = document.getElementById('audience-rows');
+      if (audienceContainer) {
+        audienceContainer.innerHTML = '';
+        const rows = Array.isArray(state.audiences) && state.audiences.length > 0
+          ? state.audiences
+          : [{}, {}, {}];
+        rows.forEach(r => addAudienceRow(r.who || '', r.why || '', r.priority || '', true));
+        while (audienceContainer.children.length < 3) {
+          addAudienceRow('', '', '', true);
+        }
+      }
+
+      // 03 Strengths & Limitation
+      const strengthContainer = document.getElementById('strength-rows');
+      if (strengthContainer) {
+        strengthContainer.innerHTML = '';
+        const rows = Array.isArray(state.strengths) && state.strengths.length > 0
+          ? state.strengths
+          : [{}, {}, {}];
+        rows.forEach(r => addStrengthRow(r.strength || '', r.source || '', true));
+        while (strengthContainer.children.length < 3) {
+          addStrengthRow('', '', true);
+        }
+      }
+      const limEl = document.getElementById('limitation-input');
+      if (limEl) limEl.value = state.limitation || '';
+
+      // 04 USP & Positioning
+      if (state.usp) {
+        const combEl = document.getElementById('usp-combination');
+        const valEl = document.getElementById('usp-value');
+        const posEl = document.getElementById('positioning-statement');
+        if (combEl) combEl.value = state.usp.combination || '';
+        if (valEl) valEl.value = state.usp.value || '';
+        if (posEl) posEl.value = state.usp.positioningStatement || '';
+      }
+
+      // Helper to apply checked pill arrays
+      const applyPillGroup = (groupName, selectedList) => {
+        const selectedSet = new Set(Array.isArray(selectedList) ? selectedList : []);
+        document.querySelectorAll(`.trait-pill[data-group="${groupName}"]`).forEach(btn => {
+          setPillState(btn, selectedSet.has(btn.dataset.label));
+        });
+      };
+
+      // 05 Personality & Key Messages
+      if (state.personality) {
+        applyPillGroup('core-traits', state.personality.coreTraits);
+        const traitOtherEl = document.getElementById('trait-other');
+        if (traitOtherEl) traitOtherEl.value = state.personality.traitOther || '';
+        const i1 = document.querySelector('[data-field="idea-1"]');
+        const i2 = document.querySelector('[data-field="idea-2"]');
+        const i3 = document.querySelector('[data-field="idea-3"]');
+        if (i1) i1.value = state.personality.idea1 || '';
+        if (i2) i2.value = state.personality.idea2 || '';
+        if (i3) i3.value = state.personality.idea3 || '';
+      }
+
+      // 06 Voice, Vibe & Visual Identity
+      if (state.expression) {
+        applyPillGroup('voice', state.expression.voice);
+        const voiceOtherEl = document.getElementById('voice-other');
+        if (voiceOtherEl) voiceOtherEl.value = state.expression.voiceOther || '';
+
+        applyPillGroup('vibe', state.expression.vibe);
+        const vibeOtherEl = document.getElementById('vibe-other');
+        if (vibeOtherEl) vibeOtherEl.value = state.expression.vibeOther || '';
+
+        applyPillGroup('visual-palette', state.expression.visualPalette);
+        applyPillGroup('visual-composition', state.expression.visualComposition);
+        applyPillGroup('visual-clothing', state.expression.visualClothing);
+        applyPillGroup('visual-setting', state.expression.visualSetting);
+      }
+
+      // 07 Brand Touchpoints
+      const touchpointContainer = document.getElementById('touchpoint-rows');
+      if (touchpointContainer) {
+        touchpointContainer.innerHTML = '';
+        const rows = Array.isArray(state.touchpoints) && state.touchpoints.length > 0
+          ? state.touchpoints
+          : [{}, {}, {}];
+        rows.forEach(r => addTouchpointRow(r.channel || '', r.impression || '', r.demo || '', true));
+        while (touchpointContainer.children.length < 3) {
+          addTouchpointRow('', '', '', true);
+        }
+      }
+
+      // 08 30-Day Brand Action Plan
+      if (state.actionPlan) {
+        const setAction = (key, val) => {
+          const el = document.querySelector(`[data-action="${key}"]`);
+          if (el) el.value = val || '';
+        };
+        setAction('develop-spec', state.actionPlan.developSpec);
+        setAction('develop-when', state.actionPlan.developWhen);
+        setAction('demonstrate-spec', state.actionPlan.demonstrateSpec);
+        setAction('demonstrate-when', state.actionPlan.demonstrateWhen);
+        setAction('communicate-spec', state.actionPlan.communicateSpec);
+        setAction('communicate-when', state.actionPlan.communicateWhen);
+      }
+
+      bindAutoGrowAll();
+      updateCounters();
+      updateProgress();
+      return true;
+    }
+
+    /**
+     * Automatic Local Progress Saving (localStorage)
+     */
+    function scheduleAutoSave() {
+      const badgeText = document.getElementById('autosave-text');
+      const badgeDot = document.getElementById('autosave-dot');
+      if (badgeText) badgeText.textContent = 'Saving…';
+      if (badgeDot) badgeDot.className = 'w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse';
+
+      if (autosaveDebounceTimer) clearTimeout(autosaveDebounceTimer);
+      autosaveDebounceTimer = setTimeout(() => {
+        saveNowToLocalStorage();
+      }, 240);
+    }
+
+    function saveNowToLocalStorage() {
+      try {
+        const state = collectBriefState();
+        localStorage.setItem(STORAGE_KEY_V2, JSON.stringify(state));
+
+        const badge = document.getElementById('autosave-badge');
+        const badgeText = document.getElementById('autosave-text');
+        const badgeDot = document.getElementById('autosave-dot');
+        const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        if (badgeText) badgeText.textContent = 'Saved on this device';
+        if (badgeDot) badgeDot.className = 'w-1.5 h-1.5 rounded-full bg-editorial-gold';
+        if (badge) badge.title = `Saved locally in this browser at ${timeStr}`;
+      } catch (err) {
+        const badgeText = document.getElementById('autosave-text');
+        if (badgeText) badgeText.textContent = 'Device storage unavailable';
+      }
+    }
+
+    function restoreFromLocalStorage() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY_V2) || localStorage.getItem(STORAGE_KEY_V1);
+        if (!raw) return false;
+        const parsed = JSON.parse(raw);
+        const validation = validateBriefJSON(parsed);
+        if (!validation.valid) return false;
+
+        const restored = applyBriefState(parsed);
+        if (restored && parsed.savedAt) {
+          const savedDate = new Date(parsed.savedAt);
+          const timeInfo = isNaN(savedDate.getTime())
+            ? ''
+            : ` (${savedDate.toLocaleDateString()} at ${savedDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })})`;
+          showToast(`Restored your saved draft${timeInfo}.`, 'info');
+        }
+        return restored;
+      } catch (err) {
+        return false;
+      }
+    }
+
+    /**
+     * Save Editable Copy (Download JSON with Schema Version)
+     */
+    function downloadEditableJSON() {
+      try {
+        const state = collectBriefState();
+        const rawName = state.meta.name.trim();
+        const safeName = rawName ? rawName.replace(/[^a-z0-9_-]+/gi, '_') : 'Draft';
+        const fileName = `Personal_Brand_Brief_${safeName}_Editable.json`;
+
+        const jsonString = JSON.stringify(state, null, 2);
+        const blob = new Blob([jsonString], { type: 'application/json;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        saveNowToLocalStorage();
+        showToast(`Downloaded editable copy "${fileName}".`);
+      } catch (err) {
+        showToast('Could not download editable JSON copy.', 'warning');
+      }
+    }
+
+    /**
+     * Load Saved Copy (Trigger File Picker, Validate & Confirm Before Replacing)
+     */
+    function triggerLoadJSON() {
+      const input = document.getElementById('load-json-input');
+      if (input) {
+        input.value = '';
+        input.click();
+      }
+    }
+
+    function handleLoadJSONFile(event) {
+      const file = event.target?.files?.[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          const validation = validateBriefJSON(parsed);
+
+          if (!validation.valid) {
+            showToast(`Incompatible file: ${validation.reason}`, 'warning');
+            return;
+          }
+
+          // Ask for confirmation if the user already has existing responses entered
+          if (hasAnyUserResponses()) {
+            pendingImportedState = parsed;
+            pendingImportedFileName = file.name;
+
+            const authorName = parsed.meta?.name?.trim() || 'Unnamed draft';
+            const savedDate = parsed.savedAt ? new Date(parsed.savedAt) : null;
+            const dateLabel = savedDate && !isNaN(savedDate.getTime())
+              ? ` saved on ${savedDate.toLocaleDateString()} at ${savedDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+              : '';
+
+            const summaryEl = document.getElementById('load-modal-summary');
+            if (summaryEl) {
+              summaryEl.textContent = `You selected "${file.name}" (${authorName}${dateLabel}). Loading this file will replace your current responses on this page.`;
+            }
+
+            const modal = document.getElementById('load-confirm-modal');
+            if (modal) {
+              modal.classList.remove('hidden');
+              modal.classList.add('flex');
+            }
+          } else {
+            applyBriefState(parsed);
+            saveNowToLocalStorage();
+            showToast(`Loaded "${file.name}" — ready to continue editing.`);
+          }
+        } catch (err) {
+          showToast('Corrupted or unreadable JSON file. Please select a valid editable backup.', 'warning');
+        }
+      };
+      reader.onerror = function () {
+        showToast('Unable to read the selected file.', 'warning');
+      };
+      reader.readAsText(file);
+    }
+
+    function cancelLoadJSON() {
+      pendingImportedState = null;
+      pendingImportedFileName = '';
+      const modal = document.getElementById('load-confirm-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function confirmLoadJSON() {
+      if (pendingImportedState) {
+        applyBriefState(pendingImportedState);
+        saveNowToLocalStorage();
+        showToast(`Loaded "${pendingImportedFileName}" — you can continue editing.`);
+      }
+      cancelLoadJSON();
+    }
+
+    /**
+     * Normalizes special Unicode characters so jsPDF built-in fonts render cleanly
+     */
+    function sanitizeForPdf(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/[\u2018\u2019]/g, "'")
+        .replace(/[\u201C\u201D]/g, '"')
+        .replace(/[\u2013\u2014]/g, '-')
+        .replace(/\u2026/g, '...')
+        .replace(/[^\x09\x0A\x0D\x20-\xFF]/g, '');
+    }
+
+    /**
+     * Direct Client-Side A4 PDF Export (Editorial Palette: Navy, Burgundy, Ivory, Gold, Charcoal)
+     */
+    function generateAndDownloadPDF() {
+      try {
+        if (!window.jspdf || !window.jspdf.jsPDF) {
+          showToast('PDF engine still loading — opening print view instead…', 'info');
+          window.print();
+          return;
+        }
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+        // Editorial Palette RGB Tuples
+        const NAVY = [37, 52, 79];       // #25344F
+        const BURGUNDY = [92, 45, 55];   // #5C2D37
+        const IVORY = [248, 246, 242];   // #F8F6F2
+        const IVORY_DARK = [230, 223, 215]; // #E6DFD7
+        const GOLD = [213, 184, 147];    // #D5B893
+        const CHARCOAL = [81, 79, 89];   // #514F59
+        const INK = [34, 38, 46];        // #22262E
+
+        const pageW = doc.internal.pageSize.getWidth();
+        const pageH = doc.internal.pageSize.getHeight();
+        const margin = 15;
+        const contentW = pageW - margin * 2;
+        const bottomLimit = pageH - 16;
+        let y = margin;
+
+        const getChecked = (group) =>
+          Array.from(document.querySelectorAll(`.trait-pill[data-group="${group}"][data-checked="true"]`))
+            .map(el => sanitizeForPdf(el.dataset.label));
+
+        const ensureSpace = (neededH) => {
+          if (y + neededH > bottomLimit) {
+            doc.addPage();
+            y = margin;
+          }
+        };
+
+        const drawBanner = (mainHeading, subLabel) => {
+          doc.setFillColor(...NAVY);
+          doc.rect(margin, y, contentW, 8, 'F');
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(7.5);
+          doc.setTextColor(...GOLD);
+          doc.text('THE LEADER AS A BRAND', margin + 3.5, y + 5.2);
+          doc.setTextColor(230, 223, 215);
+          doc.text('BIP · Bucharest 2026', pageW - margin - 3.5, y + 5.2, { align: 'right' });
+          y += 8;
+
+          doc.setFillColor(...IVORY);
+          doc.setDrawColor(...GOLD);
+          doc.rect(margin, y, contentW, 13.5, 'FD');
+
+          doc.setFont('times', 'bold');
+          doc.setFontSize(15);
+          doc.setTextColor(...NAVY);
+          doc.text(mainHeading, margin + 3.5, y + 7.2);
+
+          if (subLabel) {
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(7.8);
+            doc.setTextColor(...CHARCOAL);
+            doc.text(subLabel, margin + 3.5, y + 11.4);
+          }
+          y += 17;
+        };
+
+        const drawSectionHeader = (numStr, titleStr, subtitleStr, isFinalStage = false) => {
+          ensureSpace(17);
+          doc.setFillColor(...(isFinalStage ? BURGUNDY : NAVY));
+          doc.roundedRect(margin, y, 8.5, 6, 1, 1, 'F');
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(8.5);
+          doc.setTextColor(255, 255, 255);
+          doc.text(numStr, margin + 4.25, y + 4.2, { align: 'center' });
+
+          doc.setFont('times', 'bold');
+          doc.setFontSize(12);
+          doc.setTextColor(...NAVY);
+          doc.text(titleStr, margin + 11, y + 4.5);
+
+          if (isFinalStage) {
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(7.2);
+            doc.setTextColor(...BURGUNDY);
+            doc.text('FINAL STAGE', pageW - margin, y + 4.3, { align: 'right' });
+          }
+          y += 7.5;
+
+          if (subtitleStr) {
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(8.3);
+            doc.setTextColor(...CHARCOAL);
+            doc.text(sanitizeForPdf(subtitleStr), margin, y + 2.2);
+            y += 4.8;
+          }
+
+          doc.setDrawColor(...GOLD);
+          doc.line(margin, y, pageW - margin, y);
+          y += 4;
+        };
+
+        const drawLabeledBox = (label, valueText, bgRgb = IVORY, borderRgb = IVORY_DARK, labelRgb = NAVY) => {
+          const cleanVal = sanitizeForPdf(valueText).trim() || '-';
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(9);
+          const wrapped = doc.splitTextToSize(cleanVal, contentW - 7);
+          const boxH = Math.max(12.5, 7.8 + wrapped.length * 4.3);
+          ensureSpace(boxH + 3);
+
+          doc.setFillColor(...bgRgb);
+          doc.setDrawColor(...borderRgb);
+          doc.roundedRect(margin, y, contentW, boxH, 1.5, 1.5, 'FD');
+
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(7.4);
+          doc.setTextColor(...labelRgb);
+          doc.text(label.toUpperCase(), margin + 3.5, y + 4.8);
+
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(9);
+          doc.setTextColor(...INK);
+          doc.text(wrapped, margin + 3.5, y + 9.6);
+          y += boxH + 3;
+        };
+
+        const drawTable = (headers, colRatios, rowsData, headerBg = IVORY_DARK, headerText = NAVY) => {
+          const colWidths = colRatios.map(r => r * contentW);
+          const headerH = 7.5;
+          ensureSpace(headerH + 10);
+
+          let curX = margin;
+          doc.setFillColor(...headerBg);
+          doc.setDrawColor(...IVORY_DARK);
+          doc.rect(margin, y, contentW, headerH, 'FD');
+
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(7.4);
+          doc.setTextColor(...headerText);
+          headers.forEach((h, i) => {
+            doc.text(h.toUpperCase(), curX + 2.5, y + 5);
+            if (i > 0) doc.line(curX, y, curX, y + headerH);
+            curX += colWidths[i];
+          });
+          y += headerH;
+
+          rowsData.forEach(rowCells => {
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(8.8);
+            const wrappedCells = rowCells.map((cell, i) =>
+              doc.splitTextToSize(sanitizeForPdf(cell).trim() || '-', colWidths[i] - 5)
+            );
+            const maxLines = Math.max(...wrappedCells.map(w => w.length), 1);
+            const rowH = Math.max(9, maxLines * 4.3 + 4.2);
+
+            ensureSpace(rowH);
+
+            let cellX = margin;
+            doc.setFillColor(255, 255, 255);
+            doc.setDrawColor(...IVORY_DARK);
+            doc.rect(margin, y, contentW, rowH, 'FD');
+
+            doc.setTextColor(...INK);
+            wrappedCells.forEach((lines, i) => {
+              if (i > 0) doc.line(cellX, y, cellX, y + rowH);
+              doc.text(lines, cellX + 2.5, y + 5.2);
+              cellX += colWidths[i];
+            });
+            y += rowH;
+          });
+          y += 4;
+        };
+
+        const drawPillTags = (subHeading, items, otherVal = '') => {
+          const allItems = [...items];
+          if (otherVal && otherVal.trim()) {
+            allItems.push(`Other: ${sanitizeForPdf(otherVal.trim())}`);
+          }
+
+          ensureSpace(14);
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(7.8);
+          doc.setTextColor(...NAVY);
+          doc.text(subHeading.toUpperCase(), margin, y + 3.5);
+          y += 5.5;
+
+          if (allItems.length === 0) {
+            doc.setFont('helvetica', 'italic');
+            doc.setFontSize(8.5);
+            doc.setTextColor(...CHARCOAL);
+            doc.text('None selected', margin, y + 3.5);
+            y += 7;
+            return;
+          }
+
+          let curX = margin;
+          const pillH = 5.8;
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(8);
+
+          allItems.forEach(tag => {
+            const textW = doc.getTextWidth(tag);
+            const pillW = Math.min(textW + 6, contentW);
+            if (curX + pillW > pageW - margin) {
+              curX = margin;
+              y += pillH + 2;
+              ensureSpace(pillH + 3);
+            }
+            doc.setFillColor(...NAVY);
+            doc.roundedRect(curX, y, pillW, pillH, 1.3, 1.3, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.text(tag, curX + 3, y + 4);
+            curX += pillW + 2;
+          });
+          y += pillH + 4.5;
+        };
+
+        // ================= PART I: BRAND FOUNDATION =================
+        drawBanner(
+          'MY PERSONAL BRAND BRIEF',
+          'BIP Empowering Leadership Skills in International Business'
+        );
+
+        // Name & Date Colophon Row
+        const nameVal = sanitizeForPdf(document.getElementById('meta-name').value).trim() || '-';
+        const dateVal = sanitizeForPdf(document.getElementById('meta-date').value).trim() || '-';
+        const halfW = (contentW - 4) / 2;
+        doc.setFillColor(...IVORY);
+        doc.setDrawColor(...IVORY_DARK);
+        doc.roundedRect(margin, y, halfW, 12, 1.5, 1.5, 'FD');
+        doc.roundedRect(margin + halfW + 4, y, halfW, 12, 1.5, 1.5, 'FD');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(7.2);
+        doc.setTextColor(...NAVY);
+        doc.text('NAME', margin + 3, y + 4.3);
+        doc.text('DATE', margin + halfW + 7, y + 4.3);
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9.5);
+        doc.setTextColor(...INK);
+        doc.text(nameVal, margin + 3, y + 9.5);
+        doc.text(dateVal, margin + halfW + 7, y + 9.5);
+        y += 16;
+
+        // 01 MY PROFESSIONAL GOALS
+        drawSectionHeader('01', 'MY PROFESSIONAL GOALS', 'What do I want to achieve professionally in the next 6-12 months?');
+        ['goal-1', 'goal-2', 'goal-3'].forEach((key, idx) => {
+          const val = document.querySelector(`[data-field="${key}"]`).value;
+          drawLabeledBox(`0${idx + 1}) Goal`, val);
+        });
+        y += 1.5;
+
+        // 02 MY TARGET AUDIENCES
+        drawSectionHeader('02', 'MY TARGET AUDIENCES', 'Who do I want to reach, and what do I want to achieve through these relationships?');
+        const audienceRows = Array.from(document.querySelectorAll('.audience-row')).map(row => [
+          row.querySelector('.audience-who').value,
+          row.querySelector('.audience-why').value,
+          row.querySelector('[data-priority]').dataset.priority || '-'
+        ]);
+        drawTable(['Target Audience (Who?)', 'Communication Objective (Why?)', 'Priority'], [0.35, 0.47, 0.18], audienceRows);
+
+        // 03 RECOGNISING MY STRENGTHS
+        drawSectionHeader('03', 'RECOGNISING MY STRENGTHS', 'What am I genuinely good at, and what could I improve?');
+        const strengthRows = Array.from(document.querySelectorAll('.strength-row')).map(row => [
+          row.querySelector('.strength-name').value,
+          row.querySelector('.strength-source').value
+        ]);
+        drawTable(['Strength / Experience', 'Where I Have Demonstrated It / Experience Source'], [0.42, 0.58], strengthRows);
+        drawLabeledBox(
+          'One Limitation to Develop or Manage (And How)',
+          document.getElementById('limitation-input').value,
+          [243, 239, 234],
+          GOLD,
+          BURGUNDY
+        );
+        y += 1.5;
+
+        // 04 MY USP & POSITIONING
+        drawSectionHeader('04', 'MY USP & POSITIONING', 'What makes my value relevant and distinctive?');
+        drawLabeledBox('My Distinctive Combination', document.getElementById('usp-combination').value);
+        drawLabeledBox('The Value to My Audience', document.getElementById('usp-value').value);
+        drawLabeledBox(
+          'My Positioning Statement',
+          document.getElementById('positioning-statement').value,
+          [243, 239, 234],
+          NAVY,
+          NAVY
+        );
+
+        // ================= PART II: BRAND EXPRESSION (New Page) =================
+        doc.addPage();
+        y = margin;
+        drawBanner(
+          'MY BRAND EXPRESSION',
+          'Identity, Communication Style, Touchpoints & 30-Day Action Plan'
+        );
+
+        // 05 MY BRAND PERSONALITY & KEY MESSAGES
+        drawSectionHeader('05', 'MY BRAND PERSONALITY & KEY MESSAGES', 'What qualities define me, and what do I want others to remember about me?');
+        drawPillTags('My Core Traits (Up to 3)', getChecked('core-traits'), document.getElementById('trait-other').value);
+        ['idea-1', 'idea-2', 'idea-3'].forEach((key, idx) => {
+          const val = document.querySelector(`[data-field="${key}"]`).value;
+          drawLabeledBox(`0${idx + 1}) Key Idea to Remember`, val);
+        });
+        y += 1.5;
+
+        // 06 MY VOICE, VIBE & VISUAL IDENTITY
+        drawSectionHeader('06', 'MY VOICE, VIBE & VISUAL IDENTITY', 'How do I want to communicate, and what impression should my personal brand create?');
+        drawPillTags('My Voice (3-5 Qualities)', getChecked('voice'), document.getElementById('voice-other').value);
+        drawPillTags('My Vibe (Up to 2)', getChecked('vibe'), document.getElementById('vibe-other').value);
+
+        const visualRows = [
+          ['PALETTE', getChecked('visual-palette').join(', ') || '-'],
+          ['COMPOSITION', getChecked('visual-composition').join(', ') || '-'],
+          ['CLOTHING', getChecked('visual-clothing').join(', ') || '-'],
+          ['SETTING', getChecked('visual-setting').join(', ') || '-']
+        ];
+        drawTable(['Visual Identity Dimension', 'Selected Attributes'], [0.3, 0.7], visualRows);
+
+        // 07 MY BRAND TOUCHPOINTS
+        drawSectionHeader('07', 'MY BRAND TOUCHPOINTS', 'Where does my audience encounter me, and what impression do I create?');
+        const touchpointRows = Array.from(document.querySelectorAll('.touchpoint-row')).map(row => [
+          row.querySelector('.tp-channel').value,
+          row.querySelector('.tp-impression').value,
+          row.querySelector('.tp-demo').value
+        ]);
+        drawTable(['Touchpoint (Channel)', 'Impression I Want to Create', 'How I Will Demonstrate It'], [0.25, 0.35, 0.40], touchpointRows);
+
+        // 08 MY 30-DAY BRAND ACTION PLAN (Final Stage)
+        drawSectionHeader(
+          '08',
+          'MY 30-DAY BRAND ACTION PLAN',
+          'What concrete actions can I take over the next month to strengthen my professional brand? - Turn your personal brand strategy into three realistic actions.',
+          true
+        );
+        const actionRows = [
+          [
+            'DEVELOP (Improve a skill or capability)',
+            document.querySelector('[data-action="develop-spec"]').value,
+            document.querySelector('[data-action="develop-when"]').value
+          ],
+          [
+            'DEMONSTRATE (Create evidence of my value)',
+            document.querySelector('[data-action="demonstrate-spec"]').value,
+            document.querySelector('[data-action="demonstrate-when"]').value
+          ],
+          [
+            'COMMUNICATE (Make my value visible to my audience)',
+            document.querySelector('[data-action="communicate-spec"]').value,
+            document.querySelector('[data-action="communicate-when"]').value
+          ]
+        ];
+        drawTable(['Focus', 'Specific Action + Measurable Proof', 'By When?'], [0.28, 0.52, 0.20], actionRows, NAVY, [255, 255, 255]);
+
+        // Editorial Page Footer on Every Page
+        const totalPages = doc.getNumberOfPages();
+        for (let p = 1; p <= totalPages; p++) {
+          doc.setPage(p);
+          doc.setDrawColor(...GOLD);
+          doc.line(margin, pageH - 11.5, pageW - margin, pageH - 11.5);
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(7.5);
+          doc.setTextColor(...CHARCOAL);
+          doc.text('The Leader as a Brand · My Personal Brand Brief · BIP Bucharest 2026', margin, pageH - 7.5);
+          doc.text(`Page ${p} of ${totalPages}`, pageW - margin, pageH - 7.5, { align: 'right' });
+        }
+
+        const rawName = document.getElementById('meta-name').value.trim();
+        const safeName = rawName ? rawName.replace(/[^a-z0-9_-]+/gi, '_') : 'Completed';
+        const fileName = `Personal_Brand_Brief_${safeName}.pdf`;
+
+        doc.save(fileName);
+        showToast(`Exported final PDF "${fileName}".`);
+      } catch (err) {
+        console.error(err);
+        showToast('Could not generate PDF automatically. Try "Save Editable Copy" instead.', 'warning');
+      }
+    }
+
+    /**
+     * Creates an Accessible Selectable Chip / Tile (Non-restrictive strategic guidance)
+     */
+    function createPillElement(label, groupName) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'trait-pill';
+      btn.dataset.group = groupName;
+      btn.dataset.label = label;
+      btn.dataset.checked = 'false';
+      btn.setAttribute('aria-pressed', 'false');
+
+      btn.innerHTML = `
+        <span class="pill-box" aria-hidden="true">
+          <svg class="w-3 h-3 hidden check-icon" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </span>
+        <span>${label}</span>
+      `;
+
+      btn.addEventListener('click', () => {
+        const isCurrentlyChecked = btn.dataset.checked === 'true';
+        const nextState = !isCurrentlyChecked;
+        setPillState(btn, nextState);
+        updateCounters();
+        updateProgress();
+        saveNowToLocalStorage();
+      });
+
+      return btn;
+    }
+
+    function setPillState(btn, checked) {
+      btn.dataset.checked = checked ? 'true' : 'false';
+      btn.setAttribute('aria-pressed', checked ? 'true' : 'false');
+      const icon = btn.querySelector('.check-icon');
+      if (icon) {
+        if (checked) icon.classList.remove('hidden');
+        else icon.classList.add('hidden');
+      }
+    }
+
+    /**
+     * Initializes All Selectable Chip Groups
+     */
+    function initializePillGroups() {
+      const mappings = [
+        { containerId: 'core-traits-grid', items: TEMPLATE_OPTIONS.coreTraits, group: 'core-traits' },
+        { containerId: 'voice-grid', items: TEMPLATE_OPTIONS.voice, group: 'voice' },
+        { containerId: 'vibe-grid', items: TEMPLATE_OPTIONS.vibe, group: 'vibe' },
+        { containerId: 'visual-palette', items: TEMPLATE_OPTIONS.visualPalette, group: 'visual-palette' },
+        { containerId: 'visual-composition', items: TEMPLATE_OPTIONS.visualComposition, group: 'visual-composition' },
+        { containerId: 'visual-clothing', items: TEMPLATE_OPTIONS.visualClothing, group: 'visual-clothing' },
+        { containerId: 'visual-setting', items: TEMPLATE_OPTIONS.visualSetting, group: 'visual-setting' }
+      ];
+
+      mappings.forEach(({ containerId, items, group }) => {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = '';
+        items.forEach(label => {
+          container.appendChild(createPillElement(label, group));
+        });
+      });
+
+      updateCounters();
+    }
+
+    /**
+     * Updates Dynamic Selection Counters & Non-Restrictive Limit Guidance
+     */
+    function updateGroupCounterAndMessage({ group, counterId, messageId, max, minRecommended, neutralClass, activeClass, overClass }) {
+      const count = document.querySelectorAll(`.trait-pill[data-group="${group}"][data-checked="true"]`).length;
+      const badge = document.getElementById(counterId);
+      const msgEl = document.getElementById(messageId);
+
+      if (badge) {
+        badge.textContent = `${count} of ${max} selected`;
+        if (count > max) {
+          badge.className = overClass;
+        } else if (count >= minRecommended && count <= max) {
+          badge.className = activeClass;
+        } else {
+          badge.className = neutralClass;
+        }
+      }
+
+      if (msgEl) {
+        if (count >= max) {
+          msgEl.classList.remove('hidden');
+        } else {
+          msgEl.classList.add('hidden');
+        }
+      }
+    }
+
+    function updateCounters() {
+      const sectionNeutral = 'text-xs font-bold px-3 py-1 rounded-full bg-editorial-ivorySoft text-editorial-navy border border-editorial-gold/70';
+      const sectionActive = 'text-xs font-bold px-3 py-1 rounded-full bg-editorial-burgundy text-white border border-editorial-burgundy';
+      const sectionOver = 'text-xs font-bold px-3 py-1 rounded-full bg-editorial-ivory text-editorial-burgundy border border-editorial-burgundy/50';
+
+      updateGroupCounterAndMessage({
+        group: 'core-traits',
+        counterId: 'traits-counter',
+        messageId: 'traits-limit-msg',
+        max: 3,
+        minRecommended: 3,
+        neutralClass: sectionNeutral,
+        activeClass: sectionActive,
+        overClass: sectionOver
+      });
+
+      updateGroupCounterAndMessage({
+        group: 'voice',
+        counterId: 'voice-counter',
+        messageId: 'voice-limit-msg',
+        max: 5,
+        minRecommended: 3,
+        neutralClass: sectionNeutral,
+        activeClass: sectionActive,
+        overClass: sectionOver
+      });
+
+      updateGroupCounterAndMessage({
+        group: 'vibe',
+        counterId: 'vibe-counter',
+        messageId: 'vibe-limit-msg',
+        max: 2,
+        minRecommended: 2,
+        neutralClass: sectionNeutral,
+        activeClass: sectionActive,
+        overClass: sectionOver
+      });
+
+      const visualNeutral = 'inline-block self-start mt-2 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-editorial-navy border border-editorial-gold/70';
+      const visualActive = 'inline-block self-start mt-2 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-editorial-burgundy text-white border border-editorial-burgundy';
+      const visualOver = 'inline-block self-start mt-2 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-editorial-ivory text-editorial-burgundy border border-editorial-burgundy/50';
+
+      ['visual-palette', 'visual-composition', 'visual-clothing', 'visual-setting'].forEach(group => {
+        updateGroupCounterAndMessage({
+          group,
+          counterId: `${group}-counter`,
+          messageId: `${group}-limit-msg`,
+          max: 2,
+          minRecommended: 2,
+          neutralClass: visualNeutral,
+          activeClass: visualActive,
+          overClass: visualOver
+        });
+      });
+    }
+
+    /**
+     * Binds auto-resize, print-mirror syncing, and auto-save listeners to all textareas and inputs
+     */
+    function bindAutoGrowAll() {
+      document.querySelectorAll('textarea.auto-grow').forEach(ta => {
+        syncTextarea(ta);
+        if (!ta.dataset.autogrowBound) {
+          ta.dataset.autogrowBound = 'true';
+          ta.addEventListener('input', () => {
+            syncTextarea(ta);
+            updateProgress();
+            scheduleAutoSave();
+          });
+        }
+      });
+
+      document.querySelectorAll('input[type="text"], input[type="date"]').forEach(inp => {
+        if (!inp.dataset.inputBound) {
+          inp.dataset.inputBound = 'true';
+          const handleInputUpdate = () => {
+            updateProgress();
+            scheduleAutoSave();
+          };
+          inp.addEventListener('input', handleInputUpdate);
+          inp.addEventListener('change', handleInputUpdate);
+        }
+      });
+    }
+
+    /**
+     * Adds an editable Target Audience row (Section 02) with mutually exclusive Primary/Secondary priority toggles
+     */
+    function addAudienceRow(whoVal = '', whyVal = '', priorityVal = '', skipSave = false) {
+      const container = document.getElementById('audience-rows');
+      if (!container) return;
+
+      const idx = container.children.length + 1;
+      const row = document.createElement('div');
+      row.className = 'audience-row grid grid-cols-1 md:grid-cols-12 gap-4 p-4 bg-white items-start';
+
+      row.innerHTML = `
+        <div class="md:col-span-4 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
+          <label for="aud-who-${idx}" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+            Target Audience (Who?)
+          </label>
+          <textarea id="aud-who-${idx}" rows="1" placeholder="e.g., International recruiters, team peers..."
+            class="auto-grow audience-who w-full bg-transparent text-sm font-medium text-editorial-ink focus:outline-none"></textarea>
+          <div class="print-mirror font-medium"></div>
+        </div>
+        <div class="md:col-span-5 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
+          <label for="aud-why-${idx}" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+            Communication Objective (Why?)
+          </label>
+          <textarea id="aud-why-${idx}" rows="1" placeholder="e.g., Build trust as a reliable cross-cultural collaborator..."
+            class="auto-grow audience-why w-full bg-transparent text-sm text-editorial-ink focus:outline-none"></textarea>
+          <div class="print-mirror"></div>
+        </div>
+        <div class="md:col-span-3 flex flex-col justify-center">
+          <span class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1.5">
+            Priority
+          </span>
+          <div class="flex flex-wrap items-center gap-2" data-priority="" role="group" aria-label="Priority for audience row ${idx}">
+            <button type="button" data-prio-btn="Primary" aria-pressed="false"
+              class="prio-toggle inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[#CFC6BA] bg-white text-editorial-ink text-xs font-semibold transition cursor-pointer">
+              <span class="prio-dot w-2 h-2 rounded-full bg-editorial-ivory border border-[#9E9589]" aria-hidden="true"></span>
+              <span>Primary</span>
+            </button>
+            <button type="button" data-prio-btn="Secondary" aria-pressed="false"
+              class="prio-toggle inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[#CFC6BA] bg-white text-editorial-ink text-xs font-semibold transition cursor-pointer">
+              <span class="prio-dot w-2 h-2 rounded-full bg-editorial-ivory border border-[#9E9589]" aria-hidden="true"></span>
+              <span>Secondary</span>
+            </button>
+          </div>
+        </div>
+      `;
+
+      const whoEl = row.querySelector('.audience-who');
+      const whyEl = row.querySelector('.audience-why');
+      if (whoEl) whoEl.value = whoVal;
+      if (whyEl) whyEl.value = whyVal;
+
+      const prioGroup = row.querySelector('[data-priority]');
+      const prioButtons = row.querySelectorAll('.prio-toggle');
+
+      const updatePriorityState = (selectedValue) => {
+        prioGroup.dataset.priority = selectedValue;
+        prioButtons.forEach(btn => {
+          const isSelected = btn.dataset.prioBtn === selectedValue;
+          const dot = btn.querySelector('.prio-dot');
+          btn.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+
+          if (isSelected && selectedValue === 'Primary') {
+            btn.className = 'prio-toggle inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-editorial-navy bg-editorial-navy text-white text-xs font-semibold transition cursor-pointer';
+            if (dot) dot.className = 'prio-dot w-2 h-2 rounded-full bg-editorial-gold';
+          } else if (isSelected && selectedValue === 'Secondary') {
+            btn.className = 'prio-toggle inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-editorial-burgundy bg-editorial-burgundy text-white text-xs font-semibold transition cursor-pointer';
+            if (dot) dot.className = 'prio-dot w-2 h-2 rounded-full bg-editorial-gold';
+          } else {
+            btn.className = 'prio-toggle inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[#CFC6BA] bg-white hover:border-editorial-navy hover:bg-editorial-ivorySoft text-editorial-ink text-xs font-semibold transition cursor-pointer';
+            if (dot) dot.className = 'prio-dot w-2 h-2 rounded-full bg-editorial-ivory border border-[#9E9589]';
+          }
+        });
+      };
+
+      prioButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const clickedValue = btn.dataset.prioBtn;
+          const nextValue = prioGroup.dataset.priority === clickedValue ? '' : clickedValue;
+          updatePriorityState(nextValue);
+          updateProgress();
+          saveNowToLocalStorage();
+        });
+      });
+
+      const normalizedInitial = priorityVal === 'Primary' || priorityVal === 'Secondary' ? priorityVal : '';
+      updatePriorityState(normalizedInitial);
+
+      container.appendChild(row);
+      bindAutoGrowAll();
+      if (!skipSave) saveNowToLocalStorage();
+    }
+
+    function addStrengthRow(strengthVal = '', sourceVal = '', skipSave = false) {
+      const container = document.getElementById('strength-rows');
+      const idx = container.children.length + 1;
+      const row = document.createElement('div');
+      row.className = 'strength-row grid grid-cols-1 md:grid-cols-12 gap-4 p-4 bg-white items-start';
+
+      row.innerHTML = `
+        <div class="md:col-span-5 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
+          <label for="str-name-${idx}" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+            Strength / Experience
+          </label>
+          <textarea id="str-name-${idx}" rows="1" placeholder="e.g., Structured synthesis in multicultural teams..."
+            class="auto-grow strength-name w-full bg-transparent text-sm text-editorial-ink focus:outline-none">${strengthVal}</textarea>
+          <div class="print-mirror"></div>
+        </div>
+        <div class="md:col-span-7 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
+          <label for="str-src-${idx}" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+            Where I Have Demonstrated It / Experience Source
+          </label>
+          <textarea id="str-src-${idx}" rows="1" placeholder="e.g., Coordinated international case deliverables across 4 universities..."
+            class="auto-grow strength-source w-full bg-transparent text-sm text-editorial-ink focus:outline-none">${sourceVal}</textarea>
+          <div class="print-mirror"></div>
+        </div>
+      `;
+
+      container.appendChild(row);
+      bindAutoGrowAll();
+      if (!skipSave) saveNowToLocalStorage();
+    }
+
+    function addTouchpointRow(channelVal = '', impressionVal = '', demoVal = '', skipSave = false) {
+      const container = document.getElementById('touchpoint-rows');
+      const idx = container.children.length + 1;
+      const row = document.createElement('div');
+      row.className = 'touchpoint-row grid grid-cols-1 md:grid-cols-12 gap-4 p-4 bg-white items-start';
+
+      row.innerHTML = `
+        <div class="md:col-span-3 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
+          <label for="tp-ch-${idx}" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+            Touchpoint (Channel)
+          </label>
+          <textarea id="tp-ch-${idx}" rows="1" placeholder="e.g., LinkedIn, Seminar Presentations..."
+            class="auto-grow tp-channel w-full bg-transparent text-sm font-medium text-editorial-ink focus:outline-none">${channelVal}</textarea>
+          <div class="print-mirror font-medium"></div>
+        </div>
+        <div class="md:col-span-4 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
+          <label for="tp-imp-${idx}" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+            Impression I Want to Create
+          </label>
+          <textarea id="tp-imp-${idx}" rows="1" placeholder="e.g., Thoughtful, dependable collaborator..."
+            class="auto-grow tp-impression w-full bg-transparent text-sm text-editorial-ink focus:outline-none">${impressionVal}</textarea>
+          <div class="print-mirror"></div>
+        </div>
+        <div class="md:col-span-5 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
+          <label for="tp-demo-${idx}" class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
+            How I Will Demonstrate It
+          </label>
+          <textarea id="tp-demo-${idx}" rows="1" placeholder="e.g., Clear summary takeaways & attentive listening..."
+            class="auto-grow tp-demo w-full bg-transparent text-sm text-editorial-ink focus:outline-none">${demoVal}</textarea>
+          <div class="print-mirror"></div>
+        </div>
+      `;
+
+      container.appendChild(row);
+      bindAutoGrowAll();
+      if (!skipSave) saveNowToLocalStorage();
+    }
+
+    /**
+     * Inserts the Positioning Statement Formula Starter into Section 04
+     */
+    function insertPositioningStarter() {
+      const ta = document.getElementById('positioning-statement');
+      const formula = 'I combine [strength] with [distinctive experience / approach] to help [audience] achieve [specific outcome].';
+      if (ta.value.trim().length === 0) {
+        ta.value = formula;
+      } else {
+        ta.value = ta.value.trim() + '\n' + formula;
+      }
+      syncTextarea(ta);
+      ta.focus();
+      updateProgress();
+      saveNowToLocalStorage();
+      showToast('Formula inserted — replace the bracketed placeholders with your own words.', 'info');
+    }
+
+    /**
+     * Updates Section Completion Indicators (0–8) & Top Navigation Pills
+     */
+    function updateProgress() {
+      let completedSections = 0;
+
+      for (let i = 1; i <= 8; i++) {
+        const sec = document.querySelector(`section[data-section="${i}"]`);
+        const navPill = document.querySelector(`[data-nav-sec="${i}"]`);
+        if (!sec) continue;
+
+        let hasContent = false;
+        sec.querySelectorAll('textarea, input[type="text"]').forEach(field => {
+          if (field.value.trim().length > 0) hasContent = true;
+        });
+
+        if (!hasContent && sec.querySelectorAll('.trait-pill[data-checked="true"]').length > 0) {
+          hasContent = true;
+        }
+
+        if (navPill) {
+          navPill.dataset.completed = hasContent ? 'true' : 'false';
+        }
+
+        if (hasContent) completedSections++;
+      }
+
+      const pct = Math.round((completedSections / 8) * 100);
+      const bar = document.getElementById('progress-bar');
+      const barWrap = document.getElementById('progress-bar-wrap');
+      const txt = document.getElementById('progress-text');
+
+      if (bar) bar.style.width = `${pct}%`;
+      if (barWrap) barWrap.setAttribute('aria-valuenow', String(completedSections));
+      if (txt) txt.textContent = `${completedSections} of 8 sections completed`;
+    }
+
+    /**
+     * Tracks Active Section in the Top Navigator While Scrolling
+     */
+    function initializeSectionObserver() {
+      const sections = document.querySelectorAll('section[data-section]');
+      const navLinks = document.querySelectorAll('[data-nav-sec]');
+
+      const setActiveNav = (secNum) => {
+        navLinks.forEach(link => {
+          const isMatch = link.dataset.navSec === String(secNum);
+          link.setAttribute('aria-current', isMatch ? 'true' : 'false');
+          if (isMatch && typeof link.scrollIntoView === 'function') {
+            link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+          }
+        });
+      };
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          setActiveNav(link.dataset.navSec);
+        });
+      });
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setActiveNav(entry.target.dataset.section);
+            }
+          });
+        }, {
+          rootMargin: '-25% 0px -55% 0px',
+          threshold: 0.05
+        });
+
+        sections.forEach(sec => observer.observe(sec));
+      }
+    }
+
+    /**
+     * Builds Clean Plain-Text Summary for Clipboard Copy
+     */
+    function buildFormattedTextSummary() {
+      const name = document.getElementById('meta-name').value.trim() || 'Not specified';
+      const date = document.getElementById('meta-date').value.trim() || 'Not specified';
+
+      const getChecked = (group) =>
+        Array.from(document.querySelectorAll(`.trait-pill[data-group="${group}"][data-checked="true"]`))
+          .map(el => el.dataset.label);
+
+      const lines = [
+        '====================================================================',
+        'MY PERSONAL BRAND BRIEF — THE LEADER AS A BRAND',
+        'BIP Empowering Leadership Skills in International Business · Bucharest 2026',
+        '====================================================================',
+        `NAME: ${name}`,
+        `DATE: ${date}`,
+        '',
+        '01 MY PROFESSIONAL GOALS (Next 6–12 months)',
+        `  01) ${document.querySelector('[data-field="goal-1"]').value.trim() || '-'}`,
+        `  02) ${document.querySelector('[data-field="goal-2"]').value.trim() || '-'}`,
+        `  03) ${document.querySelector('[data-field="goal-3"]').value.trim() || '-'}`,
+        '',
+        '02 MY TARGET AUDIENCES'
+      ];
+
+      document.querySelectorAll('.audience-row').forEach((row, idx) => {
+        const who = row.querySelector('.audience-who').value.trim() || '-';
+        const why = row.querySelector('.audience-why').value.trim() || '-';
+        const prio = row.querySelector('[data-priority]').dataset.priority || 'Unspecified';
+        lines.push(`  ${idx + 1}. Audience: ${who} | Objective: ${why} | Priority: ${prio}`);
+      });
+
+      lines.push('', '03 RECOGNISING MY STRENGTHS');
+      document.querySelectorAll('.strength-row').forEach((row, idx) => {
+        const str = row.querySelector('.strength-name').value.trim() || '-';
+        const src = row.querySelector('.strength-source').value.trim() || '-';
+        lines.push(`  ${idx + 1}. Strength: ${str} | Demonstrated: ${src}`);
+      });
+      lines.push(`  Limitation to Develop/Manage: ${document.getElementById('limitation-input').value.trim() || '-'}`);
+
+      lines.push(
+        '',
+        '04 MY USP & POSITIONING',
+        `  Distinctive Combination: ${document.getElementById('usp-combination').value.trim() || '-'}`,
+        `  Value to Audience: ${document.getElementById('usp-value').value.trim() || '-'}`,
+        `  Positioning Statement: ${document.getElementById('positioning-statement').value.trim() || '-'}`,
+        '',
+        '--------------------------------------------------------------------',
+        'MY BRAND EXPRESSION',
+        '--------------------------------------------------------------------',
+        '',
+        '05 MY BRAND PERSONALITY & KEY MESSAGES'
+      );
+
+      const traits = getChecked('core-traits');
+      const traitOther = document.getElementById('trait-other').value.trim();
+      if (traitOther) traits.push(`Other: ${traitOther}`);
+      lines.push(`  Core Traits: ${traits.length ? traits.join(', ') : '-'}`);
+      lines.push(`  Key Idea 01) ${document.querySelector('[data-field="idea-1"]').value.trim() || '-'}`);
+      lines.push(`  Key Idea 02) ${document.querySelector('[data-field="idea-2"]').value.trim() || '-'}`);
+      lines.push(`  Key Idea 03) ${document.querySelector('[data-field="idea-3"]').value.trim() || '-'}`);
+
+      const voices = getChecked('voice');
+      const voiceOther = document.getElementById('voice-other').value.trim();
+      if (voiceOther) voices.push(`Other: ${voiceOther}`);
+
+      const vibes = getChecked('vibe');
+      const vibeOther = document.getElementById('vibe-other').value.trim();
+      if (vibeOther) vibes.push(`Other: ${vibeOther}`);
+
+      lines.push(
+        '',
+        '06 MY VOICE, VIBE & VISUAL IDENTITY',
+        `  Voice: ${voices.length ? voices.join(', ') : '-'}`,
+        `  Vibe: ${vibes.length ? vibes.join(', ') : '-'}`,
+        `  Visual Palette: ${getChecked('visual-palette').join(', ') || '-'}`,
+        `  Visual Composition: ${getChecked('visual-composition').join(', ') || '-'}`,
+        `  Visual Clothing: ${getChecked('visual-clothing').join(', ') || '-'}`,
+        `  Visual Setting: ${getChecked('visual-setting').join(', ') || '-'}`,
+        '',
+        '07 MY BRAND TOUCHPOINTS'
+      );
+
+      document.querySelectorAll('.touchpoint-row').forEach((row, idx) => {
+        const ch = row.querySelector('.tp-channel').value.trim() || '-';
+        const imp = row.querySelector('.tp-impression').value.trim() || '-';
+        const demo = row.querySelector('.tp-demo').value.trim() || '-';
+        lines.push(`  ${idx + 1}. Channel: ${ch} | Impression: ${imp} | Demonstration: ${demo}`);
+      });
+
+      lines.push(
+        '',
+        '08 MY 30-DAY BRAND ACTION PLAN',
+        `  DEVELOP: ${document.querySelector('[data-action="develop-spec"]').value.trim() || '-'} (By when: ${document.querySelector('[data-action="develop-when"]').value.trim() || '-'})`,
+        `  DEMONSTRATE: ${document.querySelector('[data-action="demonstrate-spec"]').value.trim() || '-'} (By when: ${document.querySelector('[data-action="demonstrate-when"]').value.trim() || '-'})`,
+        `  COMMUNICATE: ${document.querySelector('[data-action="communicate-spec"]').value.trim() || '-'} (By when: ${document.querySelector('[data-action="communicate-when"]').value.trim() || '-'})`,
+        '===================================================================='
+      );
+
+      return lines.join('\n');
+    }
+
+    /**
+     * Copies Formatted Text to Clipboard (iframe-safe via document.execCommand)
+     */
+    function copyBriefToClipboard() {
+      try {
+        const text = buildFormattedTextSummary();
+        const tempArea = document.createElement('textarea');
+        tempArea.value = text;
+        tempArea.style.position = 'fixed';
+        tempArea.style.left = '-9999px';
+        tempArea.style.top = '0';
+        document.body.appendChild(tempArea);
+        tempArea.focus();
+        tempArea.select();
+
+        const successful = document.execCommand('copy');
+        document.body.removeChild(tempArea);
+
+        if (successful) {
+          showToast('Full Personal Brand Brief copied to clipboard.');
+        } else {
+          showToast('Unable to copy automatically. Try "Save Editable Copy" or "Export as PDF".', 'warning');
+        }
+      } catch (err) {
+        showToast('Unable to copy automatically.', 'warning');
+      }
+    }
+
+    /**
+     * Clear Draft Confirmation Modal Controls
+     */
+    function openResetModal() {
+      const modal = document.getElementById('reset-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeResetModal() {
+      const modal = document.getElementById('reset-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function confirmReset() {
+      document.querySelectorAll('input[type="text"]').forEach(inp => {
+        inp.value = '';
+      });
+
+      const dateInput = document.getElementById('meta-date');
+      if (dateInput) {
+        try {
+          dateInput.valueAsDate = new Date();
+        } catch (e) {
+          dateInput.value = '';
+        }
+      }
+
+      document.querySelectorAll('textarea').forEach(ta => {
+        ta.value = '';
+        syncTextarea(ta);
+      });
+
+      document.querySelectorAll('.trait-pill').forEach(btn => {
+        setPillState(btn, false);
+      });
+
+      document.querySelectorAll('[data-priority]').forEach(el => {
+        el.dataset.priority = '';
+      });
+
+      const audienceContainer = document.getElementById('audience-rows');
+      if (audienceContainer) {
+        audienceContainer.innerHTML = '';
+        for (let i = 0; i < 3; i++) addAudienceRow('', '', '', true);
+      }
+
+      const strengthContainer = document.getElementById('strength-rows');
+      if (strengthContainer) {
+        strengthContainer.innerHTML = '';
+        for (let i = 0; i < 3; i++) addStrengthRow('', '', true);
+      }
+
+      const touchpointContainer = document.getElementById('touchpoint-rows');
+      if (touchpointContainer) {
+        touchpointContainer.innerHTML = '';
+        for (let i = 0; i < 3; i++) addTouchpointRow('', '', '', true);
+      }
+
+      try {
+        localStorage.removeItem(STORAGE_KEY_V2);
+        localStorage.removeItem(STORAGE_KEY_V1);
+      } catch (e) {
+        // Ignore storage restrictions
+      }
+
+      updateCounters();
+      updateProgress();
+      closeResetModal();
+      showToast('All responses and local draft have been cleared.', 'info');
+    }
+
+    /**
+     * Escape Key Support for Modals
+     */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        cancelLoadJSON();
+        closeResetModal();
+      }
+    });
+
+    /**
+     * Initialize Application on DOM Load
+     */
+    window.addEventListener('DOMContentLoaded', () => {
+      const dateInput = document.getElementById('meta-date');
+      if (dateInput && !dateInput.value) {
+        try {
+          dateInput.valueAsDate = new Date();
+        } catch (e) {
+          // Fallback if date picker does not support valueAsDate
+        }
+      }
+
+      const audienceContainer = document.getElementById('audience-rows');
+      if (audienceContainer && audienceContainer.children.length === 0) {
+        for (let i = 0; i < 3; i++) addAudienceRow('', '', '', true);
+      }
+
+      const strengthContainer = document.getElementById('strength-rows');
+      if (strengthContainer && strengthContainer.children.length === 0) {
+        for (let i = 0; i < 3; i++) addStrengthRow('', '', true);
+      }
+
+      const touchpointContainer = document.getElementById('touchpoint-rows');
+      if (touchpointContainer && touchpointContainer.children.length === 0) {
+        for (let i = 0; i < 3; i++) addTouchpointRow('', '', '', true);
+      }
+
+      initializePillGroups();
+      bindAutoGrowAll();
+      initializeSectionObserver();
+
+      // Restore any locally saved responses from this browser
+      restoreFromLocalStorage();
+      updateProgress();
+    });
+  </script>
+</body>
+</html>
