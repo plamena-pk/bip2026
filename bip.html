@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Personal Brand Brief — The Leader as a Brand</title>
+  <title>My personal brand brief — The Leader as a Brand</title>
 
   <!-- Load Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -85,6 +85,19 @@
       font-family: 'Cormorant Garamond', Georgia, serif;
     }
 
+    .workbook-part {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 0.5rem 1.5rem;
+      padding: 1rem clamp(1rem, 3vw, 1.75rem);
+      border: 1px solid var(--color-gold);
+      border-radius: 0.75rem;
+      background-color: var(--color-navy);
+      color: var(--color-ivory);
+    }
+
     /* Accessible Focus Rings */
     button:focus-visible,
     a:focus-visible,
@@ -131,7 +144,7 @@
     textarea.auto-grow {
       resize: none;
       overflow: hidden;
-      min-height: 3.1rem;
+      min-height: 2.25rem;
       line-height: 1.6;
     }
 
@@ -148,6 +161,8 @@
       font-size: 0.85rem;
       font-weight: 500;
       min-height: 2.5rem;
+      max-width: 100%;
+      overflow-wrap: anywhere;
       cursor: pointer;
       user-select: none;
       transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.1s ease;
@@ -332,9 +347,9 @@
           <div class="min-w-0">
             <div class="flex flex-wrap items-center gap-2">
               <span class="font-editorial-serif text-lg font-bold tracking-wide text-white leading-none truncate">
-                My Personal Brand Brief
+                My personal brand brief
               </span>
-              <span class="hidden sm:inline-block text-[11px] uppercase tracking-[0.14em] text-editorial-gold font-semibold">
+              <span class="hidden sm:inline-block text-[11px] tracking-[0.14em] text-editorial-gold font-semibold">
                 BIP · Bucharest 2026
               </span>
             </div>
@@ -359,18 +374,18 @@
         <div class="flex flex-wrap items-center gap-2">
           <a href="#save-export-panel"
             class="inline-flex items-center gap-1.5 px-3 py-2 rounded-md bg-editorial-burgundy hover:bg-editorial-burgundyLight border border-editorial-gold/50 text-white text-xs font-semibold tracking-wide transition">
-            <span>Save &amp; Export</span>
+            <span>Save &amp; export</span>
           </a>
           <button type="button" onclick="openResetModal()"
             class="inline-flex items-center px-2.5 py-2 rounded-md border border-white/20 hover:border-editorial-gold/60 hover:bg-white/10 text-editorial-ivory text-xs font-medium transition cursor-pointer"
             title="Clear all answers and start fresh">
-            Clear Draft
+            Clear draft
           </button>
         </div>
       </div>
 
       <!-- Second Row: 8-Section Editorial Jump Navigator -->
-      <nav aria-label="Workbook Sections" class="nav-strip flex items-center gap-1.5 overflow-x-auto pt-2.5 mt-2 border-t border-white/10">
+      <nav aria-label="Workbook sections" class="nav-strip flex items-center gap-1.5 overflow-x-auto pt-2.5 mt-2 border-t border-white/10">
         <a href="#section-01" data-nav-sec="1" class="section-nav-pill" aria-current="true">
           <span class="nav-status-dot" aria-hidden="true"></span>
           <span>01 Goals</span>
@@ -393,7 +408,7 @@
         </a>
         <a href="#section-06" data-nav-sec="6" class="section-nav-pill">
           <span class="nav-status-dot" aria-hidden="true"></span>
-          <span>06 Voice &amp; Visuals</span>
+          <span>06 Voice &amp; visuals</span>
         </a>
         <a href="#section-07" data-nav-sec="7" class="section-nav-pill">
           <span class="nav-status-dot" aria-hidden="true"></span>
@@ -401,7 +416,7 @@
         </a>
         <a href="#section-08" data-nav-sec="8" class="section-nav-pill !border-editorial-gold/60">
           <span class="nav-status-dot" aria-hidden="true"></span>
-          <span>08 30-Day Plan</span>
+          <span>08 30-day plan</span>
         </a>
       </nav>
     </div>
@@ -413,17 +428,17 @@
     <!-- OPENING EDITORIAL MASTHEAD -->
     <section aria-labelledby="workbook-main-title" class="bg-white rounded-xl border border-editorial-gold/70 overflow-hidden shadow-xs">
       <!-- Top Publication Strip -->
-      <div class="bg-editorial-navy text-editorial-ivory px-4 sm:px-8 py-3 flex flex-wrap items-center justify-between gap-2 text-xs tracking-[0.14em] uppercase font-semibold">
+      <div class="bg-editorial-navy text-editorial-ivory px-4 sm:px-8 py-3 flex flex-wrap items-center justify-between gap-2 text-xs tracking-[0.14em] font-semibold">
         <span class="text-editorial-gold">The Leader as a Brand</span>
         <span>BIP · Bucharest 2026</span>
       </div>
 
       <div class="p-4 sm:p-10">
-        <p class="text-xs uppercase tracking-[0.18em] text-editorial-burgundy font-bold mb-2">
-          Personal Branding &amp; Leadership Workbook
+        <p class="text-xs tracking-[0.18em] text-editorial-burgundy font-bold mb-2">
+          Personal branding &amp; leadership workbook
         </p>
         <h1 id="workbook-main-title" class="font-editorial-serif text-3xl sm:text-5xl font-bold tracking-tight text-editorial-navy leading-tight">
-          MY PERSONAL BRAND BRIEF
+          My personal brand brief
         </h1>
         <p class="font-editorial-serif italic text-xl sm:text-2xl text-editorial-charcoal mt-1.5">
           The Leader as a Brand — BIP Empowering Leadership Skills in International Business
@@ -432,7 +447,7 @@
         <!-- Working Draft Framing Note -->
         <div class="mt-6 max-w-3xl bg-editorial-ivorySoft border-l-4 border-editorial-burgundy rounded-r-lg p-4 sm:p-5">
           <p class="text-sm text-editorial-ink leading-relaxed">
-            <strong class="text-editorial-burgundy font-semibold">Workshop Guidance — Working Draft, Not an Assessment:</strong>
+            <strong class="text-editorial-burgundy font-semibold">Workshop guidance — working draft, not an assessment:</strong>
             This workbook is a reflective journal designed to help you articulate your professional direction and leadership presence. There are no graded or “correct” answers—treat this as an evolving working draft that you can start during the workshop, save to your device, and refine over time.
           </p>
         </div>
@@ -440,7 +455,7 @@
         <!-- Participant Colophon Fields (Name & Date) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-7 pt-6 border-t border-editorial-ivory">
           <div class="bg-editorial-canvas rounded-lg p-4 border border-editorial-ivory focus-within:border-editorial-navy transition">
-            <label for="meta-name" class="block text-xs font-bold uppercase tracking-[0.14em] text-editorial-navy mb-1.5">
+            <label for="meta-name" class="block text-xs font-bold tracking-[0.14em] text-editorial-navy mb-1.5">
               Name
             </label>
             <input id="meta-name" type="text" placeholder="Enter your full name"
@@ -448,7 +463,7 @@
           </div>
 
           <div class="bg-editorial-canvas rounded-lg p-4 border border-editorial-ivory focus-within:border-editorial-navy transition">
-            <label for="meta-date" class="block text-xs font-bold uppercase tracking-[0.14em] text-editorial-navy mb-1.5">
+            <label for="meta-date" class="block text-xs font-bold tracking-[0.14em] text-editorial-navy mb-1.5">
               Date
             </label>
             <input id="meta-date" type="date"
@@ -459,16 +474,16 @@
     </section>
 
     <!-- PART I DIVIDER: BRAND FOUNDATION -->
-    <div class="flex items-center gap-4 pt-1">
-      <div class="h-px flex-1 bg-editorial-gold/70"></div>
-      <span class="text-xs font-bold uppercase tracking-[0.18em] text-editorial-navy">
-        Part I · Brand Foundation (Sections 01–04)
-      </span>
-      <div class="h-px flex-1 bg-editorial-gold/70"></div>
+    <div class="workbook-part">
+      <div>
+        <p class="text-xs font-semibold tracking-wider text-editorial-gold">Part I</p>
+        <h2 class="font-editorial-serif text-2xl sm:text-3xl font-bold leading-tight text-white">Brand foundation</h2>
+      </div>
+      <p class="text-xs font-medium">Sections 01–04</p>
     </div>
 
     <!-- ===================================================================== -->
-    <!-- SECTION 01: MY PROFESSIONAL GOALS                                     -->
+    <!-- SECTION 01: My professional goals                                     -->
     <!-- ===================================================================== -->
     <section id="section-01" tabindex="-1" data-section="1" aria-labelledby="heading-01" class="section-card bg-white rounded-xl border border-editorial-ivory p-4 sm:p-7 lg:p-9 shadow-xs">
       <div class="pb-5 mb-6 border-b border-editorial-ivory">
@@ -476,12 +491,12 @@
           <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
             01
           </span>
-          <span class="text-xs uppercase tracking-[0.15em] text-editorial-burgundy font-semibold">
-            Direction &amp; Ambition
+          <span class="text-xs tracking-[0.15em] text-editorial-burgundy font-semibold">
+            Direction &amp; ambition
           </span>
         </div>
         <h2 id="heading-01" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
-          MY PROFESSIONAL GOALS
+          My professional goals
         </h2>
         <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
           What do I want to achieve professionally in the next 6–12 months?
@@ -494,8 +509,8 @@
           <label for="goal-1-input" class="font-editorial-serif font-bold text-lg text-editorial-burgundy pt-0.5 select-none shrink-0">
             01)
           </label>
-          <div class="flex-1">
-            <textarea id="goal-1-input" rows="2" data-field="goal-1" placeholder="Define your first key professional goal..."
+          <div class="min-w-0 flex-1">
+            <textarea id="goal-1-input" rows="1" data-field="goal-1" placeholder="Define your first key professional goal..."
               class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
             <div class="print-mirror"></div>
           </div>
@@ -506,8 +521,8 @@
           <label for="goal-2-input" class="font-editorial-serif font-bold text-lg text-editorial-burgundy pt-0.5 select-none shrink-0">
             02)
           </label>
-          <div class="flex-1">
-            <textarea id="goal-2-input" rows="2" data-field="goal-2" placeholder="Define your second key professional goal..."
+          <div class="min-w-0 flex-1">
+            <textarea id="goal-2-input" rows="1" data-field="goal-2" placeholder="Define your second key professional goal..."
               class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
             <div class="print-mirror"></div>
           </div>
@@ -518,8 +533,8 @@
           <label for="goal-3-input" class="font-editorial-serif font-bold text-lg text-editorial-burgundy pt-0.5 select-none shrink-0">
             03)
           </label>
-          <div class="flex-1">
-            <textarea id="goal-3-input" rows="2" data-field="goal-3" placeholder="Define your third key professional goal..."
+          <div class="min-w-0 flex-1">
+            <textarea id="goal-3-input" rows="1" data-field="goal-3" placeholder="Define your third key professional goal..."
               class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
             <div class="print-mirror"></div>
           </div>
@@ -530,14 +545,14 @@
       <div class="section-step-nav no-print flex flex-wrap items-center justify-between gap-2.5 mt-6 pt-4 sm:mt-7 sm:pt-5 border-t border-editorial-ivory">
         <span class="text-xs text-editorial-charcoal">Section 01 of 08</span>
         <a href="#section-02" data-next-section class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
-          <span>Next: 02 My Target Audiences</span>
+          <span>Next: 02 My target audiences</span>
           <span aria-hidden="true">→</span>
         </a>
       </div>
     </section>
 
     <!-- ===================================================================== -->
-    <!-- SECTION 02: MY TARGET AUDIENCES                                       -->
+    <!-- SECTION 02: My target audiences                                       -->
     <!-- ===================================================================== -->
     <section id="section-02" tabindex="-1" data-section="2" aria-labelledby="heading-02" class="section-card bg-white rounded-xl border border-editorial-ivory p-4 sm:p-7 lg:p-9 shadow-xs">
       <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-5 mb-6 border-b border-editorial-ivory">
@@ -546,28 +561,28 @@
             <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
               02
             </span>
-            <span class="text-xs uppercase tracking-[0.15em] text-editorial-burgundy font-semibold">
-              Stakeholders &amp; Relationships
+            <span class="text-xs tracking-[0.15em] text-editorial-burgundy font-semibold">
+              Stakeholders &amp; relationships
             </span>
           </div>
           <h2 id="heading-02" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
-            MY TARGET AUDIENCES
+            My target audiences
           </h2>
           <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
             Who do I want to reach, and what do I want to achieve through these relationships?
           </p>
         </div>
 
-        <button type="button" onclick="addAudienceRow()"
+        <button type="button" onclick="addAudienceRow()" aria-controls="audience-rows"
           class="no-print self-start sm:self-auto inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-editorial-navy/30 bg-editorial-ivorySoft hover:bg-editorial-ivory text-editorial-navy text-xs font-semibold transition cursor-pointer">
-          <span>+ Add Audience Row</span>
+          <span>+ Add audience row</span>
         </button>
       </div>
 
       <!-- Desktop Table Column Headers -->
-      <div class="hidden md:grid md:grid-cols-12 gap-4 px-4 py-3 bg-editorial-ivorySoft rounded-t-lg border border-editorial-ivory text-xs font-bold uppercase tracking-[0.12em] text-editorial-navy">
-        <div class="col-span-4">Target Audience (Who?)</div>
-        <div class="col-span-5">Communication Objective (Why?)</div>
+      <div class="hidden md:grid md:grid-cols-12 gap-4 px-4 py-3 bg-editorial-ivorySoft rounded-t-lg border border-editorial-ivory text-xs font-bold tracking-[0.12em] text-editorial-navy">
+        <div class="col-span-4">Target audience (who?)</div>
+        <div class="col-span-5">Communication objective (why?)</div>
         <div class="col-span-3">Priority</div>
       </div>
 
@@ -583,14 +598,14 @@
           <span>Previous: 01 Goals</span>
         </a>
         <a href="#section-03" data-next-section class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
-          <span>Next: 03 Recognising My Strengths</span>
+          <span>Next: 03 Recognising my strengths</span>
           <span aria-hidden="true">→</span>
         </a>
       </div>
     </section>
 
     <!-- ===================================================================== -->
-    <!-- SECTION 03: RECOGNISING MY STRENGTHS                                  -->
+    <!-- SECTION 03: Recognising my strengths                                  -->
     <!-- ===================================================================== -->
     <section id="section-03" tabindex="-1" data-section="3" aria-labelledby="heading-03" class="section-card bg-white rounded-xl border border-editorial-ivory p-4 sm:p-7 lg:p-9 shadow-xs">
       <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-5 mb-6 border-b border-editorial-ivory">
@@ -599,28 +614,28 @@
             <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
               03
             </span>
-            <span class="text-xs uppercase tracking-[0.15em] text-editorial-burgundy font-semibold">
-              Evidence &amp; Self-Awareness
+            <span class="text-xs tracking-[0.15em] text-editorial-burgundy font-semibold">
+              Evidence &amp; self-awareness
             </span>
           </div>
           <h2 id="heading-03" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
-            RECOGNISING MY STRENGTHS
+            Recognising my strengths
           </h2>
           <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
             What am I genuinely good at, and what could I improve?
           </p>
         </div>
 
-        <button type="button" onclick="addStrengthRow()"
+        <button type="button" onclick="addStrengthRow()" aria-controls="strength-rows"
           class="no-print self-start sm:self-auto inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-editorial-navy/30 bg-editorial-ivorySoft hover:bg-editorial-ivory text-editorial-navy text-xs font-semibold transition cursor-pointer">
-          <span>+ Add Strength Row</span>
+          <span>+ Add strength row</span>
         </button>
       </div>
 
       <!-- Desktop Table Column Headers -->
-      <div class="hidden md:grid md:grid-cols-12 gap-4 px-4 py-3 bg-editorial-ivorySoft rounded-t-lg border border-editorial-ivory text-xs font-bold uppercase tracking-[0.12em] text-editorial-navy">
-        <div class="col-span-5">Strength / Experience</div>
-        <div class="col-span-7">Where I Have Demonstrated It / Experience Source</div>
+      <div class="hidden md:grid md:grid-cols-12 gap-4 px-4 py-3 bg-editorial-ivorySoft rounded-t-lg border border-editorial-ivory text-xs font-bold tracking-[0.12em] text-editorial-navy">
+        <div class="col-span-5">Strength / experience</div>
+        <div class="col-span-7">Where I have demonstrated it / experience source</div>
       </div>
 
       <div id="strength-rows" class="divide-y divide-editorial-ivory border border-editorial-ivory md:border-t-0 rounded-lg md:rounded-t-none overflow-hidden mb-6">
@@ -629,10 +644,10 @@
 
       <!-- One Limitation to Develop or Manage -->
       <div class="bg-editorial-ivorySoft rounded-lg p-5 border border-editorial-gold/80 focus-within:border-editorial-burgundy focus-within:bg-white transition">
-        <label for="limitation-input" class="block text-xs font-bold uppercase tracking-[0.13em] text-editorial-burgundy mb-2">
-          One Limitation to Develop or Manage (And How):
+        <label for="limitation-input" class="block text-xs font-bold tracking-[0.13em] text-editorial-burgundy mb-2">
+          One limitation to develop or manage (and how):
         </label>
-        <textarea id="limitation-input" rows="3" placeholder="Identify one growth area or blind spot, and describe how you plan to develop or manage it..."
+        <textarea id="limitation-input" rows="1" placeholder="Identify one growth area or blind spot, and describe how you plan to develop or manage it..."
           class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
         <div class="print-mirror"></div>
       </div>
@@ -644,14 +659,14 @@
           <span>Previous: 02 Audiences</span>
         </a>
         <a href="#section-04" data-next-section class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
-          <span>Next: 04 My USP &amp; Positioning</span>
+          <span>Next: 04 My USP &amp; positioning</span>
           <span aria-hidden="true">→</span>
         </a>
       </div>
     </section>
 
     <!-- ===================================================================== -->
-    <!-- SECTION 04: MY USP & POSITIONING                                      -->
+    <!-- SECTION 04: My USP & positioning                                      -->
     <!-- ===================================================================== -->
     <section id="section-04" tabindex="-1" data-section="4" aria-labelledby="heading-04" class="section-card bg-white rounded-xl border border-editorial-ivory p-4 sm:p-7 lg:p-9 shadow-xs">
       <div class="pb-5 mb-6 border-b border-editorial-ivory">
@@ -659,60 +674,60 @@
           <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
             04
           </span>
-          <span class="text-xs uppercase tracking-[0.15em] text-editorial-burgundy font-semibold">
-            Distinctive Value Proposition
+          <span class="text-xs tracking-[0.15em] text-editorial-burgundy font-semibold">
+            Distinctive value proposition
           </span>
         </div>
         <h2 id="heading-04" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
-          MY USP &amp; POSITIONING
+          My USP &amp; positioning
         </h2>
         <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
           What makes my value relevant and distinctive?
         </p>
       </div>
 
-      <!-- 2-Column Distinctive Combination & Audience Value -->
+      <!-- 2-Column Distinctive combination & Audience Value -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
         <div class="bg-editorial-canvas rounded-lg p-5 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
-          <label for="usp-combination" class="block text-xs font-bold uppercase tracking-[0.13em] text-editorial-navy">
-            My Distinctive Combination
+          <label for="usp-combination" class="block text-xs font-bold tracking-[0.13em] text-editorial-navy">
+            My distinctive combination
           </label>
           <p class="text-xs text-editorial-charcoal mt-1 mb-3">
             Which strengths, experiences or approach belong together?
           </p>
-          <textarea id="usp-combination" rows="4" placeholder="e.g., Cross-cultural project leadership combined with analytical problem-solving..."
+          <textarea id="usp-combination" rows="1" placeholder="e.g., cross-cultural project leadership combined with analytical problem-solving..."
             class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
           <div class="print-mirror"></div>
         </div>
 
         <div class="bg-editorial-canvas rounded-lg p-5 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
-          <label for="usp-value" class="block text-xs font-bold uppercase tracking-[0.13em] text-editorial-navy">
-            The Value to My Audience
+          <label for="usp-value" class="block text-xs font-bold tracking-[0.13em] text-editorial-navy">
+            The value to my audience
           </label>
           <p class="text-xs text-editorial-charcoal mt-1 mb-3">
             What need, problem or outcome can I address?
           </p>
-          <textarea id="usp-value" rows="4" placeholder="e.g., Aligning international teams quickly to turn ambiguous challenges into structured action..."
+          <textarea id="usp-value" rows="1" placeholder="e.g., aligning international teams quickly to turn ambiguous challenges into structured action..."
             class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
           <div class="print-mirror"></div>
         </div>
       </div>
 
-      <!-- Positioning Statement Synthesis Card -->
+      <!-- Positioning statement Synthesis Card -->
       <div class="bg-editorial-ivorySoft rounded-lg p-5 sm:p-6 border border-editorial-navy/25 focus-within:border-editorial-navy focus-within:bg-white transition">
         <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-          <label for="positioning-statement" class="text-xs font-bold uppercase tracking-[0.14em] text-editorial-navy">
-            My Positioning Statement
+          <label for="positioning-statement" class="text-xs font-bold tracking-[0.14em] text-editorial-navy">
+            My positioning statement
           </label>
           <button type="button" onclick="insertPositioningStarter()"
             class="no-print text-xs font-semibold text-editorial-burgundy hover:text-white bg-white hover:bg-editorial-burgundy border border-editorial-burgundy/40 px-3 py-1.5 rounded-md transition cursor-pointer">
-            Insert Formula Starter
+            Insert formula starter
           </button>
         </div>
         <p class="font-editorial-serif italic text-base sm:text-lg text-editorial-charcoal mb-3.5">
           “I combine <span class="font-semibold text-editorial-navy">[strength]</span> with <span class="font-semibold text-editorial-navy">[distinctive experience / approach]</span> to help <span class="font-semibold text-editorial-navy">[audience]</span> achieve <span class="font-semibold text-editorial-navy">[specific outcome]</span>.”
         </p>
-        <textarea id="positioning-statement" rows="3" placeholder="Write your complete personal brand positioning statement here..."
+        <textarea id="positioning-statement" rows="1" placeholder="Write your complete personal brand positioning statement here..."
           class="auto-grow w-full bg-transparent text-sm sm:text-base font-medium text-editorial-ink focus:outline-none"></textarea>
         <div class="print-mirror font-medium"></div>
       </div>
@@ -724,32 +739,25 @@
           <span>Previous: 03 Strengths</span>
         </a>
         <a href="#section-05" data-next-section class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
-          <span>Next: 05 Brand Personality</span>
+          <span>Next: 05 Brand personality</span>
           <span aria-hidden="true">→</span>
         </a>
       </div>
     </section>
 
     <!-- ===================================================================== -->
-    <!-- PART II EDITORIAL BANNER: MY BRAND EXPRESSION                         -->
+    <!-- PART II DIVIDER: IDENTITY, VOICE & PRESENCE                          -->
     <!-- ===================================================================== -->
-    <div class="page-break-before bg-editorial-navy text-white rounded-xl border border-editorial-gold/60 overflow-hidden">
-      <div class="px-6 sm:px-8 py-2.5 border-b border-white/15 flex flex-wrap items-center justify-between gap-2 text-xs tracking-[0.14em] uppercase font-semibold">
-        <span class="text-editorial-gold">The Leader as a Brand</span>
-        <span class="text-editorial-ivory">BIP Empowering Leadership Skills in International Business</span>
+    <div class="workbook-part page-break-before">
+      <div>
+        <p class="text-xs font-semibold tracking-wider text-editorial-gold">Part II</p>
+        <h2 class="font-editorial-serif text-2xl sm:text-3xl font-bold leading-tight text-white">Identity, voice &amp; presence</h2>
       </div>
-      <div class="px-6 sm:px-8 py-6">
-        <p class="text-xs uppercase tracking-[0.18em] text-editorial-gold font-semibold mb-1">
-          Part II · Identity, Voice &amp; Presence (Sections 05–07)
-        </p>
-        <h2 class="font-editorial-serif text-3xl sm:text-4xl font-bold tracking-tight text-white">
-          MY BRAND EXPRESSION
-        </h2>
-      </div>
+      <p class="text-xs font-medium">Sections 05–07</p>
     </div>
 
     <!-- ===================================================================== -->
-    <!-- SECTION 05: MY BRAND PERSONALITY & KEY MESSAGES                       -->
+    <!-- SECTION 05: My brand personality & key messages                       -->
     <!-- ===================================================================== -->
     <section id="section-05" tabindex="-1" data-section="5" aria-labelledby="heading-05" class="section-card bg-white rounded-xl border border-editorial-ivory p-4 sm:p-7 lg:p-9 shadow-xs">
       <div class="pb-5 mb-6 border-b border-editorial-ivory">
@@ -757,24 +765,24 @@
           <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
             05
           </span>
-          <span class="text-xs uppercase tracking-[0.15em] text-editorial-burgundy font-semibold">
-            Character &amp; Core Narrative
+          <span class="text-xs tracking-[0.15em] text-editorial-burgundy font-semibold">
+            Character &amp; core narrative
           </span>
         </div>
         <h2 id="heading-05" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
-          MY BRAND PERSONALITY &amp; KEY MESSAGES
+          My brand personality &amp; key messages
         </h2>
         <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
           What qualities define me, and what do I want others to remember about me?
         </p>
       </div>
 
-      <!-- Core Traits Selection (Select up to 3 qualities) -->
+      <!-- Core Traits Selection (select up to 3 qualities) -->
       <div class="mb-8">
         <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
           <div>
-            <h3 class="text-xs font-bold uppercase tracking-[0.13em] text-editorial-navy">
-              My Core Traits
+            <h3 class="text-xs font-bold tracking-[0.13em] text-editorial-navy">
+              My core traits
             </h3>
             <p class="text-xs text-editorial-charcoal mt-0.5">
               Select up to 3 qualities.
@@ -787,27 +795,28 @@
 
         <p id="traits-limit-msg" role="status" aria-live="polite"
           class="hidden text-xs italic text-editorial-burgundy bg-editorial-ivorySoft border-l-2 border-editorial-burgundy px-3 py-1.5 rounded-r mb-3">
-          You've reached the recommended number of selections. Consider which qualities best represent you.
+          Selection limit reached. Deselect choices to make room for another.
         </p>
 
-        <div id="core-traits-grid" role="group" aria-label="My Core Traits (Select up to 3 qualities)" class="flex flex-wrap gap-2.5 mb-4">
+        <div id="core-traits-grid" role="group" aria-label="My core traits (select up to 3 qualities)" class="flex flex-wrap gap-2.5 mb-4">
           <!-- Populated dynamically by JS -->
         </div>
 
         <!-- Custom Other Trait -->
-        <div class="flex items-center gap-2.5 max-w-md bg-editorial-canvas rounded-lg px-3.5 py-2.5 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
-          <label for="trait-other" class="text-xs font-bold uppercase tracking-wider text-editorial-burgundy shrink-0">
+        <form data-choice-group="core-traits" class="flex items-center gap-2 max-w-md bg-editorial-canvas rounded-lg p-2 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
+          <label for="trait-other" class="text-xs font-bold tracking-wider text-editorial-burgundy shrink-0">
             Other:
           </label>
-          <input id="trait-other" type="text" placeholder="Add a custom core trait..."
+          <input id="trait-other" type="text" placeholder="Add a trait..."
             class="flex-1 bg-transparent text-sm text-editorial-ink focus:outline-none" />
-        </div>
+          <button type="submit" aria-label="Add core trait" class="no-print shrink-0 rounded-md bg-editorial-navy px-3 py-2 text-sm font-semibold text-white hover:bg-editorial-navyDark">Add</button>
+        </form>
       </div>
 
-      <!-- Three Key Ideas I Want People to Remember -->
+      <!-- Three key messages -->
       <div class="pt-6 border-t border-editorial-ivory">
-        <h3 class="text-xs font-bold uppercase tracking-[0.13em] text-editorial-navy mb-4">
-          Three Key Ideas I Want People to Remember
+        <h3 class="text-xs font-bold tracking-[0.13em] text-editorial-navy mb-4">
+          Three key messages
         </h3>
 
         <div class="space-y-3.5">
@@ -815,8 +824,8 @@
             <label for="idea-1-input" class="font-editorial-serif font-bold text-lg text-editorial-burgundy pt-0.5 select-none shrink-0">
               01)
             </label>
-            <div class="flex-1">
-              <textarea id="idea-1-input" rows="2" data-field="idea-1" placeholder="Key idea or takeaway #1..."
+            <div class="min-w-0 flex-1">
+              <textarea id="idea-1-input" rows="1" data-field="idea-1" placeholder="Key message #1..."
                 class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
               <div class="print-mirror"></div>
             </div>
@@ -826,8 +835,8 @@
             <label for="idea-2-input" class="font-editorial-serif font-bold text-lg text-editorial-burgundy pt-0.5 select-none shrink-0">
               02)
             </label>
-            <div class="flex-1">
-              <textarea id="idea-2-input" rows="2" data-field="idea-2" placeholder="Key idea or takeaway #2..."
+            <div class="min-w-0 flex-1">
+              <textarea id="idea-2-input" rows="1" data-field="idea-2" placeholder="Key message #2..."
                 class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
               <div class="print-mirror"></div>
             </div>
@@ -837,8 +846,8 @@
             <label for="idea-3-input" class="font-editorial-serif font-bold text-lg text-editorial-burgundy pt-0.5 select-none shrink-0">
               03)
             </label>
-            <div class="flex-1">
-              <textarea id="idea-3-input" rows="2" data-field="idea-3" placeholder="Key idea or takeaway #3..."
+            <div class="min-w-0 flex-1">
+              <textarea id="idea-3-input" rows="1" data-field="idea-3" placeholder="Key message #3..."
                 class="auto-grow w-full bg-transparent text-sm sm:text-base text-editorial-ink focus:outline-none"></textarea>
               <div class="print-mirror"></div>
             </div>
@@ -850,17 +859,17 @@
       <div class="section-step-nav no-print flex flex-wrap items-center justify-between gap-2.5 mt-6 pt-4 sm:mt-7 sm:pt-5 border-t border-editorial-ivory">
         <a href="#section-04" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
           <span aria-hidden="true">←</span>
-          <span>Previous: 04 USP &amp; Positioning</span>
+          <span>Previous: 04 USP &amp; positioning</span>
         </a>
         <a href="#section-06" data-next-section class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
-          <span>Next: 06 Voice, Vibe &amp; Visuals</span>
+          <span>Next: 06 Voice, vibe &amp; visuals</span>
           <span aria-hidden="true">→</span>
         </a>
       </div>
     </section>
 
     <!-- ===================================================================== -->
-    <!-- SECTION 06: MY VOICE, VIBE & VISUAL IDENTITY                          -->
+    <!-- SECTION 06: My voice, vibe & visual identity                          -->
     <!-- ===================================================================== -->
     <section id="section-06" tabindex="-1" data-section="6" aria-labelledby="heading-06" class="section-card bg-white rounded-xl border border-editorial-ivory p-4 sm:p-7 lg:p-9 shadow-xs">
       <div class="pb-5 mb-6 border-b border-editorial-ivory">
@@ -868,24 +877,24 @@
           <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
             06
           </span>
-          <span class="text-xs uppercase tracking-[0.15em] text-editorial-burgundy font-semibold">
-            Communication Style &amp; Aesthetic
+          <span class="text-xs tracking-[0.15em] text-editorial-burgundy font-semibold">
+            Communication style &amp; aesthetic
           </span>
         </div>
         <h2 id="heading-06" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
-          MY VOICE, VIBE &amp; VISUAL IDENTITY
+          My voice, vibe &amp; visual identity
         </h2>
         <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
           How do I want to communicate, and what impression should my personal brand create?
         </p>
       </div>
 
-      <!-- My Voice (Select 3–5 qualities) -->
+      <!-- My voice (Select 3–5 qualities) -->
       <div class="mb-7">
         <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
           <div>
-            <h3 class="text-xs font-bold uppercase tracking-[0.13em] text-editorial-navy">
-              My Voice
+            <h3 class="text-xs font-bold tracking-[0.13em] text-editorial-navy">
+              My voice
             </h3>
             <p class="text-xs text-editorial-charcoal mt-0.5">
               Select 3–5 qualities.
@@ -898,28 +907,29 @@
 
         <p id="voice-limit-msg" role="status" aria-live="polite"
           class="hidden text-xs italic text-editorial-burgundy bg-editorial-ivorySoft border-l-2 border-editorial-burgundy px-3 py-1.5 rounded-r mb-3">
-          You've reached the recommended number of selections. Consider which qualities best represent you.
+          Selection limit reached. Deselect choices to make room for another.
         </p>
 
-        <div id="voice-grid" role="group" aria-label="My Voice (Select 3–5 qualities)" class="flex flex-wrap gap-2.5 mb-4">
+        <div id="voice-grid" role="group" aria-label="My voice (Select 3–5 qualities)" class="flex flex-wrap gap-2.5 mb-4">
           <!-- Populated dynamically by JS -->
         </div>
 
-        <div class="flex items-center gap-2.5 max-w-md bg-editorial-canvas rounded-lg px-3.5 py-2.5 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
-          <label for="voice-other" class="text-xs font-bold uppercase tracking-wider text-editorial-burgundy shrink-0">
+        <form data-choice-group="voice" class="flex items-center gap-2 max-w-md bg-editorial-canvas rounded-lg p-2 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
+          <label for="voice-other" class="text-xs font-bold tracking-wider text-editorial-burgundy shrink-0">
             Other:
           </label>
-          <input id="voice-other" type="text" placeholder="Add another voice quality..."
+          <input id="voice-other" type="text" placeholder="Add a quality..."
             class="flex-1 bg-transparent text-sm text-editorial-ink focus:outline-none" />
-        </div>
+          <button type="submit" aria-label="Add voice quality" class="no-print shrink-0 rounded-md bg-editorial-navy px-3 py-2 text-sm font-semibold text-white hover:bg-editorial-navyDark">Add</button>
+        </form>
       </div>
 
-      <!-- My Vibe (Select up to 2 impressions) -->
+      <!-- My vibe (select up to 2 impressions) -->
       <div class="mb-7 pt-6 border-t border-editorial-ivory">
         <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
           <div>
-            <h3 class="text-xs font-bold uppercase tracking-[0.13em] text-editorial-navy">
-              My Vibe
+            <h3 class="text-xs font-bold tracking-[0.13em] text-editorial-navy">
+              My vibe
             </h3>
             <p class="text-xs text-editorial-charcoal mt-0.5">
               Select up to 2 impressions.
@@ -932,30 +942,31 @@
 
         <p id="vibe-limit-msg" role="status" aria-live="polite"
           class="hidden text-xs italic text-editorial-burgundy bg-editorial-ivorySoft border-l-2 border-editorial-burgundy px-3 py-1.5 rounded-r mb-3">
-          You've reached the recommended number of selections. Consider which qualities best represent you.
+          Selection limit reached. Deselect choices to make room for another.
         </p>
 
-        <div id="vibe-grid" role="group" aria-label="My Vibe (Select up to 2 impressions)" class="flex flex-wrap gap-2.5 mb-4">
+        <div id="vibe-grid" role="group" aria-label="My vibe (select up to 2 impressions)" class="flex flex-wrap gap-2.5 mb-4">
           <!-- Populated dynamically by JS -->
         </div>
 
-        <div class="flex items-center gap-2.5 max-w-md bg-editorial-canvas rounded-lg px-3.5 py-2.5 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
-          <label for="vibe-other" class="text-xs font-bold uppercase tracking-wider text-editorial-burgundy shrink-0">
+        <form data-choice-group="vibe" class="flex items-center gap-2 max-w-md bg-editorial-canvas rounded-lg p-2 border border-editorial-ivory focus-within:border-editorial-navy focus-within:bg-white transition">
+          <label for="vibe-other" class="text-xs font-bold tracking-wider text-editorial-burgundy shrink-0">
             Other:
           </label>
-          <input id="vibe-other" type="text" placeholder="Add another vibe..."
+          <input id="vibe-other" type="text" placeholder="Add a vibe..."
             class="flex-1 bg-transparent text-sm text-editorial-ink focus:outline-none" />
-        </div>
+          <button type="submit" aria-label="Add vibe" class="no-print shrink-0 rounded-md bg-editorial-navy px-3 py-2 text-sm font-semibold text-white hover:bg-editorial-navyDark">Add</button>
+        </form>
       </div>
 
-      <!-- My Visual Identity -->
+      <!-- My visual identity -->
       <div class="pt-6 border-t border-editorial-ivory">
         <div class="mb-3.5">
-          <h3 class="text-xs font-bold uppercase tracking-[0.13em] text-editorial-navy">
-            My Visual Identity
+          <h3 class="text-xs font-bold tracking-[0.13em] text-editorial-navy">
+            My visual identity
           </h3>
           <p class="text-xs text-editorial-charcoal mt-0.5">
-            Select up to 2 options within each category (Colour Palette, Composition, Clothing and Setting).
+            Select up to 2 options within each category (colour palette, composition, clothing and setting).
           </p>
         </div>
 
@@ -963,7 +974,7 @@
           <!-- Palette -->
           <div class="grid grid-cols-1 md:grid-cols-12 bg-white">
             <div class="md:col-span-3 bg-editorial-ivorySoft px-4 py-4 flex flex-col justify-center border-b md:border-b-0 md:border-r border-editorial-ivory">
-              <span class="font-bold text-xs uppercase tracking-[0.13em] text-editorial-navy">Palette</span>
+              <span class="font-bold text-xs tracking-[0.13em] text-editorial-navy">Palette</span>
               <span class="text-[11px] text-editorial-charcoal mt-0.5">Select up to 2 options.</span>
               <span id="visual-palette-counter" class="inline-block self-start mt-2 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-editorial-navy border border-editorial-gold/70">
                 0 of 2 selected
@@ -972,16 +983,16 @@
             <div class="md:col-span-9 p-4 flex flex-col justify-center">
               <p id="visual-palette-limit-msg" role="status" aria-live="polite"
                 class="hidden text-xs italic text-editorial-burgundy bg-editorial-ivorySoft border-l-2 border-editorial-burgundy px-3 py-1.5 rounded-r mb-2.5">
-                You've reached the recommended number of selections. Consider which qualities best represent you.
+                Selection limit reached. Deselect choices to make room for another.
               </p>
-              <div id="visual-palette" role="group" aria-label="Visual Identity Colour Palette (Select up to 2 options)" class="flex flex-wrap gap-2"></div>
+              <div id="visual-palette" role="group" aria-label="Visual identity colour palette (select up to 2 options)" class="flex flex-wrap gap-2"></div>
             </div>
           </div>
 
           <!-- Composition -->
           <div class="grid grid-cols-1 md:grid-cols-12 bg-white">
             <div class="md:col-span-3 bg-editorial-ivorySoft px-4 py-4 flex flex-col justify-center border-b md:border-b-0 md:border-r border-editorial-ivory">
-              <span class="font-bold text-xs uppercase tracking-[0.13em] text-editorial-navy">Composition</span>
+              <span class="font-bold text-xs tracking-[0.13em] text-editorial-navy">Composition</span>
               <span class="text-[11px] text-editorial-charcoal mt-0.5">Select up to 2 options.</span>
               <span id="visual-composition-counter" class="inline-block self-start mt-2 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-editorial-navy border border-editorial-gold/70">
                 0 of 2 selected
@@ -990,16 +1001,16 @@
             <div class="md:col-span-9 p-4 flex flex-col justify-center">
               <p id="visual-composition-limit-msg" role="status" aria-live="polite"
                 class="hidden text-xs italic text-editorial-burgundy bg-editorial-ivorySoft border-l-2 border-editorial-burgundy px-3 py-1.5 rounded-r mb-2.5">
-                You've reached the recommended number of selections. Consider which qualities best represent you.
+                Selection limit reached. Deselect choices to make room for another.
               </p>
-              <div id="visual-composition" role="group" aria-label="Visual Identity Composition (Select up to 2 options)" class="flex flex-wrap gap-2"></div>
+              <div id="visual-composition" role="group" aria-label="Visual identity composition (select up to 2 options)" class="flex flex-wrap gap-2"></div>
             </div>
           </div>
 
           <!-- Clothing -->
           <div class="grid grid-cols-1 md:grid-cols-12 bg-white">
             <div class="md:col-span-3 bg-editorial-ivorySoft px-4 py-4 flex flex-col justify-center border-b md:border-b-0 md:border-r border-editorial-ivory">
-              <span class="font-bold text-xs uppercase tracking-[0.13em] text-editorial-navy">Clothing</span>
+              <span class="font-bold text-xs tracking-[0.13em] text-editorial-navy">Clothing</span>
               <span class="text-[11px] text-editorial-charcoal mt-0.5">Select up to 2 options.</span>
               <span id="visual-clothing-counter" class="inline-block self-start mt-2 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-editorial-navy border border-editorial-gold/70">
                 0 of 2 selected
@@ -1008,16 +1019,16 @@
             <div class="md:col-span-9 p-4 flex flex-col justify-center">
               <p id="visual-clothing-limit-msg" role="status" aria-live="polite"
                 class="hidden text-xs italic text-editorial-burgundy bg-editorial-ivorySoft border-l-2 border-editorial-burgundy px-3 py-1.5 rounded-r mb-2.5">
-                You've reached the recommended number of selections. Consider which qualities best represent you.
+                Selection limit reached. Deselect choices to make room for another.
               </p>
-              <div id="visual-clothing" role="group" aria-label="Visual Identity Clothing (Select up to 2 options)" class="flex flex-wrap gap-2"></div>
+              <div id="visual-clothing" role="group" aria-label="Visual identity clothing (select up to 2 options)" class="flex flex-wrap gap-2"></div>
             </div>
           </div>
 
           <!-- Setting -->
           <div class="grid grid-cols-1 md:grid-cols-12 bg-white">
             <div class="md:col-span-3 bg-editorial-ivorySoft px-4 py-4 flex flex-col justify-center border-b md:border-b-0 md:border-r border-editorial-ivory">
-              <span class="font-bold text-xs uppercase tracking-[0.13em] text-editorial-navy">Setting</span>
+              <span class="font-bold text-xs tracking-[0.13em] text-editorial-navy">Setting</span>
               <span class="text-[11px] text-editorial-charcoal mt-0.5">Select up to 2 options.</span>
               <span id="visual-setting-counter" class="inline-block self-start mt-2 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-editorial-navy border border-editorial-gold/70">
                 0 of 2 selected
@@ -1026,9 +1037,9 @@
             <div class="md:col-span-9 p-4 flex flex-col justify-center">
               <p id="visual-setting-limit-msg" role="status" aria-live="polite"
                 class="hidden text-xs italic text-editorial-burgundy bg-editorial-ivorySoft border-l-2 border-editorial-burgundy px-3 py-1.5 rounded-r mb-2.5">
-                You've reached the recommended number of selections. Consider which qualities best represent you.
+                Selection limit reached. Deselect choices to make room for another.
               </p>
-              <div id="visual-setting" role="group" aria-label="Visual Identity Setting (Select up to 2 options)" class="flex flex-wrap gap-2"></div>
+              <div id="visual-setting" role="group" aria-label="Visual identity setting (select up to 2 options)" class="flex flex-wrap gap-2"></div>
             </div>
           </div>
         </div>
@@ -1041,14 +1052,14 @@
           <span>Previous: 05 Personality</span>
         </a>
         <a href="#section-07" data-next-section class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-navy hover:bg-editorial-navyDark text-white text-xs sm:text-sm font-semibold transition">
-          <span>Next: 07 Brand Touchpoints</span>
+          <span>Next: 07 Brand touchpoints</span>
           <span aria-hidden="true">→</span>
         </a>
       </div>
     </section>
 
     <!-- ===================================================================== -->
-    <!-- SECTION 07: MY BRAND TOUCHPOINTS                                      -->
+    <!-- SECTION 07: My brand touchpoints                                      -->
     <!-- ===================================================================== -->
     <section id="section-07" tabindex="-1" data-section="7" aria-labelledby="heading-07" class="section-card bg-white rounded-xl border border-editorial-ivory p-4 sm:p-7 lg:p-9 shadow-xs">
       <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-5 mb-6 border-b border-editorial-ivory">
@@ -1057,29 +1068,29 @@
             <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-navy text-editorial-ivory text-xs font-bold tracking-widest">
               07
             </span>
-            <span class="text-xs uppercase tracking-[0.15em] text-editorial-burgundy font-semibold">
-              Channels &amp; Visibility
+            <span class="text-xs tracking-[0.15em] text-editorial-burgundy font-semibold">
+              Channels &amp; visibility
             </span>
           </div>
           <h2 id="heading-07" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
-            MY BRAND TOUCHPOINTS
+            My brand touchpoints
           </h2>
           <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
             Where does my audience encounter me, and what impression do I create?
           </p>
         </div>
 
-        <button type="button" onclick="addTouchpointRow()"
+        <button type="button" onclick="addTouchpointRow()" aria-controls="touchpoint-rows"
           class="no-print self-start sm:self-auto inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-editorial-navy/30 bg-editorial-ivorySoft hover:bg-editorial-ivory text-editorial-navy text-xs font-semibold transition cursor-pointer">
-          <span>+ Add Touchpoint Row</span>
+          <span>+ Add touchpoint row</span>
         </button>
       </div>
 
       <!-- Desktop Table Column Headers -->
-      <div class="hidden md:grid md:grid-cols-12 gap-4 px-4 py-3 bg-editorial-ivorySoft rounded-t-lg border border-editorial-ivory text-xs font-bold uppercase tracking-[0.12em] text-editorial-navy">
-        <div class="col-span-3">Touchpoint (Channel)</div>
-        <div class="col-span-4">Impression I Want to Create</div>
-        <div class="col-span-5">How I Will Demonstrate It</div>
+      <div class="hidden md:grid md:grid-cols-12 gap-4 px-4 py-3 bg-editorial-ivorySoft rounded-t-lg border border-editorial-ivory text-xs font-bold tracking-[0.12em] text-editorial-navy">
+        <div class="col-span-3">Touchpoint (channel)</div>
+        <div class="col-span-4">Impression I want to create</div>
+        <div class="col-span-5">How I will demonstrate it</div>
       </div>
 
       <div id="touchpoint-rows" class="divide-y divide-editorial-ivory border border-editorial-ivory md:border-t-0 rounded-lg md:rounded-t-none overflow-hidden">
@@ -1090,10 +1101,10 @@
       <div class="section-step-nav no-print flex flex-wrap items-center justify-between gap-2.5 mt-6 pt-4 sm:mt-7 sm:pt-5 border-t border-editorial-ivory">
         <a href="#section-06" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
           <span aria-hidden="true">←</span>
-          <span>Previous: 06 Voice &amp; Visuals</span>
+          <span>Previous: 06 Voice &amp; visuals</span>
         </a>
         <a href="#section-08" data-next-section class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-editorial-burgundy hover:bg-editorial-burgundyLight text-white text-xs sm:text-sm font-semibold transition">
-          <span>Final Stage: 08 30-Day Action Plan</span>
+          <span>Final stage: 08 30-day action plan</span>
           <span aria-hidden="true">→</span>
         </a>
       </div>
@@ -1102,64 +1113,59 @@
     <!-- ===================================================================== -->
     <!-- FINAL STAGE DIVIDER & SECTION 08: MY 30-DAY BRAND ACTION PLAN         -->
     <!-- ===================================================================== -->
-    <div class="flex items-center gap-4 pt-2">
-      <div class="h-px flex-1 bg-editorial-burgundy/40"></div>
-      <span class="text-xs font-bold uppercase tracking-[0.18em] text-editorial-burgundy">
-        Final Stage · Commitment &amp; Next Steps
-      </span>
-      <div class="h-px flex-1 bg-editorial-burgundy/40"></div>
+    <div class="workbook-part">
+      <div>
+        <p class="text-xs font-semibold tracking-wider text-editorial-gold">Final stage</p>
+        <h2 class="font-editorial-serif text-2xl sm:text-3xl font-bold leading-tight text-white">Commitment &amp; next steps</h2>
+      </div>
+      <p class="text-xs font-medium">Section 08</p>
     </div>
 
     <section id="section-08" tabindex="-1" data-section="8" aria-labelledby="heading-08" class="section-card bg-editorial-ivorySoft rounded-xl border-2 border-editorial-gold p-4 sm:p-7 lg:p-9 shadow-xs">
-      <!-- Editorial Final Stage Banner -->
+      <!-- Editorial Final stage Banner -->
       <div class="pb-5 mb-6 border-b border-editorial-gold/70">
         <div class="flex flex-wrap items-center gap-2.5 mb-2">
           <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded bg-editorial-burgundy text-white text-xs font-bold tracking-widest">
             08
           </span>
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded border border-editorial-burgundy/30 bg-white text-editorial-burgundy text-[11px] font-bold uppercase tracking-[0.14em]">
-            Final Stage
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded border border-editorial-burgundy/30 bg-white text-editorial-burgundy text-[11px] font-bold tracking-[0.14em]">
+            Final stage
           </span>
         </div>
 
         <h2 id="heading-08" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-editorial-navy tracking-tight">
-          MY 30-DAY BRAND ACTION PLAN
+          My 30-day brand action plan
         </h2>
         <p class="text-sm sm:text-base text-editorial-charcoal mt-1">
           What concrete actions can I take over the next month to strengthen my professional brand?
         </p>
-
-        <!-- Required Introductory Prompt -->
-        <p class="font-editorial-serif italic text-lg sm:text-xl text-editorial-burgundy font-semibold mt-3">
-          “Turn your personal brand strategy into three realistic actions.”
-        </p>
       </div>
 
       <!-- Desktop Table Column Headers -->
-      <div class="action-plan-grid hidden lg:grid gap-4 px-5 py-3 bg-editorial-navy text-editorial-ivory rounded-t-lg text-xs font-bold uppercase tracking-[0.12em]">
+      <div class="action-plan-grid hidden lg:grid gap-4 px-5 py-3 bg-editorial-navy text-editorial-ivory rounded-t-lg text-xs font-bold tracking-[0.12em]">
         <div>Focus</div>
-        <div>Specific Action + Measurable Proof</div>
-        <div>By When?</div>
+        <div>Specific action + measurable proof</div>
+        <div>By when?</div>
       </div>
 
       <div class="divide-y divide-editorial-ivory border border-editorial-gold/70 lg:border-t-0 rounded-lg lg:rounded-t-none bg-white">
-        <!-- DEVELOP Row -->
+        <!-- Develop Row -->
         <div class="action-plan-grid grid grid-cols-1 items-start gap-3 lg:gap-4 p-3 sm:p-5">
           <div class="flex flex-col lg:pt-2">
-            <span class="text-xs font-extrabold uppercase tracking-[0.14em] text-editorial-navy">DEVELOP</span>
+            <span class="text-xs font-extrabold tracking-[0.14em] text-editorial-navy">Develop</span>
             <span class="text-xs text-editorial-charcoal mt-0.5">Improve a skill or capability</span>
           </div>
           <div class="min-w-0 bg-editorial-canvas rounded-lg p-3 border border-editorial-ivory focus-within:border-editorial-navy">
-            <label for="action-develop-spec" class="block lg:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
-              Specific Action + Measurable Proof
+            <label for="action-develop-spec" class="block lg:sr-only text-[11px] font-bold tracking-wider text-editorial-navy mb-1">
+              Specific action + measurable proof
             </label>
-            <textarea id="action-develop-spec" rows="2" data-action="develop-spec" placeholder="e.g., Practice concise executive framing in weekly seminar presentations..."
+            <textarea id="action-develop-spec" rows="1" data-action="develop-spec" placeholder="e.g., practice concise executive framing in weekly seminar presentations..."
               class="auto-grow block w-full bg-transparent text-sm text-editorial-ink focus:outline-none"></textarea>
             <div class="print-mirror"></div>
           </div>
           <div class="min-w-0">
-            <label for="action-develop-when" class="block lg:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
-              By When?
+            <label for="action-develop-when" class="block lg:sr-only text-[11px] font-bold tracking-wider text-editorial-navy mb-1">
+              By when?
             </label>
             <input id="action-develop-when" type="date" data-action="develop-when" aria-describedby="action-develop-when-previous"
               class="block w-full min-h-11 rounded-lg border border-editorial-ivory bg-editorial-canvas px-2.5 text-sm font-medium text-editorial-ink" />
@@ -1169,23 +1175,23 @@
           </div>
         </div>
 
-        <!-- DEMONSTRATE Row -->
+        <!-- Demonstrate Row -->
         <div class="action-plan-grid grid grid-cols-1 items-start gap-3 lg:gap-4 p-3 sm:p-5">
           <div class="flex flex-col lg:pt-2">
-            <span class="text-xs font-extrabold uppercase tracking-[0.14em] text-editorial-burgundy">DEMONSTRATE</span>
+            <span class="text-xs font-extrabold tracking-[0.14em] text-editorial-burgundy">Demonstrate</span>
             <span class="text-xs text-editorial-charcoal mt-0.5">Create evidence of my value</span>
           </div>
           <div class="min-w-0 bg-editorial-canvas rounded-lg p-3 border border-editorial-ivory focus-within:border-editorial-navy">
-            <label for="action-demonstrate-spec" class="block lg:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
-              Specific Action + Measurable Proof
+            <label for="action-demonstrate-spec" class="block lg:sr-only text-[11px] font-bold tracking-wider text-editorial-navy mb-1">
+              Specific action + measurable proof
             </label>
-            <textarea id="action-demonstrate-spec" rows="2" data-action="demonstrate-spec" placeholder="e.g., Document a short case reflection from our BIP cross-cultural project..."
+            <textarea id="action-demonstrate-spec" rows="1" data-action="demonstrate-spec" placeholder="e.g., document a short case reflection from our BIP cross-cultural project..."
               class="auto-grow block w-full bg-transparent text-sm text-editorial-ink focus:outline-none"></textarea>
             <div class="print-mirror"></div>
           </div>
           <div class="min-w-0">
-            <label for="action-demonstrate-when" class="block lg:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
-              By When?
+            <label for="action-demonstrate-when" class="block lg:sr-only text-[11px] font-bold tracking-wider text-editorial-navy mb-1">
+              By when?
             </label>
             <input id="action-demonstrate-when" type="date" data-action="demonstrate-when" aria-describedby="action-demonstrate-when-previous"
               class="block w-full min-h-11 rounded-lg border border-editorial-ivory bg-editorial-canvas px-2.5 text-sm font-medium text-editorial-ink" />
@@ -1195,23 +1201,23 @@
           </div>
         </div>
 
-        <!-- COMMUNICATE Row -->
+        <!-- Communicate Row -->
         <div class="action-plan-grid grid grid-cols-1 items-start gap-3 lg:gap-4 p-3 sm:p-5">
           <div class="flex flex-col lg:pt-2">
-            <span class="text-xs font-extrabold uppercase tracking-[0.14em] text-editorial-navy">COMMUNICATE</span>
+            <span class="text-xs font-extrabold tracking-[0.14em] text-editorial-navy">Communicate</span>
             <span class="text-xs text-editorial-charcoal mt-0.5">Make my value visible to my audience</span>
           </div>
           <div class="min-w-0 bg-editorial-canvas rounded-lg p-3 border border-editorial-ivory focus-within:border-editorial-navy">
-            <label for="action-communicate-spec" class="block lg:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
-              Specific Action + Measurable Proof
+            <label for="action-communicate-spec" class="block lg:sr-only text-[11px] font-bold tracking-wider text-editorial-navy mb-1">
+              Specific action + measurable proof
             </label>
-            <textarea id="action-communicate-spec" rows="2" data-action="communicate-spec" placeholder="e.g., Update LinkedIn headline & share 1 thoughtful reflection with peers..."
+            <textarea id="action-communicate-spec" rows="1" data-action="communicate-spec" placeholder="e.g., update LinkedIn headline & share 1 thoughtful reflection with peers..."
               class="auto-grow block w-full bg-transparent text-sm text-editorial-ink focus:outline-none"></textarea>
             <div class="print-mirror"></div>
           </div>
           <div class="min-w-0">
-            <label for="action-communicate-when" class="block lg:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
-              By When?
+            <label for="action-communicate-when" class="block lg:sr-only text-[11px] font-bold tracking-wider text-editorial-navy mb-1">
+              By when?
             </label>
             <input id="action-communicate-when" type="date" data-action="communicate-when" aria-describedby="action-communicate-when-previous"
               class="block w-full min-h-11 rounded-lg border border-editorial-ivory bg-editorial-canvas px-2.5 text-sm font-medium text-editorial-ink" />
@@ -1230,7 +1236,7 @@
         </a>
         <a href="#section-01" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition">
           <span aria-hidden="true">↑</span>
-          <span>Back to Section 01</span>
+          <span>Back to section 01</span>
         </a>
       </div>
     </section>
@@ -1241,11 +1247,11 @@
     <section id="save-export-panel" tabindex="-1" aria-labelledby="save-export-heading" class="no-print bg-white rounded-xl border border-editorial-navy/25 overflow-hidden shadow-xs">
       <div class="bg-editorial-navy text-white px-6 sm:px-8 py-4 flex flex-wrap items-center justify-between gap-2">
         <div>
-          <span class="text-[11px] uppercase tracking-[0.16em] text-editorial-gold font-bold block">
-            Preserve &amp; Continue Your Work
+          <span class="text-[11px] tracking-[0.16em] text-editorial-gold font-bold block">
+            Preserve &amp; continue your work
           </span>
           <h2 id="save-export-heading" class="font-editorial-serif text-2xl sm:text-3xl font-bold text-white">
-            Save, Backup &amp; Export Your Brief
+            Save, backup &amp; export your brief
           </h2>
         </div>
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-editorial-gold/40 text-xs text-editorial-ivory">
@@ -1265,11 +1271,11 @@
           <!-- Editable Copy Card (JSON) -->
           <div class="bg-editorial-canvas rounded-lg p-5 border border-editorial-ivory flex flex-col justify-between gap-4">
             <div>
-              <span class="inline-block text-[11px] font-bold uppercase tracking-[0.14em] text-editorial-navy bg-editorial-ivory px-2.5 py-0.5 rounded mb-2">
-                Editable Backup (.JSON)
+              <span class="inline-block text-[11px] font-bold tracking-[0.14em] text-editorial-navy bg-editorial-ivory px-2.5 py-0.5 rounded mb-2">
+                Editable backup (.JSON)
               </span>
               <h3 class="font-editorial-serif text-xl font-bold text-editorial-navy">
-                Continue Editing Later or Elsewhere
+                Continue editing later or elsewhere
               </h3>
               <p class="text-xs sm:text-sm text-editorial-charcoal mt-1.5 leading-relaxed">
                 Downloads a lightweight data file containing all your answers and selections. Re-upload it anytime—on this computer or another device—to pick up right where you left off.
@@ -1284,7 +1290,7 @@
                 <svg class="w-4 h-4 text-editorial-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                <span>Save Editable Copy</span>
+                <span>Save editable copy</span>
               </button>
 
               <button type="button" onclick="triggerLoadJSON()"
@@ -1292,7 +1298,7 @@
                 <svg class="w-4 h-4 text-editorial-burgundy" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                 </svg>
-                <span>Load Saved Copy</span>
+                <span>Load saved copy</span>
               </button>
             </div>
           </div>
@@ -1300,14 +1306,14 @@
           <!-- Final Readable Copy Card (PDF) -->
           <div class="bg-editorial-ivorySoft rounded-lg p-5 border border-editorial-gold/80 flex flex-col justify-between gap-4">
             <div>
-              <span class="inline-block text-[11px] font-bold uppercase tracking-[0.14em] text-white bg-editorial-burgundy px-2.5 py-0.5 rounded mb-2">
-                Final Readable Copy (.PDF)
+              <span class="inline-block text-[11px] font-bold tracking-[0.14em] text-white bg-editorial-burgundy px-2.5 py-0.5 rounded mb-2">
+                Final readable copy (.PDF)
               </span>
               <h3 class="font-editorial-serif text-xl font-bold text-editorial-navy">
-                Finished A4 Personal Brand Document
+                Finished A4 personal brand document
               </h3>
               <p class="text-xs sm:text-sm text-editorial-charcoal mt-1.5 leading-relaxed">
-                Generates a clean, formatted A4 PDF of your completed Personal Brand Brief for personal reference, mentoring discussions, or portfolio archiving.
+                Generates a clean, formatted A4 PDF of your completed personal brand brief for personal reference, mentoring discussions, or portfolio archiving.
               </p>
             </div>
 
@@ -1323,7 +1329,7 @@
               <button type="button" onclick="copyBriefToClipboard()"
                 class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-lg bg-white hover:bg-editorial-canvas border border-editorial-ivory text-editorial-charcoal hover:text-editorial-navy text-xs sm:text-sm font-medium transition cursor-pointer"
                 title="Copy plain-text summary to clipboard">
-                <span>Copy Text</span>
+                <span>Copy text</span>
               </button>
             </div>
           </div>
@@ -1332,7 +1338,7 @@
         <!-- Privacy & Browser Storage Notice -->
         <div class="pt-4 border-t border-editorial-ivory flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-editorial-charcoal">
           <p>
-            <strong class="text-editorial-navy font-semibold">Privacy &amp; Browser Storage Note:</strong>
+            <strong class="text-editorial-navy font-semibold">Privacy &amp; browser storage note:</strong>
             Nothing you write is sent to an external server. Locally saved progress stays only in this browser and may be lost if browser site data is cleared or if you use private/incognito browsing.
           </p>
         </div>
@@ -1356,8 +1362,8 @@
   <div id="load-confirm-modal" role="dialog" aria-modal="true" aria-labelledby="load-modal-title"
     class="no-print fixed inset-0 z-50 hidden items-center justify-center bg-editorial-ink/60 p-4">
     <div class="bg-white rounded-xl max-w-md max-h-full overflow-y-auto w-full p-4 sm:p-7 shadow-xl border border-editorial-gold">
-      <span class="text-[11px] uppercase tracking-[0.15em] text-editorial-burgundy font-bold block mb-1">
-        Restore Editable Copy
+      <span class="text-[11px] tracking-[0.15em] text-editorial-burgundy font-bold block mb-1">
+        Restore editable copy
       </span>
       <h3 id="load-modal-title" class="font-editorial-serif text-2xl font-bold text-editorial-navy">
         Replace your current responses?
@@ -1368,11 +1374,11 @@
       <div class="flex flex-wrap items-center justify-end gap-2.5 mt-6">
         <button type="button" onclick="cancelLoadJSON()"
           class="px-4 py-2.5 rounded-lg border border-editorial-ivory hover:border-editorial-navy text-editorial-navy text-xs sm:text-sm font-semibold transition cursor-pointer">
-          Keep Current Work
+          Keep current work
         </button>
         <button type="button" onclick="confirmLoadJSON()"
           class="px-4 py-2.5 rounded-lg bg-editorial-burgundy hover:bg-editorial-burgundyLight text-white text-xs sm:text-sm font-semibold transition cursor-pointer">
-          Yes, Load Saved Copy
+          Yes, load saved copy
         </button>
       </div>
     </div>
@@ -1382,8 +1388,8 @@
   <div id="reset-modal" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title"
     class="no-print fixed inset-0 z-50 hidden items-center justify-center bg-editorial-ink/60 p-4">
     <div class="bg-white rounded-xl max-w-md max-h-full overflow-y-auto w-full p-4 sm:p-7 shadow-xl border border-editorial-gold">
-      <span class="text-[11px] uppercase tracking-[0.15em] text-editorial-burgundy font-bold block mb-1">
-        Clear Workbook
+      <span class="text-[11px] tracking-[0.15em] text-editorial-burgundy font-bold block mb-1">
+        Clear workbook
       </span>
       <h3 id="reset-modal-title" class="font-editorial-serif text-2xl font-bold text-editorial-navy">
         Clear all responses on this device?
@@ -1398,7 +1404,7 @@
         </button>
         <button type="button" onclick="confirmReset()"
           class="px-4 py-2.5 rounded-lg bg-editorial-burgundy hover:bg-editorial-burgundyLight text-white text-xs sm:text-sm font-semibold transition cursor-pointer">
-          Yes, Clear Draft
+          Yes, clear draft
         </button>
       </div>
     </div>
@@ -1412,6 +1418,15 @@
     const STORAGE_KEY_V1 = 'leader_as_a_brand_brief_v1';
     const SCHEMA_ID = 'leader-as-a-brand-brief';
     const SCHEMA_VERSION = '2.0';
+    const SELECTION_LIMITS = {
+      'core-traits': 3,
+      voice: 5,
+      vibe: 2,
+      'visual-palette': 2,
+      'visual-composition': 2,
+      'visual-clothing': 2,
+      'visual-setting': 2
+    };
 
     let autosaveDebounceTimer = null;
     let toastDismissTimer = null;
@@ -1483,13 +1498,39 @@
       }, 3800);
     }
 
+    function getPlaceholderHeight(ta) {
+      const styles = getComputedStyle(ta);
+      const measure = document.createElement('div');
+      Object.assign(measure.style, {
+        position: 'fixed',
+        visibility: 'hidden',
+        boxSizing: 'border-box',
+        width: styles.width,
+        padding: styles.padding,
+        fontFamily: styles.fontFamily,
+        fontSize: styles.fontSize,
+        fontStyle: styles.fontStyle,
+        fontWeight: styles.fontWeight,
+        lineHeight: styles.lineHeight,
+        letterSpacing: styles.letterSpacing,
+        whiteSpace: 'pre-wrap',
+        overflowWrap: 'break-word'
+      });
+      measure.textContent = ta.placeholder;
+      document.body.appendChild(measure);
+      const height = Math.ceil(measure.getBoundingClientRect().height);
+      measure.remove();
+      return height;
+    }
+
     /**
-     * Auto-expands textareas to fit content and updates hidden print mirrors
+     * Fits textareas to their answers or placeholders and updates hidden print mirrors
      */
     function syncTextarea(ta) {
       if (!ta) return;
       ta.style.height = 'auto';
-      ta.style.height = `${Math.max(ta.scrollHeight, 50)}px`;
+      const placeholderHeight = !ta.value && ta.placeholder && ta.clientWidth ? getPlaceholderHeight(ta) : 0;
+      ta.style.height = `${Math.max(ta.scrollHeight, placeholderHeight)}px`;
       const mirror = ta.parentElement ? ta.parentElement.querySelector('.print-mirror') : null;
       if (mirror) {
         mirror.textContent = ta.value;
@@ -1517,6 +1558,9 @@
     function collectBriefState() {
       const getChecked = (group) =>
         Array.from(document.querySelectorAll(`.trait-pill[data-group="${group}"][data-checked="true"]`))
+          .map(el => el.dataset.label);
+      const getCustomChoices = (group) =>
+        Array.from(document.querySelectorAll(`.trait-pill[data-group="${group}"][data-custom-choice]`))
           .map(el => el.dataset.label);
 
       return {
@@ -1550,6 +1594,7 @@
         },
         personality: {
           coreTraits: getChecked('core-traits'),
+          customCoreTraits: getCustomChoices('core-traits'),
           traitOther: document.getElementById('trait-other')?.value || '',
           idea1: document.querySelector('[data-field="idea-1"]')?.value || '',
           idea2: document.querySelector('[data-field="idea-2"]')?.value || '',
@@ -1557,8 +1602,10 @@
         },
         expression: {
           voice: getChecked('voice'),
+          customVoice: getCustomChoices('voice'),
           voiceOther: document.getElementById('voice-other')?.value || '',
           vibe: getChecked('vibe'),
+          customVibe: getCustomChoices('vibe'),
           vibeOther: document.getElementById('vibe-other')?.value || '',
           visualPalette: getChecked('visual-palette'),
           visualComposition: getChecked('visual-composition'),
@@ -1592,8 +1639,7 @@
         .some(el => el.value.trim().length > 0);
       if (anyText) return true;
 
-      const anyChecked = document.querySelectorAll('.trait-pill[data-checked="true"]').length > 0;
-      return anyChecked;
+      return Boolean(document.querySelector('.trait-pill[data-checked="true"], .trait-pill[data-custom-choice]'));
     }
 
     /**
@@ -1682,17 +1728,25 @@
         if (posEl) posEl.value = state.usp.positioningStatement || '';
       }
 
-      // Helper to apply checked pill arrays
-      const applyPillGroup = (groupName, selectedList) => {
+      const applyPillGroup = (groupName, selectedList, customChoices) => {
+        const customGrid = document.getElementById(`${groupName}-grid`);
+        if (customGrid) {
+          customGrid.querySelectorAll('[data-custom-choice]').forEach(pill => pill.remove());
+          if (Array.isArray(customChoices)) {
+            customChoices.forEach(label => {
+              if (typeof label === 'string' && label.trim()) addCustomPill(customGrid, groupName, label.trim());
+            });
+          }
+        }
         const selectedSet = new Set(Array.isArray(selectedList) ? selectedList : []);
         document.querySelectorAll(`.trait-pill[data-group="${groupName}"]`).forEach(btn => {
           setPillState(btn, selectedSet.has(btn.dataset.label));
         });
       };
 
-      // 05 Personality & Key Messages
+      // 05 Personality & Key messages
       if (state.personality) {
-        applyPillGroup('core-traits', state.personality.coreTraits);
+        applyPillGroup('core-traits', state.personality.coreTraits, state.personality.customCoreTraits);
         const traitOtherEl = document.getElementById('trait-other');
         if (traitOtherEl) traitOtherEl.value = state.personality.traitOther || '';
         const i1 = document.querySelector('[data-field="idea-1"]');
@@ -1705,11 +1759,11 @@
 
       // 06 Voice, Vibe & Visual Identity
       if (state.expression) {
-        applyPillGroup('voice', state.expression.voice);
+        applyPillGroup('voice', state.expression.voice, state.expression.customVoice);
         const voiceOtherEl = document.getElementById('voice-other');
         if (voiceOtherEl) voiceOtherEl.value = state.expression.voiceOther || '';
 
-        applyPillGroup('vibe', state.expression.vibe);
+        applyPillGroup('vibe', state.expression.vibe, state.expression.customVibe);
         const vibeOtherEl = document.getElementById('vibe-other');
         if (vibeOtherEl) vibeOtherEl.value = state.expression.vibeOther || '';
 
@@ -1719,7 +1773,7 @@
         applyPillGroup('visual-setting', state.expression.visualSetting);
       }
 
-      // 07 Brand Touchpoints
+      // 07 Brand touchpoints
       const touchpointContainer = document.getElementById('touchpoint-rows');
       if (touchpointContainer) {
         touchpointContainer.innerHTML = '';
@@ -1811,7 +1865,7 @@
     }
 
     /**
-     * Save Editable Copy (Download JSON with Schema Version)
+     * Save editable copy (Download JSON with Schema Version)
      */
     function downloadEditableJSON() {
       try {
@@ -1840,7 +1894,7 @@
     }
 
     /**
-     * Load Saved Copy (Trigger File Picker, Validate & Confirm Before Replacing)
+     * Load saved copy (Trigger File Picker, Validate & Confirm Before Replacing)
      */
     function triggerLoadJSON() {
       const input = document.getElementById('load-json-input');
@@ -1982,7 +2036,7 @@
           doc.setFont('helvetica', 'bold');
           doc.setFontSize(7.5);
           doc.setTextColor(...GOLD);
-          doc.text('THE LEADER AS A BRAND', margin + 3.5, y + 5.2);
+          doc.text('The Leader as a Brand', margin + 3.5, y + 5.2);
           doc.setTextColor(230, 223, 215);
           doc.text('BIP · Bucharest 2026', pageW - margin - 3.5, y + 5.2, { align: 'right' });
           y += 8;
@@ -2023,7 +2077,7 @@
             doc.setFont('helvetica', 'bold');
             doc.setFontSize(7.2);
             doc.setTextColor(...BURGUNDY);
-            doc.text('FINAL STAGE', pageW - margin, y + 4.3, { align: 'right' });
+            doc.text('Final stage', pageW - margin, y + 4.3, { align: 'right' });
           }
           y += 7.5;
 
@@ -2055,7 +2109,7 @@
           doc.setFont('helvetica', 'bold');
           doc.setFontSize(7.4);
           doc.setTextColor(...labelRgb);
-          doc.text(label.toUpperCase(), margin + 3.5, y + 4.8);
+          doc.text(label, margin + 3.5, y + 4.8);
 
           doc.setFont('helvetica', 'normal');
           doc.setFontSize(9);
@@ -2078,7 +2132,7 @@
           doc.setFontSize(7.4);
           doc.setTextColor(...headerText);
           headers.forEach((h, i) => {
-            doc.text(h.toUpperCase(), curX + 2.5, y + 5);
+            doc.text(h, curX + 2.5, y + 5);
             if (i > 0) doc.line(curX, y, curX, y + headerH);
             curX += colWidths[i];
           });
@@ -2111,20 +2165,15 @@
           y += 4;
         };
 
-        const drawPillTags = (subHeading, items, otherVal = '') => {
-          const allItems = [...items];
-          if (otherVal && otherVal.trim()) {
-            allItems.push(`Other: ${sanitizeForPdf(otherVal.trim())}`);
-          }
-
+        const drawPillTags = (subHeading, items) => {
           ensureSpace(14);
           doc.setFont('helvetica', 'bold');
           doc.setFontSize(7.8);
           doc.setTextColor(...NAVY);
-          doc.text(subHeading.toUpperCase(), margin, y + 3.5);
+          doc.text(subHeading, margin, y + 3.5);
           y += 5.5;
 
-          if (allItems.length === 0) {
+          if (items.length === 0) {
             doc.setFont('helvetica', 'italic');
             doc.setFontSize(8.5);
             doc.setTextColor(...CHARCOAL);
@@ -2138,7 +2187,7 @@
           doc.setFont('helvetica', 'bold');
           doc.setFontSize(8);
 
-          allItems.forEach(tag => {
+          items.forEach(tag => {
             const textW = doc.getTextWidth(tag);
             const pillW = Math.min(textW + 6, contentW);
             if (curX + pillW > pageW - margin) {
@@ -2157,7 +2206,7 @@
 
         // ================= PART I: BRAND FOUNDATION =================
         drawBanner(
-          'MY PERSONAL BRAND BRIEF',
+          'My personal brand brief',
           'BIP Empowering Leadership Skills in International Business'
         );
 
@@ -2173,8 +2222,8 @@
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(7.2);
         doc.setTextColor(...NAVY);
-        doc.text('NAME', margin + 3, y + 4.3);
-        doc.text('DATE', margin + halfW + 7, y + 4.3);
+        doc.text('Name', margin + 3, y + 4.3);
+        doc.text('Date', margin + halfW + 7, y + 4.3);
 
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(9.5);
@@ -2183,32 +2232,32 @@
         doc.text(dateVal, margin + halfW + 7, y + 9.5);
         y += 16;
 
-        // 01 MY PROFESSIONAL GOALS
-        drawSectionHeader('01', 'MY PROFESSIONAL GOALS', 'What do I want to achieve professionally in the next 6-12 months?');
+        // 01 My professional goals
+        drawSectionHeader('01', 'My professional goals', 'What do I want to achieve professionally in the next 6-12 months?');
         ['goal-1', 'goal-2', 'goal-3'].forEach((key, idx) => {
           const val = document.querySelector(`[data-field="${key}"]`).value;
           drawLabeledBox(`0${idx + 1}) Goal`, val);
         });
         y += 1.5;
 
-        // 02 MY TARGET AUDIENCES
-        drawSectionHeader('02', 'MY TARGET AUDIENCES', 'Who do I want to reach, and what do I want to achieve through these relationships?');
+        // 02 My target audiences
+        drawSectionHeader('02', 'My target audiences', 'Who do I want to reach, and what do I want to achieve through these relationships?');
         const audienceRows = Array.from(document.querySelectorAll('.audience-row')).map(row => [
           row.querySelector('.audience-who').value,
           row.querySelector('.audience-why').value,
           row.querySelector('[data-priority]').dataset.priority || '-'
         ]);
-        drawTable(['Target Audience (Who?)', 'Communication Objective (Why?)', 'Priority'], [0.35, 0.47, 0.18], audienceRows);
+        drawTable(['Target audience (who?)', 'Communication objective (why?)', 'Priority'], [0.35, 0.47, 0.18], audienceRows);
 
-        // 03 RECOGNISING MY STRENGTHS
-        drawSectionHeader('03', 'RECOGNISING MY STRENGTHS', 'What am I genuinely good at, and what could I improve?');
+        // 03 Recognising my strengths
+        drawSectionHeader('03', 'Recognising my strengths', 'What am I genuinely good at, and what could I improve?');
         const strengthRows = Array.from(document.querySelectorAll('.strength-row')).map(row => [
           row.querySelector('.strength-name').value,
           row.querySelector('.strength-source').value
         ]);
-        drawTable(['Strength / Experience', 'Where I Have Demonstrated It / Experience Source'], [0.42, 0.58], strengthRows);
+        drawTable(['Strength / experience', 'Where I have demonstrated it / experience source'], [0.42, 0.58], strengthRows);
         drawLabeledBox(
-          'One Limitation to Develop or Manage (And How)',
+          'One limitation to develop or manage (and how)',
           document.getElementById('limitation-input').value,
           [243, 239, 234],
           GOLD,
@@ -2216,12 +2265,12 @@
         );
         y += 1.5;
 
-        // 04 MY USP & POSITIONING
-        drawSectionHeader('04', 'MY USP & POSITIONING', 'What makes my value relevant and distinctive?');
-        drawLabeledBox('My Distinctive Combination', document.getElementById('usp-combination').value);
-        drawLabeledBox('The Value to My Audience', document.getElementById('usp-value').value);
+        // 04 My USP & positioning
+        drawSectionHeader('04', 'My USP & positioning', 'What makes my value relevant and distinctive?');
+        drawLabeledBox('My distinctive combination', document.getElementById('usp-combination').value);
+        drawLabeledBox('The value to my audience', document.getElementById('usp-value').value);
         drawLabeledBox(
-          'My Positioning Statement',
+          'My positioning statement',
           document.getElementById('positioning-statement').value,
           [243, 239, 234],
           NAVY,
@@ -2232,66 +2281,66 @@
         doc.addPage();
         y = margin;
         drawBanner(
-          'MY BRAND EXPRESSION',
-          'Identity, Communication Style, Touchpoints & 30-Day Action Plan'
+          'My brand expression',
+          'Identity, communication style, touchpoints & 30-day action plan'
         );
 
-        // 05 MY BRAND PERSONALITY & KEY MESSAGES
-        drawSectionHeader('05', 'MY BRAND PERSONALITY & KEY MESSAGES', 'What qualities define me, and what do I want others to remember about me?');
-        drawPillTags('My Core Traits (Up to 3)', getChecked('core-traits'), document.getElementById('trait-other').value);
+        // 05 My brand personality & key messages
+        drawSectionHeader('05', 'My brand personality & key messages', 'What qualities define me, and what do I want others to remember about me?');
+        drawPillTags('My core traits (up to 3)', getChecked('core-traits'));
         ['idea-1', 'idea-2', 'idea-3'].forEach((key, idx) => {
           const val = document.querySelector(`[data-field="${key}"]`).value;
-          drawLabeledBox(`0${idx + 1}) Key Idea to Remember`, val);
+          drawLabeledBox(`0${idx + 1}) Key message`, val);
         });
         y += 1.5;
 
-        // 06 MY VOICE, VIBE & VISUAL IDENTITY
-        drawSectionHeader('06', 'MY VOICE, VIBE & VISUAL IDENTITY', 'How do I want to communicate, and what impression should my personal brand create?');
-        drawPillTags('My Voice (3-5 Qualities)', getChecked('voice'), document.getElementById('voice-other').value);
-        drawPillTags('My Vibe (Up to 2)', getChecked('vibe'), document.getElementById('vibe-other').value);
+        // 06 My voice, vibe & visual identity
+        drawSectionHeader('06', 'My voice, vibe & visual identity', 'How do I want to communicate, and what impression should my personal brand create?');
+        drawPillTags('My voice (3-5 qualities)', getChecked('voice'));
+        drawPillTags('My vibe (up to 2)', getChecked('vibe'));
 
         const visualRows = [
-          ['PALETTE', getChecked('visual-palette').join(', ') || '-'],
-          ['COMPOSITION', getChecked('visual-composition').join(', ') || '-'],
-          ['CLOTHING', getChecked('visual-clothing').join(', ') || '-'],
-          ['SETTING', getChecked('visual-setting').join(', ') || '-']
+          ['Palette', getChecked('visual-palette').join(', ') || '-'],
+          ['Composition', getChecked('visual-composition').join(', ') || '-'],
+          ['Clothing', getChecked('visual-clothing').join(', ') || '-'],
+          ['Setting', getChecked('visual-setting').join(', ') || '-']
         ];
-        drawTable(['Visual Identity Dimension', 'Selected Attributes'], [0.3, 0.7], visualRows);
+        drawTable(['Visual identity dimension', 'Selected attributes'], [0.3, 0.7], visualRows);
 
-        // 07 MY BRAND TOUCHPOINTS
-        drawSectionHeader('07', 'MY BRAND TOUCHPOINTS', 'Where does my audience encounter me, and what impression do I create?');
+        // 07 My brand touchpoints
+        drawSectionHeader('07', 'My brand touchpoints', 'Where does my audience encounter me, and what impression do I create?');
         const touchpointRows = Array.from(document.querySelectorAll('.touchpoint-row')).map(row => [
           row.querySelector('.tp-channel').value,
           row.querySelector('.tp-impression').value,
           row.querySelector('.tp-demo').value
         ]);
-        drawTable(['Touchpoint (Channel)', 'Impression I Want to Create', 'How I Will Demonstrate It'], [0.25, 0.35, 0.40], touchpointRows);
+        drawTable(['Touchpoint (channel)', 'Impression I want to create', 'How I will demonstrate it'], [0.25, 0.35, 0.40], touchpointRows);
 
-        // 08 MY 30-DAY BRAND ACTION PLAN (Final Stage)
+        // 08 My 30-day brand action plan (Final stage)
         drawSectionHeader(
           '08',
-          'MY 30-DAY BRAND ACTION PLAN',
-          'What concrete actions can I take over the next month to strengthen my professional brand? - Turn your personal brand strategy into three realistic actions.',
+          'My 30-day brand action plan',
+          'What concrete actions can I take over the next month to strengthen my professional brand?',
           true
         );
         const actionRows = [
           [
-            'DEVELOP (Improve a skill or capability)',
+            'Develop (Improve a skill or capability)',
             document.querySelector('[data-action="develop-spec"]').value,
             getActionDeadline('develop')
           ],
           [
-            'DEMONSTRATE (Create evidence of my value)',
+            'Demonstrate (Create evidence of my value)',
             document.querySelector('[data-action="demonstrate-spec"]').value,
             getActionDeadline('demonstrate')
           ],
           [
-            'COMMUNICATE (Make my value visible to my audience)',
+            'Communicate (Make my value visible to my audience)',
             document.querySelector('[data-action="communicate-spec"]').value,
             getActionDeadline('communicate')
           ]
         ];
-        drawTable(['Focus', 'Specific Action + Measurable Proof', 'By When?'], [0.28, 0.52, 0.20], actionRows, NAVY, [255, 255, 255]);
+        drawTable(['Focus', 'Specific action + measurable proof', 'By when?'], [0.28, 0.52, 0.20], actionRows, NAVY, [255, 255, 255]);
 
         // Editorial Page Footer on Every Page
         const totalPages = doc.getNumberOfPages();
@@ -2302,7 +2351,7 @@
           doc.setFont('helvetica', 'normal');
           doc.setFontSize(7.5);
           doc.setTextColor(...CHARCOAL);
-          doc.text('The Leader as a Brand · My Personal Brand Brief · BIP Bucharest 2026', margin, pageH - 7.5);
+          doc.text('The Leader as a Brand · My personal brand brief · BIP Bucharest 2026', margin, pageH - 7.5);
           doc.text(`Page ${p} of ${totalPages}`, pageW - margin, pageH - 7.5, { align: 'right' });
         }
 
@@ -2314,12 +2363,12 @@
         showToast(`Exported final PDF "${fileName}".`);
       } catch (err) {
         console.error(err);
-        showToast('Could not generate PDF automatically. Try "Save Editable Copy" instead.', 'warning');
+        showToast('Could not generate PDF automatically. Try "Save editable copy" instead.', 'warning');
       }
     }
 
     /**
-     * Creates an Accessible Selectable Chip / Tile (Non-restrictive strategic guidance)
+     * Creates an accessible selectable chip
      */
     function createPillElement(label, groupName) {
       const btn = document.createElement('button');
@@ -2336,12 +2385,13 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </span>
-        <span>${label}</span>
+        <span></span>
       `;
+      btn.lastElementChild.textContent = label;
 
       btn.addEventListener('click', () => {
-        const isCurrentlyChecked = btn.dataset.checked === 'true';
-        const nextState = !isCurrentlyChecked;
+        const nextState = btn.dataset.checked !== 'true';
+        if (nextState && !canSelectAnother(groupName)) return;
         setPillState(btn, nextState);
         updateCounters();
         updateProgress();
@@ -2359,6 +2409,38 @@
         if (checked) icon.classList.remove('hidden');
         else icon.classList.add('hidden');
       }
+    }
+
+    function addCustomPill(grid, groupName, label) {
+      const existingPill = Array.from(grid.querySelectorAll('.trait-pill'))
+        .find(pill => pill.dataset.label.toLowerCase() === label.toLowerCase());
+      if (existingPill) return existingPill;
+
+      const pill = createPillElement(label, groupName);
+      pill.dataset.customChoice = '';
+      grid.appendChild(pill);
+      return pill;
+    }
+
+    function initializeCustomChoices() {
+      document.querySelectorAll('form[data-choice-group]').forEach(form => {
+        const group = form.dataset.choiceGroup;
+        const grid = document.getElementById(`${group}-grid`);
+        const input = form.querySelector('input');
+
+        form.addEventListener('submit', event => {
+          event.preventDefault();
+          const label = input.value.trim();
+          input.focus();
+          if (!label || !canSelectAnother(group)) return;
+
+          setPillState(addCustomPill(grid, group, label), true);
+          input.value = '';
+          updateCounters();
+          updateProgress();
+          saveNowToLocalStorage();
+        });
+      });
     }
 
     /**
@@ -2387,11 +2469,21 @@
       updateCounters();
     }
 
-    /**
-     * Updates Dynamic Selection Counters & Non-Restrictive Limit Guidance
-     */
-    function updateGroupCounterAndMessage({ group, counterId, messageId, max, minRecommended, neutralClass, activeClass, overClass }) {
-      const count = document.querySelectorAll(`.trait-pill[data-group="${group}"][data-checked="true"]`).length;
+    function countSelectedPills(group) {
+      return document.querySelectorAll(`.trait-pill[data-group="${group}"][data-checked="true"]`).length;
+    }
+
+    function canSelectAnother(group) {
+      const max = SELECTION_LIMITS[group];
+      if (countSelectedPills(group) < max) return true;
+
+      showToast(`You can select up to ${max} options in this group. Deselect choices to make room for another.`, 'warning');
+      return false;
+    }
+
+    function updateGroupCounterAndMessage({ group, counterId, messageId, minRecommended, neutralClass, activeClass, overClass }) {
+      const max = SELECTION_LIMITS[group];
+      const count = countSelectedPills(group);
       const badge = document.getElementById(counterId);
       const msgEl = document.getElementById(messageId);
 
@@ -2407,11 +2499,7 @@
       }
 
       if (msgEl) {
-        if (count >= max) {
-          msgEl.classList.remove('hidden');
-        } else {
-          msgEl.classList.add('hidden');
-        }
+        msgEl.classList.toggle('hidden', count < max);
       }
     }
 
@@ -2424,7 +2512,6 @@
         group: 'core-traits',
         counterId: 'traits-counter',
         messageId: 'traits-limit-msg',
-        max: 3,
         minRecommended: 3,
         neutralClass: sectionNeutral,
         activeClass: sectionActive,
@@ -2435,7 +2522,6 @@
         group: 'voice',
         counterId: 'voice-counter',
         messageId: 'voice-limit-msg',
-        max: 5,
         minRecommended: 3,
         neutralClass: sectionNeutral,
         activeClass: sectionActive,
@@ -2446,7 +2532,6 @@
         group: 'vibe',
         counterId: 'vibe-counter',
         messageId: 'vibe-limit-msg',
-        max: 2,
         minRecommended: 2,
         neutralClass: sectionNeutral,
         activeClass: sectionActive,
@@ -2462,7 +2547,6 @@
           group,
           counterId: `${group}-counter`,
           messageId: `${group}-limit-msg`,
-          max: 2,
           minRecommended: 2,
           neutralClass: visualNeutral,
           activeClass: visualActive,
@@ -2500,6 +2584,36 @@
       });
     }
 
+    function nextWorkbookRowId(container) {
+      const id = Number(container.dataset.rowSequence || 0) + 1;
+      container.dataset.rowSequence = id;
+      return id;
+    }
+
+    function appendWorkbookRow(container, row, skipSave) {
+      if (container.children.length >= 3) {
+        const removeButton = document.createElement('button');
+        removeButton.type = 'button';
+        removeButton.className = 'no-print md:col-span-full justify-self-end rounded-md border border-editorial-burgundy/30 px-3 py-1.5 text-xs font-semibold text-editorial-burgundy hover:bg-editorial-ivorySoft';
+        removeButton.dataset.removeRow = '';
+        removeButton.textContent = 'Remove row';
+        removeButton.addEventListener('click', () => {
+          const focusTarget = row.nextElementSibling?.querySelector('[data-remove-row]')
+            || row.previousElementSibling?.querySelector('[data-remove-row]')
+            || document.querySelector(`button[aria-controls="${container.id}"]`);
+          row.remove();
+          updateProgress();
+          saveNowToLocalStorage();
+          focusTarget?.focus();
+        });
+        row.appendChild(removeButton);
+      }
+
+      container.appendChild(row);
+      bindAutoGrowAll();
+      if (!skipSave) saveNowToLocalStorage();
+    }
+
     /**
      * Adds an editable Target Audience row (Section 02) with mutually exclusive Primary/Secondary priority toggles
      */
@@ -2507,32 +2621,32 @@
       const container = document.getElementById('audience-rows');
       if (!container) return;
 
-      const idx = container.children.length + 1;
+      const idx = nextWorkbookRowId(container);
       const row = document.createElement('div');
       row.className = 'audience-row grid grid-cols-1 md:grid-cols-12 gap-4 p-4 bg-white items-start';
 
       row.innerHTML = `
         <div class="md:col-span-4 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-          <label for="aud-who-${idx}" class="block md:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
-            Target Audience (Who?)
+          <label for="aud-who-${idx}" class="block md:sr-only text-[11px] font-bold tracking-wider text-editorial-navy mb-1">
+            Target audience (who?)
           </label>
-          <textarea id="aud-who-${idx}" rows="1" placeholder="e.g., International recruiters, team peers..."
+          <textarea id="aud-who-${idx}" rows="1" placeholder="e.g., international recruiters, team peers..."
             class="auto-grow audience-who w-full bg-transparent text-sm font-medium text-editorial-ink focus:outline-none"></textarea>
           <div class="print-mirror font-medium"></div>
         </div>
         <div class="md:col-span-5 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-          <label for="aud-why-${idx}" class="block md:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
-            Communication Objective (Why?)
+          <label for="aud-why-${idx}" class="block md:sr-only text-[11px] font-bold tracking-wider text-editorial-navy mb-1">
+            Communication objective (why?)
           </label>
-          <textarea id="aud-why-${idx}" rows="1" placeholder="e.g., Build trust as a reliable cross-cultural collaborator..."
+          <textarea id="aud-why-${idx}" rows="1" placeholder="e.g., build trust as a reliable cross-cultural collaborator..."
             class="auto-grow audience-why w-full bg-transparent text-sm text-editorial-ink focus:outline-none"></textarea>
           <div class="print-mirror"></div>
         </div>
         <div class="md:col-span-3 flex flex-col justify-center">
-          <span class="block md:hidden text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1.5">
+          <span class="block md:hidden text-[11px] font-bold tracking-wider text-editorial-navy mb-1.5">
             Priority
           </span>
-          <div class="flex flex-wrap items-center gap-2" data-priority="" role="group" aria-label="Priority for audience row ${idx}">
+          <div class="flex flex-wrap items-center gap-2" data-priority="" role="group" aria-label="Audience priority">
             <button type="button" data-prio-btn="Primary" aria-pressed="false"
               class="prio-toggle inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[#CFC6BA] bg-white text-editorial-ink text-xs font-semibold transition cursor-pointer">
               <span class="prio-dot w-2 h-2 rounded-full bg-editorial-ivory border border-[#9E9589]" aria-hidden="true"></span>
@@ -2588,81 +2702,75 @@
       const normalizedInitial = priorityVal === 'Primary' || priorityVal === 'Secondary' ? priorityVal : '';
       updatePriorityState(normalizedInitial);
 
-      container.appendChild(row);
-      bindAutoGrowAll();
-      if (!skipSave) saveNowToLocalStorage();
+      appendWorkbookRow(container, row, skipSave);
     }
 
     function addStrengthRow(strengthVal = '', sourceVal = '', skipSave = false) {
       const container = document.getElementById('strength-rows');
-      const idx = container.children.length + 1;
+      const idx = nextWorkbookRowId(container);
       const row = document.createElement('div');
       row.className = 'strength-row grid grid-cols-1 md:grid-cols-12 gap-4 p-4 bg-white items-start';
 
       row.innerHTML = `
         <div class="md:col-span-5 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-          <label for="str-name-${idx}" class="block md:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
-            Strength / Experience
+          <label for="str-name-${idx}" class="block md:sr-only text-[11px] font-bold tracking-wider text-editorial-navy mb-1">
+            Strength / experience
           </label>
-          <textarea id="str-name-${idx}" rows="1" placeholder="e.g., Structured synthesis in multicultural teams..."
+          <textarea id="str-name-${idx}" rows="1" placeholder="e.g., structured synthesis in multicultural teams..."
             class="auto-grow strength-name w-full bg-transparent text-sm text-editorial-ink focus:outline-none">${strengthVal}</textarea>
           <div class="print-mirror"></div>
         </div>
         <div class="md:col-span-7 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-          <label for="str-src-${idx}" class="block md:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
-            Where I Have Demonstrated It / Experience Source
+          <label for="str-src-${idx}" class="block md:sr-only text-[11px] font-bold tracking-wider text-editorial-navy mb-1">
+            Where I have demonstrated it / experience source
           </label>
-          <textarea id="str-src-${idx}" rows="1" placeholder="e.g., Coordinated international case deliverables across 4 universities..."
+          <textarea id="str-src-${idx}" rows="1" placeholder="e.g., coordinated international case deliverables across 4 universities..."
             class="auto-grow strength-source w-full bg-transparent text-sm text-editorial-ink focus:outline-none">${sourceVal}</textarea>
           <div class="print-mirror"></div>
         </div>
       `;
 
-      container.appendChild(row);
-      bindAutoGrowAll();
-      if (!skipSave) saveNowToLocalStorage();
+      appendWorkbookRow(container, row, skipSave);
     }
 
     function addTouchpointRow(channelVal = '', impressionVal = '', demoVal = '', skipSave = false) {
       const container = document.getElementById('touchpoint-rows');
-      const idx = container.children.length + 1;
+      const idx = nextWorkbookRowId(container);
       const row = document.createElement('div');
       row.className = 'touchpoint-row grid grid-cols-1 md:grid-cols-12 gap-4 p-4 bg-white items-start';
 
       row.innerHTML = `
         <div class="md:col-span-3 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-          <label for="tp-ch-${idx}" class="block md:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
-            Touchpoint (Channel)
+          <label for="tp-ch-${idx}" class="block md:sr-only text-[11px] font-bold tracking-wider text-editorial-navy mb-1">
+            Touchpoint (channel)
           </label>
-          <textarea id="tp-ch-${idx}" rows="1" placeholder="e.g., LinkedIn, Seminar Presentations..."
+          <textarea id="tp-ch-${idx}" rows="1" placeholder="e.g., LinkedIn, seminar presentations..."
             class="auto-grow tp-channel w-full bg-transparent text-sm font-medium text-editorial-ink focus:outline-none">${channelVal}</textarea>
           <div class="print-mirror font-medium"></div>
         </div>
         <div class="md:col-span-4 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-          <label for="tp-imp-${idx}" class="block md:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
-            Impression I Want to Create
+          <label for="tp-imp-${idx}" class="block md:sr-only text-[11px] font-bold tracking-wider text-editorial-navy mb-1">
+            Impression I want to create
           </label>
-          <textarea id="tp-imp-${idx}" rows="1" placeholder="e.g., Thoughtful, dependable collaborator..."
+          <textarea id="tp-imp-${idx}" rows="1" placeholder="e.g., thoughtful, dependable collaborator..."
             class="auto-grow tp-impression w-full bg-transparent text-sm text-editorial-ink focus:outline-none">${impressionVal}</textarea>
           <div class="print-mirror"></div>
         </div>
         <div class="md:col-span-5 bg-editorial-canvas md:bg-transparent rounded-lg p-3 md:p-0 border border-editorial-ivory md:border-0">
-          <label for="tp-demo-${idx}" class="block md:sr-only text-[11px] font-bold uppercase tracking-wider text-editorial-navy mb-1">
-            How I Will Demonstrate It
+          <label for="tp-demo-${idx}" class="block md:sr-only text-[11px] font-bold tracking-wider text-editorial-navy mb-1">
+            How I will demonstrate it
           </label>
-          <textarea id="tp-demo-${idx}" rows="1" placeholder="e.g., Clear summary takeaways & attentive listening..."
+          <textarea id="tp-demo-${idx}" rows="1" placeholder="e.g., clear summary takeaways & attentive listening..."
             class="auto-grow tp-demo w-full bg-transparent text-sm text-editorial-ink focus:outline-none">${demoVal}</textarea>
           <div class="print-mirror"></div>
         </div>
       `;
 
-      container.appendChild(row);
-      bindAutoGrowAll();
-      if (!skipSave) saveNowToLocalStorage();
+      appendWorkbookRow(container, row, skipSave);
     }
 
     /**
-     * Inserts the Positioning Statement Formula Starter into Section 04
+     * Inserts the Positioning statement Formula Starter into Section 04
      */
     function insertPositioningStarter() {
       const ta = document.getElementById('positioning-statement');
@@ -2848,18 +2956,18 @@
 
       const lines = [
         '====================================================================',
-        'MY PERSONAL BRAND BRIEF — THE LEADER AS A BRAND',
+        'My personal brand brief — The Leader as a Brand',
         'BIP Empowering Leadership Skills in International Business · Bucharest 2026',
         '====================================================================',
         `NAME: ${name}`,
         `DATE: ${date}`,
         '',
-        '01 MY PROFESSIONAL GOALS (Next 6–12 months)',
+        '01 My professional goals (Next 6–12 months)',
         `  01) ${document.querySelector('[data-field="goal-1"]').value.trim() || '-'}`,
         `  02) ${document.querySelector('[data-field="goal-2"]').value.trim() || '-'}`,
         `  03) ${document.querySelector('[data-field="goal-3"]').value.trim() || '-'}`,
         '',
-        '02 MY TARGET AUDIENCES'
+        '02 My target audiences'
       ];
 
       document.querySelectorAll('.audience-row').forEach((row, idx) => {
@@ -2869,55 +2977,48 @@
         lines.push(`  ${idx + 1}. Audience: ${who} | Objective: ${why} | Priority: ${prio}`);
       });
 
-      lines.push('', '03 RECOGNISING MY STRENGTHS');
+      lines.push('', '03 Recognising my strengths');
       document.querySelectorAll('.strength-row').forEach((row, idx) => {
         const str = row.querySelector('.strength-name').value.trim() || '-';
         const src = row.querySelector('.strength-source').value.trim() || '-';
         lines.push(`  ${idx + 1}. Strength: ${str} | Demonstrated: ${src}`);
       });
-      lines.push(`  Limitation to Develop/Manage: ${document.getElementById('limitation-input').value.trim() || '-'}`);
+      lines.push(`  Limitation to develop/manage: ${document.getElementById('limitation-input').value.trim() || '-'}`);
 
       lines.push(
         '',
-        '04 MY USP & POSITIONING',
-        `  Distinctive Combination: ${document.getElementById('usp-combination').value.trim() || '-'}`,
-        `  Value to Audience: ${document.getElementById('usp-value').value.trim() || '-'}`,
-        `  Positioning Statement: ${document.getElementById('positioning-statement').value.trim() || '-'}`,
+        '04 My USP & positioning',
+        `  Distinctive combination: ${document.getElementById('usp-combination').value.trim() || '-'}`,
+        `  Value to audience: ${document.getElementById('usp-value').value.trim() || '-'}`,
+        `  Positioning statement: ${document.getElementById('positioning-statement').value.trim() || '-'}`,
         '',
         '--------------------------------------------------------------------',
-        'MY BRAND EXPRESSION',
+        'My brand expression',
         '--------------------------------------------------------------------',
         '',
-        '05 MY BRAND PERSONALITY & KEY MESSAGES'
+        '05 My brand personality & key messages'
       );
 
       const traits = getChecked('core-traits');
-      const traitOther = document.getElementById('trait-other').value.trim();
-      if (traitOther) traits.push(`Other: ${traitOther}`);
-      lines.push(`  Core Traits: ${traits.length ? traits.join(', ') : '-'}`);
-      lines.push(`  Key Idea 01) ${document.querySelector('[data-field="idea-1"]').value.trim() || '-'}`);
-      lines.push(`  Key Idea 02) ${document.querySelector('[data-field="idea-2"]').value.trim() || '-'}`);
-      lines.push(`  Key Idea 03) ${document.querySelector('[data-field="idea-3"]').value.trim() || '-'}`);
+      lines.push(`  Core traits: ${traits.length ? traits.join(', ') : '-'}`);
+      lines.push(`  Key message 01) ${document.querySelector('[data-field="idea-1"]').value.trim() || '-'}`);
+      lines.push(`  Key message 02) ${document.querySelector('[data-field="idea-2"]').value.trim() || '-'}`);
+      lines.push(`  Key message 03) ${document.querySelector('[data-field="idea-3"]').value.trim() || '-'}`);
 
       const voices = getChecked('voice');
-      const voiceOther = document.getElementById('voice-other').value.trim();
-      if (voiceOther) voices.push(`Other: ${voiceOther}`);
-
       const vibes = getChecked('vibe');
-      const vibeOther = document.getElementById('vibe-other').value.trim();
-      if (vibeOther) vibes.push(`Other: ${vibeOther}`);
 
       lines.push(
         '',
-        '06 MY VOICE, VIBE & VISUAL IDENTITY',
+        '06 My voice, vibe & visual identity',
         `  Voice: ${voices.length ? voices.join(', ') : '-'}`,
         `  Vibe: ${vibes.length ? vibes.join(', ') : '-'}`,
-        `  Visual Palette: ${getChecked('visual-palette').join(', ') || '-'}`,
-        `  Visual Composition: ${getChecked('visual-composition').join(', ') || '-'}`,
-        `  Visual Clothing: ${getChecked('visual-clothing').join(', ') || '-'}`,
-        `  Visual Setting: ${getChecked('visual-setting').join(', ') || '-'}`,
+        `  Visual palette: ${getChecked('visual-palette').join(', ') || '-'}`,
+        `  Visual composition: ${getChecked('visual-composition').join(', ') || '-'}`,
+        `  Visual clothing: ${getChecked('visual-clothing').join(', ') || '-'}`,
+        `  Visual setting: ${getChecked('visual-setting').join(', ') || '-'}`,
         '',
-        '07 MY BRAND TOUCHPOINTS'
+        '07 My brand touchpoints'
       );
 
       document.querySelectorAll('.touchpoint-row').forEach((row, idx) => {
@@ -2929,10 +3030,10 @@
 
       lines.push(
         '',
-        '08 MY 30-DAY BRAND ACTION PLAN',
-        `  DEVELOP: ${document.querySelector('[data-action="develop-spec"]').value.trim() || '-'} (By when: ${getActionDeadline('develop').trim() || '-'})`,
-        `  DEMONSTRATE: ${document.querySelector('[data-action="demonstrate-spec"]').value.trim() || '-'} (By when: ${getActionDeadline('demonstrate').trim() || '-'})`,
-        `  COMMUNICATE: ${document.querySelector('[data-action="communicate-spec"]').value.trim() || '-'} (By when: ${getActionDeadline('communicate').trim() || '-'})`,
+        '08 My 30-day brand action plan',
+        `  Develop: ${document.querySelector('[data-action="develop-spec"]').value.trim() || '-'} (By when: ${getActionDeadline('develop').trim() || '-'})`,
+        `  Demonstrate: ${document.querySelector('[data-action="demonstrate-spec"]').value.trim() || '-'} (By when: ${getActionDeadline('demonstrate').trim() || '-'})`,
+        `  Communicate: ${document.querySelector('[data-action="communicate-spec"]').value.trim() || '-'} (By when: ${getActionDeadline('communicate').trim() || '-'})`,
         '===================================================================='
       );
 
@@ -2958,9 +3059,9 @@
         document.body.removeChild(tempArea);
 
         if (successful) {
-          showToast('Full Personal Brand Brief copied to clipboard.');
+          showToast('Full personal brand brief copied to clipboard.');
         } else {
-          showToast('Unable to copy automatically. Try "Save Editable Copy" or "Export as PDF".', 'warning');
+          showToast('Unable to copy automatically. Try "Save editable copy" or "Export as PDF".', 'warning');
         }
       } catch (err) {
         showToast('Unable to copy automatically.', 'warning');
@@ -2968,7 +3069,7 @@
     }
 
     /**
-     * Clear Draft Confirmation Modal Controls
+     * Clear draft Confirmation Modal Controls
      */
     function openResetModal() {
       const modal = document.getElementById('reset-modal');
@@ -3008,6 +3109,7 @@
         syncTextarea(ta);
       });
 
+      document.querySelectorAll('.trait-pill[data-custom-choice]').forEach(pill => pill.remove());
       document.querySelectorAll('.trait-pill').forEach(btn => {
         setPillState(btn, false);
       });
@@ -3091,6 +3193,7 @@
       }
 
       initializePillGroups();
+      initializeCustomChoices();
       bindAutoGrowAll();
       initializeSectionNavigation();
       initializeRequiredFieldValidation();
@@ -3099,14 +3202,16 @@
       restoreFromLocalStorage();
       updateProgress();
 
+      const workbook = document.getElementById('brief-document');
+      const resizeTextareas = () => workbook.querySelectorAll('textarea.auto-grow').forEach(syncTextarea);
+      document.fonts?.ready.then(resizeTextareas);
       if ('ResizeObserver' in window) {
-        const workbook = document.getElementById('brief-document');
         let width = workbook.clientWidth;
         new ResizeObserver(() => {
           const nextWidth = workbook.clientWidth;
           if (nextWidth === width) return;
           width = nextWidth;
-          workbook.querySelectorAll('textarea.auto-grow').forEach(syncTextarea);
+          resizeTextareas();
         }).observe(workbook);
       }
     });
